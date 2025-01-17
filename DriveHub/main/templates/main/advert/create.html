@@ -1,0 +1,111 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Create Advert{% endblock title %}
+
+{% block content %}
+<div class="create">
+    <h2 class="create-text">Create new advert</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="create-row">
+            <label for="id_transport_type" class="">Transport type</label>
+            {{ form.transport_type }}
+        </div>
+
+        <div class="create-row">
+            <label for="id_title" class="">Title</label>
+            {{ form.title }}
+        </div>
+
+        <div class="create-row">
+            <label for="id_image" class="">Image</label>
+            {{ form.image }}
+        </div>
+        
+        <div class="create-row">
+            <label for="id_year" class="">Year:</label>
+            {{ form.year }}
+        </div>
+
+        <div class="create-row">
+            <label for="id_engine_volume" class="">Engine volume, l:</label>
+            {{ form.engine_volume }}
+        </div>
+
+        <div class="create-row">
+            <label for="id_mileage" class="">Mileage, km:</label>
+            {{ form.mileage }}
+        </div>
+
+        <div class="create-row">
+            <label for="id_weight" class="">Weight, kg:</label>
+            {{ form.weight }}
+        </div>
+
+        <div class="create-row" id="seat_number_field">
+            <label for="id_s" class="">Seat number:</label>
+            {{ form.seat_number }}
+        </div>
+
+        <div class="create-row" id="load_capacity_field">
+            <label for="id_load_capacity" class="">Load capacity, t:</label>
+            {{ form.load_capacity }}
+        </div>
+
+        <div class="create-row" id="propeller_number_field">
+            <label for="id_propeller_number" class="">Propeller number:</label>
+            {{ form.propeller_number }}
+        </div>
+
+        <div class="create-row">
+            <label for="id_price" class="">Price, $:</label>
+            {{ form.price }}
+        </div>
+
+        <div class="create-row">
+            <label for="id_city" class="">City:</label>
+            {{ form.city }}
+        </div>
+
+        <div class="create-row">
+            <label for="id_description" class="">Description:</label>
+            {{ form.description }}
+        </div>
+
+        <div class="create-row">
+            <button type="submit" class="">Create Advert</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const transportType = document.getElementById("id_transport_type");
+        const seatField = document.getElementById("seat_number_field");
+        const loadField = document.getElementById("load_capacity_field");
+        const propellerfield = document.getElementById("propeller_number_field");
+
+        function toggleFields() {
+            if (transportType.value === "car") {
+                seatField.style.display = "flex";
+                loadField.style.display = "none";
+                propellerfield.style.display = "none";
+            } else if (transportType.value === "truck") {
+                seatField.style.display = "none";
+                loadField.style.display = "flex";
+                propellerfield.style.display = "none";
+            } else if (transportType.value === "boat") {
+                seatField.style.display = "none";
+                loadField.style.display = "none";
+                propellerfield.style.display = "flex";
+            }
+        }
+
+        toggleFields();
+
+        transportType.addEventListener("change", toggleFields);
+    });
+</script>
+{% endblock content %}

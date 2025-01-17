@@ -1,0 +1,87 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+        <div class="profile">
+            <form class="profile-form" action="{% url "account:profile" %}" method="post" enctype="multipart/form-data">
+                <h2>Profile</h2>
+                {% csrf_token %}
+                <div class="profile-row">
+                    <label class="profile-label" for="id_first_name">First Name</label>
+                    <input class="profile-input" type="text" id="id_first_name"
+                    name="first_name" placeholder="Your first name" value="{{ form.first_name.value }}"
+                    required>
+                </div>
+                <div class="profile-row">
+                    <label class="profile-label" for="id_last_name">Last Name</label>
+                    <input class="profile-input" type="text" id="id_last_name"
+                    name="last_name" placeholder="Your last name" value="{{ form.last_name.value }}"
+                    required>
+                </div>
+                <div class="profile-row">
+                    <label class="profile-label" for="id_username">Username</label>
+                    <input class="profile-input" type="text" id="id_username"
+                    name="username" placeholder="Your username" value="{{ form.username.value }}"
+                    required>
+                </div>
+                <div class="profile-row">
+                    <label class="profile-label" for="id_email">Email</label>
+                    <input class="profile-input" type="email" id="id_email"
+                    name="email" placeholder="Your email" value="{{ form.email.value }}"
+                    required>
+                </div>
+                <div class="profile-row">
+                    <label class="profile-label" for="id_phone">Phone</label>
+                    <input class="profile-input" type="text" id="id_phone"
+                    name="phone" placeholder="Your phone" value="{{ form.phone.value }}"
+                    required>
+                </div>
+                <div class="profile-row">
+                    <button class="profile-btn" type="submit">Save</button>
+                </div>
+                <div class="profile-row logout">
+                    <a href="{% url "account:logout" %}"><button class="profile-btnl" type="button">Logout</button></a>
+                </div>
+            </form>
+            
+            <div class="adverts" id="adverts-list">
+                <h2 class="adverts-transport">Your adverts</h2>
+                {% for advert in adverts %}
+                <hr class="profile-hr">
+                <div class="advert">
+                    <div class="advert-image">
+                        <a href="{{ advert.get_absolute_url }}/"><img src="/media/{{ advert.transport.image }}"></a>
+                    </div>
+                    <div class="advert-content">
+                        <div class="advert-title">
+                            <a href="{{ advert.get_absolute_url }}">{{ advert.transport.title }}</a>
+                        </div>
+                        <div class="advert-price">${{ advert.price }}</div>
+                        <div class="advert-properties">
+                            <li class="advert-city">{{ advert.city }}</li>
+                            <li class="advert-year">{{ advert.transport.year }}</li>
+                            <li>Engine: {{ advert.transport.engine_volume }}l</li>
+                            <li>Mileage: {{ advert.transport.mileage }}km</li>
+                            <li>Weight: {{ advert.transport.weight }}kg</li>
+                            {% if advert.transport.seat_number is not None %}
+                            <li>Seat number: {{ advert.transport.seat_number }}</li>
+                            {% endif %}
+                            {% if advert.transport.load_capacity is not None %}
+                            <li>Load capacity: {{ advert.transport.load_capacity }}</li>
+                            {% endif %}
+                            {% if advert.transport.propeller_count is not None %}
+                            <li>Propeller count: {{ advert.transport.propeller_count }}</li>
+                            {% endif %}
+                        </div>
+                    </div>    
+                    <form action="{% url 'main:delete_advert' advert.slug %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-btn">🗑</button>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+{% endblock content %}

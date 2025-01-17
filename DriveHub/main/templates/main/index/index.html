@@ -1,0 +1,87 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<main>
+    <div class="search">
+        <form class="search-form" id="search-form" method="GET" action="{% url 'main:adverts_list' %}">
+            <div class="search-form-columns">
+                <div class="search-form-column one">
+                    <div class="search-form-item">
+                        <input type="text" placeholder="Search.." name="title" class="search-input" value="{{ request.GET.title }}">
+                    </div>
+                    <div class="search-form-item">
+                        <select class="search-select" name="transport_type">
+                            <option value="all" {% if request.GET.transport_type == 'all' %}selected{% endif %}>All Types</option>
+                            <option value="car" {% if request.GET.transport_type == 'car' %}selected{% endif %}>Car</option>
+                            <option value="truck" {% if request.GET.transport_type == 'truck' %}selected{% endif %}>Truck</option>
+                            <option value="boat" {% if request.GET.transport_type == 'boat' %}selected{% endif %}>Boat</option>
+                        </select>
+                    </div>
+                    <div class="search-form-item price">
+                        <div class="search-label-div">
+                            <label>$ Price:</label> 
+                        </div>
+                        <input type="number" placeholder="Min" name="min_price" class="search-input pr" value="{{ request.GET.min_price }}">
+                        <input type="number" placeholder="Max" name="max_price" class="search-input pr" value="{{ request.GET.max_price }}">
+                    </div>
+                </div>
+                <div class="search-form-column scnd">
+                    <div class="search-form-item">
+                        <input type="text" placeholder="City" name="city" class="search-input" value="{{ request.GET.city }}">
+                    </div>
+                    <div class="search-form-item">
+                        <input type="number" placeholder="Year" name="year" class="search-input" value="{{ request.GET.year }}">
+                    </div>
+                    <div class="search-form-item">
+                        <select class="search-select" name="sort_by">
+                            <option value="date_desc" {% if request.GET.sort_by == 'date_desc' %}selected{% endif %}>Date (Newest)</option>
+                            <option value="date_asc" {% if request.GET.sort_by == 'date_asc' %}selected{% endif %}>Date (Oldest)</option>
+                            <option value="year_desc" {% if request.GET.sort_by == 'year_desc' %}selected{% endif %}>Year (Newest)</option>
+                            <option value="year_asc" {% if request.GET.sort_by == 'year_asc' %}selected{% endif %}>Year (Oldest)</option>
+                            <option value="price_desc" {% if request.GET.sort_by == 'price_desc' %}selected{% endif %}>Price (High to Low)</option>
+                            <option value="price_asc" {% if request.GET.sort_by == 'price_asc' %}selected{% endif %}>Price (Low to High)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+    </div>
+    <div class="adverts" id="adverts-list">
+        <h2 class="adverts-transport">All vehicles</h2>
+        {% for advert in adverts %}
+        <hr>
+        <div class="advert">
+            <div class="advert-image">
+                <a href="{{ advert.get_absolute_url }}"><img src="/media/{{ advert.transport.image }}"></a>
+            </div>
+            <div class="advert-content">
+                <div class="advert-title">
+                    <a href="{{ advert.get_absolute_url }}">{{ advert.transport.title }}</a>
+                </div>
+                <div class="advert-price">${{ advert.price }}</div>
+                <div class="advert-properties">
+                    <li class="advert-city">{{ advert.city }}</li>
+                    <li class="advert-year">{{ advert.transport.year }}</li>
+                    <li>Engine: {{ advert.transport.engine_volume }} l</li>
+                    <li>Mileage: {{ advert.transport.mileage }} km</li>
+                    <li>Weight: {{ advert.transport.weight }} kg</li>
+                    {% if advert.transport.seat_number is not None %}
+                    <li>Seat number: {{ advert.transport.seat_number }}</li>
+                    {% endif %}
+                    {% if advert.transport.load_capacity is not None %}
+                    <li>Load capacity: {{ advert.transport.load_capacity }} t</li>
+                    {% endif %}
+                    {% if advert.transport.propeller_number is not None %}
+                    <li>Propeller number: {{ advert.transport.propeller_number }}</li>
+                    {% endif %}
+                </div>
+            </div>    
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock content %}

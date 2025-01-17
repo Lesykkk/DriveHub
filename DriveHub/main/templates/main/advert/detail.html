@@ -1,0 +1,34 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ advert.transport.title }}
+{% endblock title %}
+
+{% block content %}
+    <div class="detail">
+        <div class="detail-item"><img class="detail-image" src="/media/{{advert.transport.image}}"></div>
+        <div class="detail-item"><h2 class="detail-title">{{ advert.transport.title }}</h2></div>
+        <div class="detail-item"><h2 class="detail-price">${{ advert.price }}</h2></div>
+        <li class="detail-city">{{ advert.city }}</li>
+        <li class="detail-text">About</li>
+        <li>Year - {{ advert.transport.year }}</li>
+        <li>Engine volume - {{ advert.transport.engine_volume }} l</li>
+        <li>Mileage - {{ advert.transport.mileage }} km</li>
+        <li>Weight - {{ advert.transport.weight }} kg</li>
+        {% if advert.transport.seat_number is not None %}
+        <li>Seat number - {{ advert.transport.seat_number }}</li>
+        {% endif %}
+        {% if advert.transport.load_capacity is not None %}
+        <li>Load capacity - {{ advert.transport.load_capacity }} t</li>
+        {% endif %}
+        {% if advert.transport.propeller_number is not None %}
+        <li>Propeller number - {{ advert.transport.propeller_number }}</li>
+        {% endif %}
+        <li class="detail-description">{{ advert.description }}</li>
+        <li class="detail-text">Contacts</li>
+        <li>{{ advert.account.first_name }} {{ advert.account.last_name }}</li>
+        <li>{{ advert.account.email }}</li>
+        <li>{{ advert.account.phone }}</li>
+    </div>
+{% endblock content %}

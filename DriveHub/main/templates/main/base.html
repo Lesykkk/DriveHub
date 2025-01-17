@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock title %}</title>
+
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-div">
+            <div class="header-logo">
+                <a href="/" class=""><img src="{% static 'img/text.png' %}"></a>
+            </div>
+            <div class="left-menu">
+                <a href="/">Home</a>
+            </div>
+            <ul class="right-menu">
+                <li class="right-menu-item">
+                    <a href="{% url "main:create_advert" %}">Create advert</a>
+                </li>
+                <li class="right-menu-item">
+                    {% if user.is_authenticated %}
+                    <a href="{% url "account:profile" %}">Profile</a>
+                    {% else %}
+                    <a href="{% url "account:login" %}">Login</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <script src="{% static 'bootstrap\js\bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
