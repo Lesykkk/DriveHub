@@ -1,0 +1,76 @@
+{% load static %}
+
+<header>
+    <div class="header-container">
+        <div class="header-row">
+            <div class="col-1">
+                <a class ="header-logo" href="#">
+                    <img class="header-logo-img" src = "{% static 'icons/logo.svg' %}">
+                </a>
+            </div>
+            <div class="col-2">
+                <nav class="header-nav">
+                    <ul class="header-menu">
+                        <li class = "menu-item">
+                            <a class = "header-menu-link" href="#">Нове авто</a>
+                        </li>
+                        <li class = "menu-item">
+                            <a class = "header-menu-link" href="#">Вживане авто</a>
+                        </li>
+                        <li class = "menu-item">
+                            <a class = "header-menu-link" href="#">Продати авто</a>
+                        </li>
+                        <li class = "menu-item l">
+                            <div class="login-btn">
+                                <a class="login" href="#">
+                                    <div class="login-img-container">
+                                        <img src="{% static 'icons/login.svg' %}">
+                                    </div>
+                                    <span class="login-title">Увійти</span>
+                                </a>
+                            </div>
+                            <div class="menu">
+                                <a class="menu-profile" href="#">
+                                    <img class="black-icon" src="{% static 'icons/profile-icon-black.svg' %}" alt="">
+                                    <img class="blue-icon" src="{% static 'icons/profile-icon-blue.svg' %}" alt="">
+                                    <span>Профіль</span>
+                                </a>
+                                <a class="menu-adverts" href="#">
+                                    <img class="black-icon" src="{% static 'icons/my-ads-icon-black.svg' %}" alt="">
+                                    <img class="blue-icon" src="{% static 'icons/my-ads-icon-blue.svg' %}" alt="">
+                                    <span>Мої оголошення</span>
+                                </a>
+                                <a class="menu-favourite" href="#">
+                                    <img class="black-icon" src="{% static 'icons/favorite-icon-black.svg' %}" alt="">
+                                    <img class="blue-icon" src="{% static 'icons/favorite-icon-blue.svg' %}" alt="">
+                                    <span>Обране</span>
+                                </a>
+                                <a class="menu-settings" href="#">
+                                    <img class="black-icon" src="{% static 'icons/setting-icon-black.svg' %}" alt="">
+                                    <img class="blue-icon" src="{% static 'icons/setting-icon-blue.svg' %}" alt="">
+                                    <span>Налаштування</span>
+                                </a>
+                                <a class="menu-logout" href="#">
+                                    <img class="black-icon" src="{% static 'icons/logout-icon-black.svg' %}" alt="">
+                                    <img class="blue-icon" src="{% static 'icons/setting-icon-blue.svg' %}" alt="">
+                                    <span>Вийти</span>
+                                </a>
+                            </div>
+                        </li>
+                        <li class = "menu-item c">
+                            <div class = "create-btn">
+                                <a class="create" href="#">
+                                    <div class="create-img-container">
+                                        <img src="{% static 'icons/plus.svg' %}">
+                                    </div>
+                                    <span class="create-title">Розмістити</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="h-line"></div>
+    </div>
+</header>
