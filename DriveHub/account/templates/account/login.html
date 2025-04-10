@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Login</title>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+    <link rel="stylesheet" href="{% static 'account/styles/login.css' %}">
+</head>
+<body>
+    <div class="login">
+        <div class="login-col-1">
+            <a href="#"><img class="login-logo-img" src = "{% static 'icons/logo-white.svg' %}"></a>
+            <div class="img-container">
+                <img src="{% static 'account/images/login.png' %}" alt="">
+            </div>
+            <div class="title-text">
+                <h1 class="title">
+                    Сучасна автомобільна платформа
+                </h1>
+                <p class="sub-title">
+                    Все що тобі потрібно для автомобіля. Ти знайдеш у нас!
+                </p>
+            </div>
+        </div>
+        <div class="login-col-2">
+            <div class="login-form">
+                <h1 class="form-title-1">
+                    Вхід на сайт
+                    <span class="form-title-2">
+                        DriveHub.com.ua
+                    </span>
+                </h1>
+                <h2 class="form-subtitle">
+                    Ведіть дані, які ви вказали при реєстрації!
+                </h2>
+                <div class="input-container">
+                    <img src="{% static 'account/icons/mail.svg' %}" alt="">
+                    <input type="text" name="" id="" placeholder="Пошта">
+                </div>
+                <div class="input-container">
+                    <img src="{% static 'account/icons/lock.svg' %}" alt="">
+                    <input type="password" name="" id="" placeholder="Пароль">
+                </div>
+                <button class="submit-btn">
+                    Увійти
+                </button>
+                <div class="form-reg-container">
+                    <p class="reg-text">У Вас ще немає аккаунта?</p>
+                    <a class="reg-link" href="#">Реєстрація</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
