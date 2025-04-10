@@ -1,0 +1,159 @@
+.login {
+    display: flex;
+    height:100vh;
+    width: 100vw;
+}
+
+.login-col-1 {
+    display: flex;
+    background-color: #1890FF;
+    width: 50%;
+    height: 100%;
+    position: relative;
+}
+
+.login-col-2 {
+    display: flex;
+    background-color: #ffffff;
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-col-1 a {
+    display: flex;
+    height: max-content;
+    width: max-content;
+    margin: 30px 0 0 100px;
+}
+
+.login-logo-img {
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 11;
+}
+
+.img-container{
+    display: block;
+    position: absolute;
+    translate: -50% -50%;
+    top: 50%;
+    left: 50%;
+}
+
+.title-text{
+    left: 60px;
+    bottom: 0;
+    position: absolute;
+    text-align: center;
+    display: block;
+    padding: 0 100px 120px 100px
+}
+
+.title{
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+.sub-title{
+    color: rgb(248, 250, 252);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22.4px;
+    opacity: 0.7;
+}
+
+.login-form {
+    max-width: 550px;
+    width: 100%;
+    height: max-content;
+}
+
+.form-title-1,  .form-title-2 {
+    color: #0f172a;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: .2px;
+    margin-bottom: 16px;
+}
+
+.form-title-2 {
+    color: #1890FF !important;
+}
+
+.form-subtitle {
+    color: #718096;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    margin-bottom: 32px;
+}
+
+.input-container {
+    display: flex;
+    position: relative;
+    align-items: center;
+    border: 1px solid rgb(226, 232, 240);
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 16px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    outline: none;
+}
+
+.input-container input::placeholder {
+    color: rgb(150, 155, 161);
+    font-weight: 300;
+}
+
+.input-container img{
+    margin-left: 18px;
+}
+
+.submit-btn {
+    background-color: #1890FF;
+    border-radius: 12px;
+    font: 16px Inter, sans-serif;
+    font-weight: 700;
+    color: white;
+    width: 100%;
+    padding: 18px 0;
+    margin: 0 0 32px;
+}
+
+.form-reg-container {
+    display: flex;
+    justify-content: center;
+}
+
+.reg-text {
+    color: #0f172a;
+    text-align: center;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    margin-right: 5px;
+}
+
+.reg-link {
+    color: #1890FF;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+}
