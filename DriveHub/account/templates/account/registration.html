@@ -14,7 +14,7 @@
 <body>
     <div class="login">
         <div class="login-col-1">
-            <a href="#"><img class="login-logo-img" src = "{% static 'icons/logo-white.svg' %}"></a>
+            <a href="{% url "advert:home" %}"><img class="login-logo-img" src = "{% static 'icons/logo-white.svg' %}"></a>
             <div class="img-container">
                 <img src="{% static 'account/images/login.png' %}" alt="">
             </div>
@@ -60,7 +60,7 @@
                 </button>
                 <div class="form-reg-container">
                     <p class="reg-text">У Вас вже є аккаунт?</p>
-                    <a class="reg-link" href="#">Увійти</a>
+                    <a class="reg-link" href="{% url 'account:login' %}">Увійти</a>
                 </div>
             </div>
         </div>
