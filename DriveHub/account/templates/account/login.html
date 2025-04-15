@@ -11,10 +11,11 @@
     <link rel="stylesheet" href="{% static 'styles/base.css' %}">
     <link rel="stylesheet" href="{% static 'account/styles/login.css' %}">
 </head>
+
 <body>
     <div class="login">
         <div class="login-col-1">
-            <a href="#"><img class="login-logo-img" src = "{% static 'icons/logo-white.svg' %}"></a>
+            <a href="{% url 'advert:home' %}"><img class="login-logo-img" src = "{% static 'icons/logo-white.svg' %}"></a>
             <div class="img-container">
                 <img src="{% static 'account/images/login.png' %}" alt="">
             </div>
@@ -51,7 +52,7 @@
                 </button>
                 <div class="form-reg-container">
                     <p class="reg-text">У Вас ще немає аккаунта?</p>
-                    <a class="reg-link" href="#">Реєстрація</a>
+                    <a class="reg-link" href="{% url 'account:registration' %}">Реєстрація</a>
                 </div>
             </div>
         </div>

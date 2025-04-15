@@ -2,7 +2,18 @@ main {
     min-height: 100vh;
 }
 
+.footer-logo{
+    display: flex;
+    align-items: center;
+    /* margin: 0 8px 0 0 */
+}
 
+.footer-logo-img {
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .footer-container {
     width: 1220px;
