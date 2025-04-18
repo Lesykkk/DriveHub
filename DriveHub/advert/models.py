@@ -1,18 +1,18 @@
 from django.db import models
 from django.urls import reverse
-from account.models import User
+from django.conf import settings
 
 
-class Brand(models.model):
+class Brand(models.Model):
     value = models.CharField(max_length=50)
 
-class Model(models.model):
+class Model(models.Model):
     value = models.CharField(max_length=100)
 
-class BodyType(models.model):
+class BodyType(models.Model):
     value = models.CharField(max_length=50)
 
-class FuelType(models.model):
+class FuelType(models.Model):
     value = models.CharField(max_length=50)
 
 class FuelConsumption(models.Model):
@@ -20,13 +20,13 @@ class FuelConsumption(models.Model):
     highway = models.DecimalField(max_digits=4, decimal_places=1)
     mixed = models.DecimalField(max_digits=4, decimal_places=1)
 
-class DriveWheelType(models.model):
+class DriveWheelType(models.Model):
     value = models.CharField(max_length=50)
 
-class TransmissionType(models.model):
+class TransmissionType(models.Model):
     value = models.CharField(max_length=50)
 
-class Color(models.model):
+class Color(models.Model):
     value = models.CharField(max_length=50)
 
 class TransportType(models.Model):
@@ -34,18 +34,18 @@ class TransportType(models.Model):
 
 
 class Transport(models.Model):
-    transport_type = models.ForeignKey(TransportType)
-    brand = models.ForeignKey(Brand)
-    model = models.ForeignKey(Model)
+    transport_type = models.ForeignKey(TransportType, on_delete=models.PROTECT)
+    brand = models.ForeignKey(Brand, on_delete=models.PROTECT)
+    model = models.ForeignKey(Model, on_delete=models.PROTECT)
     year = models.PositiveSmallIntegerField()
-    body_type = models.ForeignKey(BodyType)
-    fuel_type = models.ForeignKey(FuelType)
+    body_type = models.ForeignKey(BodyType, on_delete=models.PROTECT)
+    fuel_type = models.ForeignKey(FuelType, on_delete=models.PROTECT)
     engine_volume = models.DecimalField(max_digits=3, decimal_places=1)
-    engine_power = models.models.PositiveSmallIntegerField()
-    fuel_consumption = models.ForeignKey(FuelConsumption)
-    drive_wheel_type = models.ForeignKey(DriveWheelType)
-    transmission_type = models.ForeignKey(TransmissionType)
-    color = models.ForeignKey(Color)
+    engine_power = models.PositiveSmallIntegerField()
+    fuel_consumption = models.ForeignKey(FuelConsumption, on_delete=models.PROTECT)
+    drive_wheel_type = models.ForeignKey(DriveWheelType, on_delete=models.PROTECT)
+    transmission_type = models.ForeignKey(TransmissionType, on_delete=models.PROTECT)
+    color = models.ForeignKey(Color, on_delete=models.PROTECT)
     mileage = models.PositiveIntegerField()
     owners_number = models.PositiveSmallIntegerField()
 
@@ -64,7 +64,7 @@ class TransportPhoto(models.Model):
 
 
 class Advert(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='adverts')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='adverts')
     transport = models.OneToOneField(Transport, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=50, unique=True)
     price = models.PositiveIntegerField()
