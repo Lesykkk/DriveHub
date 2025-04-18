@@ -1,6 +1,5 @@
 from django.contrib import admin
 from .models import *
-from polymorphic.admin import PolymorphicParentModelAdmin, PolymorphicChildModelAdmin, PolymorphicChildModelFilter
 
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
