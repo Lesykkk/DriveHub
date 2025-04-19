@@ -10,6 +10,8 @@
     width: 50%;
     height: 100%;
     position: relative;
+    align-items: center;
+    justify-content: center;
 }
 
 .login-col-2 {
@@ -21,36 +23,26 @@
     justify-content: center;
 }
 
-.login-col-1 a {
+.login-logo {
     display: flex;
+    position: absolute;
     height: max-content;
     width: max-content;
-    margin: 30px 0 0 100px;
+    top: 30px;
+    left: 100px;
+
 }
 
 .login-logo-img {
     height: 34px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 11;
-}
-
-.img-container{
-    display: block;
-    position: absolute;
-    translate: -50% -50%;
-    top: 50%;
-    left: 50%;
 }
 
 .title-text{
-    left: 60px;
-    bottom: 0;
-    position: absolute;
+    display: flex;
+    flex-direction: column;
     text-align: center;
-    display: block;
-    padding: 0 100px 120px 100px
+    position: absolute;
+    bottom: 120px;
 }
 
 .title{
