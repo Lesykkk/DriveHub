@@ -1,0 +1,35 @@
+.profile-container {
+    display: flex;
+    width: 1220px;
+    height: 100%;
+    margin: 30px auto;
+    flex: 1;
+}
+
+.side-bar-menu-adverts {
+    background-color: #188fff0a;
+    color: #1890FF;
+    .blue-icon {
+        display: flex;
+    }
+    .black-icon {
+        display: none;
+    }
+}
+
+.content {
+    flex: 1;
+    height: 100%;
+    padding: 20px;
+}
+
+.content-header {
+    width: 100%;
+    height: max-content;
+}
+
+.content-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-left: 20px;
+}

@@ -1,5 +1,5 @@
 .main-container {
     width: 1220px;
     margin: 0 auto;
-    height: 200px;
+    flex: 1;
 }

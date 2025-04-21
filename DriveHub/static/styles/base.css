@@ -8,10 +8,15 @@
     border: none;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
+    display: flex;
+    flex-direction: column;
     line-height: 1;
     overflow-x: hidden;
-    min-height: 100vh;
 }
 
 a {

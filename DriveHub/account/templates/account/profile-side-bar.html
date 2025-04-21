@@ -1,0 +1,39 @@
+{% load static %}
+
+<div class="side-bar">
+    <div class="side-bar-header">
+        <div class="profile-logo">Д</div>
+        <div class="user-text">
+            <span class="user-name">Дмитро</span>
+            <span class="user-email">2017.dimka.8@gmail.com</span>
+        </div>
+    </div>
+
+    <div class="profile-h-line-1"></div>
+
+    <div class="side-bar-menu">
+        <a class="side-bar-menu-adverts" href="#">
+            <img class="black-icon" src="{% static 'icons/my-ads-icon-black.svg' %}" alt="">
+            <img class="blue-icon" src="{% static 'icons/my-ads-icon-blue.svg' %}" alt="">
+            <span>Мої оголошення</span>
+        </a>
+        <a class="side-bar-menu-favourite" href="#">
+            <img class="black-icon" src="{% static 'icons/favorite-icon-black.svg' %}" alt="">
+            <img class="blue-icon" src="{% static 'icons/favorite-icon-blue.svg' %}" alt="">
+            <span>Обране</span>
+        </a>
+
+        <div class="profile-h-line-2"></div>
+
+        <a class="side-bar-menu-settings" href="#">
+            <img class="black-icon" src="{% static 'icons/setting-icon-black.svg' %}" alt="">
+            <img class="blue-icon" src="{% static 'icons/setting-icon-blue.svg' %}" alt="">
+            <span>Налаштування</span>
+        </a>
+        <a class="side-bar-menu-logout" href="#">
+            <img class="black-icon" src="{% static 'icons/logout-icon-black.svg' %}" alt="">
+            <img class="blue-icon" src="{% static 'icons/logout-icon-blue.svg' %}" alt="">
+            <span>Вийти</span>
+        </a>
+    </div>
+</div>

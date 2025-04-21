@@ -5,16 +5,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DriveHub</title>
+    <title>DriveHub - My adverts</title>
     <link rel="stylesheet" href="{% static 'styles/base.css' %}">
     <link rel="stylesheet" href="{% static 'styles/header.css' %}">
     <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
-    <link rel="stylesheet" href="{% static 'advert/styles/advert.css' %}">
+    <link rel="stylesheet" href="{% static 'account/styles/profile-side-bar.css' %}">
+    <link rel="stylesheet" href="{% static 'account/styles/my-adverts.css' %}">
 </head>
 <body>
     {% include "header.html" %}
     
-    <div class="main-container">
+    <div class="profile-container">
+        {% include "account/profile-side-bar.html" %}
+        <div class="content">
+            <div class="content-header">
+                <span class="content-title">Мої оголошення</span>
+
+            </div>
+        </div>
     </div>
     
     {% include "footer.html" %}

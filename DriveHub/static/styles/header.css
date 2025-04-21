@@ -56,7 +56,6 @@ header {
 .header-menu-link {
     font: 16px "Inter", sans-serif;
     font-weight: 500;
-    /* line-height: 20px; */
 }
 
 .login-btn {
@@ -138,10 +137,8 @@ header {
 .menu {
     display: flex;
     visibility: hidden;
-
     transition: 0.35s all ease;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 10px 30px 0px;
-    box-sizing: border-box;
     translate: -50%;
     flex-direction: column;
     position: absolute;
@@ -159,8 +156,8 @@ header {
 .menu a {
     display: flex;
     align-items: center;
-    padding: 8px 35px 8px 8px;
-    column-gap: 20px;
+    padding: 8px 14px 8px 8px;
+    column-gap: 19px;
     border-radius: 8px;
 }
 
@@ -188,7 +185,3 @@ header {
         display: none;
     }
 }
-
-/* .menu:hover {
-    visibility: visible;
-} */
