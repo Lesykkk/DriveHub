@@ -14,6 +14,7 @@
 }
 
 .profile-logo {
+    color: rgb(128, 129, 145);
     display: flex;
     border-radius: 8px;
     justify-content: center;
@@ -77,9 +78,6 @@
         display: none;
     }
 }
-
-
-
 
 .profile-h-line-1, .profile-h-line-2{
     display: block;

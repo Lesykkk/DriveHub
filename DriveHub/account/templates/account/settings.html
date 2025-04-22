@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DriveHub - Settings</title>
+    <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/header.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'account/styles/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'account/styles/profile-side-bar.css' %}">
+    <link rel="stylesheet" href="{% static 'account/styles/settings.css' %}">
+</head>
+<body>
+    {% include "header.html" %}
+    
+    <div class="profile-container">
+        {% include "account/profile-side-bar.html" %}
+        <div class="content">
+            <div class="content-header">
+                <span class="content-title">Налаштування</span>
+            </div>
+            <div class="content-body">
+                <div class="settings-logo">Д</div>
+                <div class="settings-text">
+                    <span class="settings-name">Дмитро</span>
+                    <span class="settings-email">2017.dimka.8@gmail.com</span>
+                </div>
+
+                <div class="input-form">
+                    <div class="input-container">
+                        <img src="{% static 'account/icons/user.svg' %}" alt="">
+                        <input type="text" name="" id="" placeholder="Ім'я">
+                    </div>
+                    <div class="input-container">
+                        <img src="{% static 'account/icons/user.svg' %}" alt="">
+                        <input type="text" name="" id="" placeholder="Прізвище">
+                    </div>
+                    <div class="input-container">
+                        <img src="{% static 'account/icons/mail.svg' %}" alt="">
+                        <input type="email" name="" id="" placeholder="Пошта">
+                    </div>
+                    <div class="input-container">
+                        <img src="{% static 'account/icons/phone.svg' %}" alt="">
+                        <input type="tel" name="" id="" placeholder="Телефон">
+                    </div>
+                    <div class="input-container">
+                        <img src="{% static 'account/icons/lock.svg' %}" alt="">
+                        <input type="password" name="" id="" placeholder="Пароль">
+                    </div>
+                    <button class="submit-btn">
+                        Зберегти зміни
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% include "footer.html" %}
+</body>
+</html>

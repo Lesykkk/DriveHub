@@ -2,14 +2,14 @@
 
 header {
     width: 100%;
-    padding: 18px 0 0;
 }
 
 .header-container {
-    /* max-width: 1440px; */
     width: 1220px;
     margin: 0 auto;
     height: max-content;
+    padding: 18px 0;
+    border-bottom: 1px solid rgb(229, 229, 229);
 }
 
 .header-row {

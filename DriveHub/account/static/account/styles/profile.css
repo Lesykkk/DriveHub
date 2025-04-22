@@ -1,0 +1,28 @@
+.profile-container {
+    display: flex;
+    width: 1220px;
+    height: 100%;
+    margin: 30px auto;
+    flex: 1;
+}
+
+.content {
+    flex: 1;
+    height: 100%;
+    padding: 20px;
+    padding-left: 38px;
+}
+
+.content-header {
+    display: flex;
+    width: 100%;
+    height: max-content;
+    margin-bottom: 20px;
+}
+
+.content-title {
+    display: flex;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: normal;
+}

@@ -1,0 +1,38 @@
+{% load static %}
+
+<div class="car-card">
+    <div class="car-img">
+        <a href="#">
+            <img src="https://cardrive.com.ua/file/thumb/802b301d-e1f8-4deb-a1c9-91d63beb862f" alt="">
+        </a>
+    </div>
+    <div class="car-info">
+        <div class="car-title-row">
+            <a class="car-title" href="#">BMW 5 серії 2020</a>
+            <span class="car-price-dolar">14 500 $</span>
+            <span class="car-price-hrn">603 502 ₴</span>
+        </div>
+        <div class="car-spec-row">
+            <img src="{% static 'advert/icons/speed2.svg' %}" alt="">
+            <p>140 000km</p>
+            <p>чорний</p>
+        </div>
+        <div class="car-spec-row">
+            <img src="{% static 'advert/icons/info.svg' %}" alt="">
+            <p>2л / 220 к.c / бензин</p>
+            <p>повний</p>
+        </div>
+        <div class="car-spec-row">
+            <img src="{% static 'advert/icons/gearbox.svg' %}" alt="">
+            <p>Автоматична</p>
+            <p>купе</p>
+        </div>
+        <span class="car-about">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa pariatur accusantium, officia nihil odio unde officiis necessitatibus delectus et in esse omnis illo nisi, eligendi autem ipsum harum at quibusdam.</span>
+        <div class="car-bottom-row">
+            <span class="car-date">Львів, 12.04.2024</span>
+            <button class="icon-button">
+                <img src="{% static icon_href %}">
+            </button>
+        </div>
+    </div>
+</div>
