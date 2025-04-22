@@ -81,3 +81,8 @@ class Advert(models.Model):
 
     def get_absolute_url(self):
         return reverse(':advert_detail', args=[self.slug])
+    
+class Liked(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'liked')
+    advert = models.ForeignKey(Advert, on_delete=models.CASCADE)
+  
