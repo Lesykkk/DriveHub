@@ -52,3 +52,8 @@ class TransportPhotoAdmin(admin.ModelAdmin):
 class AdvertAdmin(admin.ModelAdmin):
     list_display = ['user', 'transport', 'slug', 'price', 'city', 'description', 'created', 'updated']
     list_select_related = ['user', 'transport']
+    
+@admin.register(Liked)
+class LikedAdmin(admin.ModelAdmin):
+    list_display = ['user','advert']
+    list_select_related = ['user', 'advert']
