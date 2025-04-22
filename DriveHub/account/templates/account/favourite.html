@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DriveHub - Favourite</title>
+    <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/header.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'account/styles/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'account/styles/profile-side-bar.css' %}">
+    <link rel="stylesheet" href="{% static 'account/styles/favourite.css' %}">
+    <link rel="stylesheet" href="{% static 'advert/styles/car-card.css' %}">
+</head>
+<body>
+    {% include "header.html" %}
+    
+    <div class="profile-container">
+        {% include "account/profile-side-bar.html" %}
+        <div class="content">
+            <div class="content-header">
+                <span class="content-title">Обране</span>
+            </div>
+            <div class="car-cards-container">
+                {% include "advert/car-card.html" with icon_href="advert/icons/heart-red.svg" %}
+                <div class="h-line"></div>
+                {% include "advert/car-card.html" with icon_href="advert/icons/heart-red.svg" %}
+                <div class="h-line"></div>
+                {% include "advert/car-card.html" with icon_href="advert/icons/heart-red.svg" %}
+            </div>
+        </div>
+    </div>
+    
+    {% include "footer.html" %}
+</body>
+</html>

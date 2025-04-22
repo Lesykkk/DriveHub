@@ -1,0 +1,110 @@
+.side-bar-menu-settings {
+    background-color: #188fff0a;
+    color: #1890FF;
+    .blue-icon {
+        display: flex;
+    }
+    .black-icon {
+        display: none;
+    }
+}
+
+.content-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.settings-logo{
+    color: rgb(128, 129, 145);
+    font-size: 45px;
+    display: flex;
+    border-radius: 16px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(245, 246, 247);
+    min-width: 120px;
+    min-height: 120px;
+    width: 120px;
+    height: 120px;
+}
+
+.settings-text{
+    row-gap: 10px;
+    margin-top: 32px;
+    margin-bottom: 24px;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-name{
+    font-size: 24px;
+    font-weight: 600;
+    color: black;
+}
+
+.settings-email{
+    font-weight: 500;
+    font-size: 14.5px;
+    color:rgb(128, 129, 145);
+}
+
+
+.input-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 550px;
+    min-width: 320px;
+    height: max-content;
+    row-gap: 17px;
+}
+
+.input-container {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    border: 1px solid rgb(226, 232, 240);
+    border-radius: 12px;
+}
+
+.input-container input {
+    border-radius: 12px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    flex: 1;
+    padding: 16px 16px 16px 0;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    outline: none;
+}
+
+.input-container input::placeholder {
+    color: rgb(150, 155, 161);
+    font-weight: 300;
+}
+
+.input-container img{
+    margin: 0 9px;
+    /* margin-left: 18px;*/
+}
+
+.submit-btn {
+    cursor: pointer;
+    display: block;
+    background-color: #1890FF;
+    border-radius: 12px;
+    font: 16px Inter, sans-serif;
+    font-weight: 500;
+    color: white;
+    width: 100%;
+    padding: 18px 0;
+    margin: 0 0 32px;
+    transition: background-color 0.5s ease;
+}
+
+.submit-btn:hover{
+    background-color: #007ef4;
+}
