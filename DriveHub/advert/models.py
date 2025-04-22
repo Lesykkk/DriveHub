@@ -77,7 +77,7 @@ class Advert(models.Model):
         indexes = [models.Index(fields=['slug'])]
 
     def __str__(self):
-        return f"Advert for {self.transport.title} by {self.user.username}"
+        return f"Advert for {self.transport} by {self.user.username}"
 
     def get_absolute_url(self):
         return reverse(':advert_detail', args=[self.slug])

@@ -5,5 +5,5 @@ app_name = 'advert'
 
 
 urlpatterns = [
-    path('', views.advert, name='home'),
+    path('', views.home, name='home'),
 ]
