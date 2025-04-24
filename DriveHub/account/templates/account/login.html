@@ -37,17 +37,25 @@
                 <h2 class="form-subtitle">
                     Ведіть дані, які ви вказали при реєстрації!
                 </h2>
-                <div class="input-container">
-                    <img src="{% static 'account/icons/mail.svg' %}" alt="">
-                    <input type="email" name="" id="" placeholder="Пошта">
-                </div>
-                <div class="input-container">
-                    <img src="{% static 'account/icons/lock.svg' %}" alt="">
-                    <input type="password" name="" id="" placeholder="Пароль">
-                </div>
-                <button class="submit-btn">
-                    Увійти
-                </button>
+                <form action="{% url "account:login" %}" method="post">
+                    {% csrf_token %}
+                    
+                    {% if request.GET.next %}
+                        <input type="hidden" name="next" value="{{request.GET.next}}">
+                    {% endif %}
+
+                    <div class="input-container">
+                        <img src="{% static 'account/icons/mail.svg' %}" alt="">
+                        <input type="email" name="username" id="" placeholder="Пошта" value="{% if form.username.value %}{{ form.username.value }}{% endif %}" required>
+                    </div>
+                    <div class="input-container">
+                        <img src="{% static 'account/icons/lock.svg' %}" alt="">
+                        <input type="password" name="password" id="" placeholder="Пароль" required>
+                    </div>
+                    <button class="submit-btn" type="submit">
+                        Увійти
+                    </button>
+                </form>
                 <div class="form-reg-container">
                     <p class="reg-text">У Вас ще немає аккаунта?</p>
                     <a class="reg-link" href="{% url 'account:registration' %}">Реєстрація</a>

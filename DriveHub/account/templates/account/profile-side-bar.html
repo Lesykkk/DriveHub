@@ -2,10 +2,10 @@
 
 <div class="side-bar">
     <div class="side-bar-header">
-        <div class="profile-logo">Д</div>
+        <div class="profile-logo">{{ user.first_name|slice:":1"|upper }}</div>
         <div class="user-text">
-            <span class="user-name">Дмитро</span>
-            <span class="user-email">2017.dimka.8@gmail.com</span>
+            <span class="user-name">{{user.first_name}}</span>
+            <span class="user-email">{{user.email}}</span>
         </div>
     </div>
 
