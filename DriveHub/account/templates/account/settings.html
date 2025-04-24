@@ -23,10 +23,10 @@
                 <span class="content-title">Налаштування</span>
             </div>
             <div class="content-body">
-                <div class="settings-logo">Д</div>
+                <div class="settings-logo">{{ user.first_name|slice:":1"|upper }}</div>
                 <div class="settings-text">
-                    <span class="settings-name">Дмитро</span>
-                    <span class="settings-email">2017.dimka.8@gmail.com</span>
+                    <span class="settings-name">{{user.first_name}} {{user.last_name}}</span>
+                    <span class="settings-email">{{user.email}}</span>
                 </div>
 
                 <div class="input-form">
