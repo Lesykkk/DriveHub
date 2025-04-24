@@ -5,9 +5,6 @@ from .models import *
 
 def home(request):
     adverts = Advert.objects.select_related('user', 'transport').all()
-    print(adverts[0].user.username)
-    print(adverts[0].transport.color)
-    print(adverts[0].transport.color.value)
     return render(request, 'advert/advert.html', {"adverts" : adverts})
 
 
@@ -30,26 +27,26 @@ def home2(request):
 def brand_list():
     return Brand.objects.all()
     
-def model_list(request):
+def model_list():
     return Model.objects.all()
     
-def body_type_list(request):
+def body_type_list():
     return BodyType.objects.all()
 
-def fuel_type_list(request):
+def fuel_type_list():
     return FuelType.objects.all()
 
-def fuelconsumption_list(request):
+def fuelconsumption_list():
     return FuelConsumption.objects.all()
     
-def drive_wheel_type(request):
+def drive_wheel_type():
     return DriveWheelType.objects.all()
 
-def transmissiontype_list(request):
+def transmissiontype_list():
     return TransmissionType.objects.all()
 
-def color_list(request):
+def color_list():
     return Color.objects.all()
 
-def transport_type_list(request):
+def transport_type_list():
     return TransmissionType.objects.all()

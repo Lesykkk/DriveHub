@@ -83,6 +83,6 @@ class Advert(models.Model):
         return reverse(':advert_detail', args=[self.slug])
     
 class Liked(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'liked')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name = 'liked')
     advert = models.ForeignKey(Advert, on_delete=models.CASCADE)
   
