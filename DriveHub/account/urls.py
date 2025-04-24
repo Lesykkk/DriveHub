@@ -9,4 +9,5 @@ urlpatterns = [
     path('my-adverts/', views.my_adverts, name='my-adverts'),
     path('favourite/', views.favourite, name='favourite'),
     path('settings/', views.settings, name='settings'),
+    path('logout/', views.logout, name='logout')
 ]
