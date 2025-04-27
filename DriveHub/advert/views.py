@@ -5,7 +5,7 @@ from .models import *
 
 def home(request):
     adverts = Advert.objects.select_related('user', 'transport').all()
-    return render(request, 'advert/advert.html', {"adverts" : adverts})
+    return render(request, 'advert/home.html', {"adverts" : adverts})
 
 
 

@@ -77,12 +77,12 @@ class Advert(models.Model):
         indexes = [models.Index(fields=['slug'])]
 
     def __str__(self):
-        return f"Advert for {self.transport} by {self.user.username}"
+        return f"Advert for {self.transport} by {self.user}"
 
     def get_absolute_url(self):
-        return reverse(':advert_detail', args=[self.slug])
-    
-class Liked(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name = 'liked')
+        return reverse('advert:advert_detail', args=[self.slug])
+
+
+class Favourite(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name = 'favourites')
     advert = models.ForeignKey(Advert, on_delete=models.CASCADE)
-  

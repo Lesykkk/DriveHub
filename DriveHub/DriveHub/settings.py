@@ -77,7 +77,11 @@ WSGI_APPLICATION = 'DriveHub.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'user_data.sqlite3',
+    },
+    'system': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'system_data.sqlite3',
     }
 }
 
@@ -132,4 +136,4 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 AUTH_USER_MODEL = 'account.CustomUser'
 LOGIN_URL = 'account:login'
-LOGIN_REDIRECT_URL = 'account:profile'
+LOGIN_REDIRECT_URL = 'account:home'

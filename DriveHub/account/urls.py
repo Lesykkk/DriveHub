@@ -6,8 +6,8 @@ app_name = 'account'
 urlpatterns = [
     path('login/', views.login, name='login'),
     path('registration/', views.registration, name='registration'),
-    path('my-adverts/', views.my_adverts, name='my-adverts'),
-    path('favourite/', views.favourite, name='favourite'),
+    path('my-ads/', views.my_ads, name='my-ads'),
+    path('favourites/', views.favourites, name='favourites'),
     path('settings/', views.settings, name='settings'),
     path('logout/', views.logout, name='logout')
 ]
