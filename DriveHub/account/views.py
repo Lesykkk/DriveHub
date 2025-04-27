@@ -7,11 +7,6 @@ from django.contrib.auth.decorators import login_required
 from advert.models import *
 
 
-@login_required
-def settings(request):
-    return render(request, 'account/settings.html')
-
-
 def login(request):
     if request.method == 'POST':
         form = AccountLoginForm(data=request.POST)
@@ -28,7 +23,9 @@ def login(request):
                 return redirect(next_url)
     else:
         form = AccountLoginForm()
-    return render(request, 'account/login.html', {'form': form})
+    return render(request, 'account/login.html', {
+        'form': form
+    })
 
 
 def registration(request):
@@ -42,28 +39,31 @@ def registration(request):
             return HttpResponseRedirect(reverse('account:login'))
     else:
         form = AccountRegistrationForm()
-    return render(request, 'account/registration.html', {'form': form})
-
-
-
-@login_required
-def my_adverts(request):
-    adverts = Advert.objects.filter(user=request.user)
-
-
-    return render(request, 'account/my-adverts.html',
-                  {'adverts': adverts,
-                   'user': request.user})
-
-@login_required
-def favourite(request):
-    user = request.user
-
-    liked_adverts = Advert.objects.filter(liked__user=user) 
-
-    return render(request, 'account/favourite.html', {
-        'favourite_adverts': liked_adverts
+    return render(request, 'account/registration.html', {
+        'form': form,
     })
+
+
+@login_required
+def my_ads(request):
+    return render(request, 'account/my-ads.html', {
+        'user': request.user,
+        'my_ads': request.user.adverts.all(),
+    })
+
+
+@login_required
+def favourites(request):
+    favourites = Advert.objects.filter(favourite__user=request.user)
+    return render(request, 'account/favourites.html', {
+        'user': request.user,
+        'favourites': favourites,
+    })
+
+
+@login_required
+def settings(request):
+    return render(request, 'account/settings.html')
 
 
 def logout(request):

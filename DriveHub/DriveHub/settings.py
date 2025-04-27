@@ -132,4 +132,4 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 AUTH_USER_MODEL = 'account.CustomUser'
 LOGIN_URL = 'account:login'
-LOGIN_REDIRECT_URL = 'account:profile'
+LOGIN_REDIRECT_URL = 'account:home'

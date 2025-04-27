@@ -4,20 +4,20 @@
     <div class="side-bar-header">
         <div class="profile-logo">{{ user.first_name|slice:":1"|upper }}</div>
         <div class="user-text">
-            <span class="user-name">{{user.first_name}}</span>
-            <span class="user-email">{{user.email}}</span>
+            <span class="user-name">{{ user.first_name }}</span>
+            <span class="user-email">{{ user.email }}</span>
         </div>
     </div>
 
     <div class="profile-h-line-1"></div>
 
     <div class="side-bar-menu">
-        <a class="side-bar-menu-adverts" href="{% url 'account:my-adverts' %}">
+        <a class="side-bar-menu-adverts" href="{% url 'account:my-ads' %}">
             <img class="black-icon" src="{% static 'icons/my-ads-icon-black.svg' %}" alt="">
             <img class="blue-icon" src="{% static 'icons/my-ads-icon-blue.svg' %}" alt="">
             <span>Мої оголошення</span>
         </a>
-        <a class="side-bar-menu-favourite" href="{% url 'account:favourite' %}">
+        <a class="side-bar-menu-favourite" href="{% url 'account:favourites' %}">
             <img class="black-icon" src="{% static 'icons/favorite-icon-black.svg' %}" alt="">
             <img class="blue-icon" src="{% static 'icons/favorite-icon-blue.svg' %}" alt="">
             <span>Обране</span>
