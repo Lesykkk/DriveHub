@@ -9,6 +9,11 @@ class BrandAdmin(admin.ModelAdmin):
 class ModelAdmin(admin.ModelAdmin):
     list_display = ['value']
 
+@admin.register(BrandModel)
+class BrandModelAdmin(admin.ModelAdmin):
+    list_display = ['brand', 'model']
+    list_select_related = ['brand', 'model']
+
 @admin.register(BodyType)
 class BodyTypeAdmin(admin.ModelAdmin):
     list_display = ['value']
@@ -21,8 +26,8 @@ class FuelTypeAdmin(admin.ModelAdmin):
 class FuelConsumptionAdmin(admin.ModelAdmin):
     list_display = ['city', 'highway', 'mixed']
 
-@admin.register(DriveWheelType)
-class DriveWheelTypeAdmin(admin.ModelAdmin):
+@admin.register(DriveType)
+class DriveTypeAdmin(admin.ModelAdmin):
     list_display = ['value']
 
 @admin.register(TransmissionType)
@@ -37,11 +42,10 @@ class ColorAdmin(admin.ModelAdmin):
 class TransportTypeAdmin(admin.ModelAdmin):
     list_display = ['value']
 
-
 @admin.register(Transport)
 class TransportAdmin(admin.ModelAdmin):
-    list_display = ['transport_type', 'brand', 'model', 'year', 'body_type', 'fuel_type', 'engine_volume', 'engine_power', 'fuel_consumption', 'drive_wheel_type', 'transmission_type', 'color', 'mileage', 'owners_number']
-    list_select_related = ['transport_type', 'brand', 'model', 'body_type', 'fuel_type', 'fuel_consumption', 'drive_wheel_type', 'transmission_type', 'color']
+    list_display = ['transport_type', 'brand_model', 'year', 'body_type', 'fuel_type', 'engine_volume', 'engine_power', 'fuel_consumption', 'drive_type', 'transmission_type', 'color', 'mileage', 'owners_number']
+    list_select_related = ['transport_type', 'brand_model', 'model', 'body_type', 'fuel_type', 'fuel_consumption', 'drive_type', 'transmission_type', 'color']
 
 @admin.register(TransportPhoto)
 class TransportPhotoAdmin(admin.ModelAdmin):
@@ -53,7 +57,7 @@ class AdvertAdmin(admin.ModelAdmin):
     list_display = ['user', 'transport', 'slug', 'price', 'city', 'description', 'created', 'updated']
     list_select_related = ['user', 'transport']
     
-@admin.register(Liked)
-class LikedAdmin(admin.ModelAdmin):
+@admin.register(Favourite)
+class FavouriteAdmin(admin.ModelAdmin):
     list_display = ['user','advert']
     list_select_related = ['user', 'advert']

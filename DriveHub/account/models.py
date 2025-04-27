@@ -6,8 +6,8 @@ from .managers import CustomUserManager
 
 class CustomUser(AbstractUser):
     phone_validator = RegexValidator(
-                regex=r'^\+?1?\d{9,15}$',
-                message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed."
+                regex=r'^\+?1?\d{10,15}$',
+                message="Phone number must be entered in the format: '+380123456789'. Up to 15 digits allowed."
             )
 
     username = None
@@ -33,5 +33,11 @@ class CustomUser(AbstractUser):
 
     objects = CustomUserManager()
     
+    class Meta:
+        db_table = 'user'
+
     def __str__ (self):
-        return self.email
+        return f"{self.email}"
+    
+    def __repr__ (self):
+        return f"{self.email}"
