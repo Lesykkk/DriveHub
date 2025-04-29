@@ -1,0 +1,140 @@
+.create-advert-container {
+    width: 1220px;
+    margin: 0 auto;
+    flex: 1;
+}
+
+.create-advert-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: max-content;
+    row-gap: 40px;
+    margin: 70px 0;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: max-content;
+    margin: 0 auto;
+    padding: 31px;
+    border: 1px solid #0000000f;
+    border-radius: 24px;
+}
+
+.section-title{
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.section-number{
+    padding-left: 4px;
+    padding-top: 1px;
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    font-weight: 700;
+    font-size: 20px;
+    width: 24px;
+    height: 24px;
+    background-color: rgb(224, 227, 228);
+    border-radius: 50%;
+}
+
+.section-title h2{
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.section-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: max-content;
+    row-gap: 20px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: max-content;
+    row-gap: 6px;
+}
+
+.input-label {
+    color: black;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.input-container select {
+    border-radius: 8px;
+    border: 1px solid #0000001f;
+    padding: 10px 10px 10px 16px;
+    width: 100%;
+    height: 44px;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: black;
+    outline: none;
+}
+
+.input-container select::placeholder {
+    color: rgb(150, 155, 161);
+    font-weight: 300;
+}
+
+.input-container input {
+    border-radius: 8px;
+    border: 1px solid #0000001f;
+    padding: 10px 10px 10px 16px;
+    width: 100%;
+    height: 44px;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: black;
+    outline: none;
+}
+
+.input-container input::placeholder {
+    color: rgb(150, 155, 161);
+    font-weight: 300;
+}
+
+.fuel-div {
+    
+}
+
+
+
+
+
+.submit-btn {
+    cursor: pointer;
+    display: block;
+    background-color: #1890FF;
+    border-radius: 12px;
+    font: 16px Inter, sans-serif;
+    font-weight: 500;
+    color: white;
+    width: 100%;
+    padding: 18px 0;
+    margin: 0 0 32px;
+    transition: background-color 0.5s ease;
+}
+
+.submit-btn:hover{
+    background-color: #007ef4;
+}

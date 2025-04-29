@@ -1,0 +1,148 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DriveHub - Create advert</title>
+    <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/header.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'advert/styles/create-advert.css' %}">
+</head>
+<body>
+    {% include "header.html" %}
+    
+    <div class="create-advert-container">
+        <form class="create-advert-form" action="" method="post">
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-number">
+                        1
+                    </span>
+                    <h2>Транспорт</h2>
+                </div>
+                <div class="section-content">
+                    <div class="input-container">
+                        <span class="input-label">Марка</span>
+                        <select id="brand-select" name="brand" placeholder="Марка" required>
+                            <option value="" disabled selected>Виберіть марку</option>
+                            {% for brand in brand_list %}
+                                <option>{{brand.value}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="input-container">
+                        <span class="input-label">Модель</span>
+                        <select id="model-select" name="model" placeholder="Модель" required disabled>
+                        </select>
+                    </div>
+                    <div class="input-container">
+                        <span class="input-label">Тип транспорту</span>
+                        <select name="transport_type" placeholder="Тип транспорту" required>
+                            {% for transport_type in transport_type_list %}
+                                <option>{{transport_type.value}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-number">
+                        2
+                    </span>
+                    <h2>Характеристики</h2>
+                </div>
+                <div class="section-content">
+                    <div class="input-container">
+                        <span class="input-label">Тип кузова</span>
+                        <select name="body_type" placeholder="Тип кузова" required>
+                            {% for body_type in body_type_list %}
+                                <option>{{body_type.value}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="input-container">
+                        <span class="input-label">Привід</span>
+                        <select name="drive_type" placeholder="Привід" required>
+                            {% for drive_type in drive_type_list %}
+                                <option>{{drive_type.value}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="input-container">
+                        <span class="input-label">Коробка передач</span>
+                        <select name="transmission_type" placeholder="Коробка передач" required>
+                            {% for transmission_type in transmission_type_list %}
+                                <option>{{transmission_type.value}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="input-container">
+                        <span class="input-label">Колір</span>
+                        <select name="color" placeholder="Колір" required>
+                            {% for color in color_list %}
+                                <option>{{color.value}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="input-container">
+                        <span class="input-label">Паливо</span>
+                        <select name="fuel_type" placeholder="Паливо" required>
+                            {% for fuel_type in fuel_type_list %}
+                                <option>{{fuel_type.value}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-number">
+                        3
+                    </span>
+                    <h2>Стан авто</h2>
+                </div>
+                <div class="section-content">
+                    <div class="input-container">
+                        <span class="input-label">Пробіг</span>
+                        <input type="number" min="0" placeholder="0">
+                    </div>
+                    <div class="input-container">
+                        <span class="input-label">Кількість власників</span>
+                        <input type="number" min="0" placeholder="0">
+                    </div>
+                    <div class="input-container">
+                        <div class="fuel-div">
+                            <span class="input-label">Витрата палива</span>
+                        </div>
+                        <input type="number" min="0" placeholder="0">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% include "footer.html" %}
+
+    <script>
+        document.getElementById('brand-select').addEventListener('change', function () {
+            const brandValue = this.value;
+            const modelSelect = document.getElementById('model-select');
+
+            fetch(`/ajax/get-models/?brand_value=${brandValue}`)
+                .then(response => response.json())
+                .then(models => {
+                    modelSelect.innerHTML = '<option value="" disabled selected>Виберіть модель</option>';
+                    models.forEach(model => {
+                        const option = document.createElement('option');
+                        option.textContent = model.value;
+                        modelSelect.appendChild(option);
+                    });
+                    modelSelect.disabled = false;
+                });
+        });
+    </script>
+</body>
+</html>

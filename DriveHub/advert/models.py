@@ -18,7 +18,7 @@ class Model(models.Model):
 
 
 class BrandModel(models.Model):
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='brand_models')
     model = models.ForeignKey(Model, on_delete=models.CASCADE)
 
     class Meta:

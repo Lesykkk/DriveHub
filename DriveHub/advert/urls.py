@@ -5,4 +5,6 @@ app_name = 'advert'
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('create-advert/', views.create_advert, name='create-advert'),
+    path('ajax/get-models/', views.get_models_by_brand, name='get-models-by-brand')
 ]
