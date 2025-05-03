@@ -4,7 +4,10 @@ from django.http import JsonResponse
 
 def home(request):
     adverts = Advert.objects.select_related('user', 'transport').all()
-    return render(request, 'advert/home.html', {"adverts" : adverts})
+    return render(request, 'advert/home.html', {
+        "adverts" : adverts,
+        'brand_list': brand_list(),
+    })
 
 def create_advert(request):
     return render(request, 'advert/create-advert.html', {
