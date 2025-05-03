@@ -15,7 +15,8 @@
     {% include "header.html" %}
     
     <div class="create-advert-container">
-        <form class="create-advert-form" action="" method="post">
+        <form class="create-advert-form" action="{% url "advert:create-advert" %}" method="post">
+            {% csrf_token %}
             <div class="section">
                 <div class="section-title">
                     <span class="section-number">
@@ -27,7 +28,7 @@
                     <div class="input-container">
                         <span class="input-label">Марка</span>
                         <select id="brand-select" name="brand" placeholder="Марка" required>
-                            <option value="" disabled selected>Виберіть марку</option>
+                            <option disabled selected>Виберіть марку</option>
                             {% for brand in brand_list %}
                                 <option>{{brand.value}}</option>
                             {% endfor %}
@@ -36,6 +37,7 @@
                     <div class="input-container">
                         <span class="input-label">Модель</span>
                         <select id="model-select" name="model" placeholder="Модель" required disabled>
+                            <option disabled selected>Виберіть модель</option>
                         </select>
                     </div>
                     <div class="input-container">
@@ -56,6 +58,10 @@
                     <h2>Характеристики</h2>
                 </div>
                 <div class="section-content">
+                    <div class="input-container">
+                        <span class="input-label">Рік</span>
+                        <input type="number" min="1950" placeholder="Введіть рік" required>
+                    </div>
                     <div class="input-container">
                         <span class="input-label">Тип кузова</span>
                         <select name="body_type" placeholder="Тип кузова" required>
@@ -96,6 +102,14 @@
                             {% endfor %}
                         </select>
                     </div>
+                    <div class="input-container">
+                        <span class="input-label">Об'єм двигуна, л</span>
+                        <input type="number" min="0" placeholder="0" required>
+                    </div>
+                    <div class="input-container">
+                        <span class="input-label">Потіжнусть двигуна, л/с</span>
+                        <input type="number" min="0" placeholder="0" required>
+                    </div>
                 </div>
             </div>
             <div class="section">
@@ -107,21 +121,122 @@
                 </div>
                 <div class="section-content">
                     <div class="input-container">
-                        <span class="input-label">Пробіг</span>
-                        <input type="number" min="0" placeholder="0">
+                        <span class="input-label">Пробіг, км</span>
+                        <input type="number" min="0" placeholder="0" required>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Кількість власників</span>
-                        <input type="number" min="0" placeholder="0">
+                        <input type="number" min="0" placeholder="0" required>
                     </div>
                     <div class="input-container">
+                        <span class="input-label">Витрата палива, л</span>
                         <div class="fuel-div">
-                            <span class="input-label">Витрата палива</span>
+                            <input type="number" min="0" placeholder="місто" required>
+                            <input type="number" min="0" placeholder="змішаний" required>
+                            <input type="number" min="0" placeholder="траса" required>
                         </div>
-                        <input type="number" min="0" placeholder="0">
                     </div>
                 </div>
             </div>
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-number">
+                        4
+                    </span>
+                    <h2>Фото</h2>
+                </div>
+                <div class="section-content">
+                    <div class="file-container">
+                        <input id="file_input" type="file" accept="image/*" required multiple>
+                        <div class="file-text-area">
+                            <img src="{% static 'advert/icons/add-photo.png' %}" alt="">
+                            <span>Додайте щонайменше 6 фото</span>
+                        </div>
+                        <div class="file-preview-container" id="file-preview-container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-number">
+                        5
+                    </span>
+                    <h2>Опис</h2>
+                </div>
+                <div class="section-content">
+                    <div class="input-container description-container">
+                        <textarea minlength="50" maxlength="5000" required></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-number">
+                        6
+                    </span>
+                    <h2>Вартість</h2>
+                </div>
+                <div class="section-content">
+                    <div class="input-container price">
+                        <span class="input-label">Вкажіть ціну</span>
+                        <input type="number" min="0" placeholder="$" required>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-number">
+                        7
+                    </span>
+                    <h2>Контакти</h2>
+                </div>
+                <div class="section-content">
+                    <div class="section-row">
+                        <div class="input-container">
+                            <span class="input-label">Ім'я</span>
+                            <input type="text" min="0" required value="{{user.first_name}}" disabled>
+                        </div>
+                        <div class="input-container">
+                            <span class="input-label">Прізвище</span>
+                            <input type="text" min="0" required value="{{user.last_name}}" disabled>
+                        </div>
+                    </div>
+                    <div class="section-row">
+                        <div class="input-container">
+                            <span class="input-label">Регіон</span>
+                            <select id="region-select" name="region" placeholder="Регіон" required>
+                                <option disabled selected>Регіон</option>
+                                {% for region in region_list %}
+                                    <option>{{region.value}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="input-container">
+                            <span class="input-label">Телефон</span>
+                            <input type="text" min="0" required value="{{user.phone}}" disabled>
+                        </div>
+                    </div>
+                    <div class="section-row">
+                        <div class="input-container">
+                            <span class="input-label">Місто</span>
+                            <select id="city-select" name="city" placeholder="Місто" required>
+                                <option disabled selected>Місто</option>
+                                {% for city in city_list %}
+                                    <option>{{city.value}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="input-container">
+                            <span class="input-label">Пошта</span>
+                            <input type="text" min="0" required value="{{user.email}}" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="submit-btn" type="submit">
+                Розмістити
+            </button>
         </form>
     </div>
     {% include "footer.html" %}
@@ -131,10 +246,12 @@
             const brandValue = this.value;
             const modelSelect = document.getElementById('model-select');
 
+            modelSelect.innerHTML = '<option disabled selected>Виберіть марку</option>';
+
             fetch(`/ajax/get-models/?brand_value=${brandValue}`)
                 .then(response => response.json())
                 .then(models => {
-                    modelSelect.innerHTML = '<option value="" disabled selected>Виберіть модель</option>';
+                    
                     models.forEach(model => {
                         const option = document.createElement('option');
                         option.textContent = model.value;
@@ -142,6 +259,69 @@
                     });
                     modelSelect.disabled = false;
                 });
+        });
+
+        const input = document.getElementById('file_input');
+        const previewContainer = document.getElementById('file-preview-container');
+        const textArea = document.querySelector('.file-text-area');
+
+        input.addEventListener('change', function () {
+            textArea.style.display = 'none';
+            previewContainer.style.display = 'flex';
+            
+            const photo = document.getElementById('add_photo');
+            if(photo){
+                photo.remove();
+            }
+
+            const addPhotoDiv = document.createElement('div');
+            const spanText = document.createElement("span");
+            const svg = document.createElement("img");
+            addPhotoDiv.id = 'add_photo';
+            addPhotoDiv.className = "preview-div add-photo";
+            spanText.textContent = "Додати фото"
+            svg.src = "{% static 'advert/icons/add-photo.png' %}";
+
+            previewContainer.appendChild(addPhotoDiv);
+            addPhotoDiv.appendChild(svg);
+            addPhotoDiv.appendChild(spanText)
+            
+            let files = Array.from(this.files);
+            files.forEach(file => {
+                if (!file.type.startsWith('image/')) return;
+                
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const removePhotoDiv = document.createElement('div');
+                    const removeImg = document.createElement('img');
+                    removeImg.src = "{% static 'advert/icons/remove.svg' %}";
+                    removePhotoDiv.className = "remove-photo-div";
+                    removePhotoDiv.appendChild(removeImg);
+                    
+                    const previewDiv = document.createElement('div');
+                    previewDiv.className = "preview-div";
+                    
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    previewDiv.appendChild(img);
+                    
+                    previewDiv.appendChild(removePhotoDiv);
+
+                    previewContainer.appendChild(previewDiv);
+                    previewContainer.appendChild(addPhotoDiv);
+
+                    removePhotoDiv.addEventListener('click', function(){
+                        previewDiv.remove();
+                        input.value = '';
+                        if(document.querySelectorAll('.preview-div').length === 1){
+                            files = files.filter(f => f !== file);
+                            textArea.style.display = 'flex';
+                            previewContainer.style.display = 'none';
+                        }
+                    })
+            };
+            reader.readAsDataURL(file);
+            });
         });
     </script>
 </body>

@@ -28,7 +28,6 @@ def get_models_by_brand(request):
     } for bm in brand_model_objects]
     return JsonResponse(model_list, safe=False)
 
-
 def brand_list():
     return Brand.objects.all()
 
