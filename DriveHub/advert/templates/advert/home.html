@@ -16,44 +16,22 @@
     
     <div class="home-container">
         <div class="filter-container">
-            <form class="create-advert-form" action="{% url "advert:create-advert" %}" method="post">
-                {% csrf_token %}
-                <div class="filter-row">
-                    <div class="select-container">
+            <div class="filter-row">
+                <div class="select-container">
+                    <div class="custom-select-container">
                         <div class="custom-select">
                             <p class="custom-select-placeholder">Марка</p>
                             <p class="custom-selected-option"></p>
                             <img class="arrow-icon" src="{% static 'advert/icons/arrow.svg' %}" alt="">
-                            <div class="custom-option-list">
-                                <div class="custom-option default-option">
-                                    <div class="img-container">
-                                        <img src="{% static 'advert/icons/x.svg' %}" alt="">
-                                    </div>
-                                    <p>Всі</p>
-                                </div>
-                                {% for brand in brand_list %}
-                                <div class="custom-option">
-                                    <div class="img-container">
-                                        <img src="{% static 'advert/icons/blue-check.svg' %}" alt="">
-                                    </div>
-                                    <p class="custom-option-value">{{brand.value}}</p>
-                                </div>
-                                {% endfor %}
-                            </div>
                         </div>
-                    </div>
-                    <div class="select-container">
-                        <div class="custom-select">
-                            <p class="custom-select-placeholder">Марка</p>
-                            <p class="custom-selected-option"></p>
-                            <img class="arrow-icon" src="{% static 'advert/icons/arrow.svg' %}" alt="">
-                            <div class="custom-option-list">
-                                <div class="custom-option default-option">
-                                    <div class="img-container">
-                                        <img src="{% static 'advert/icons/x.svg' %}" alt="">
-                                    </div>
-                                    <p>Всі</p>
+                        <div class="custom-option-list">
+                            <div class="custom-option default-option">
+                                <div class="img-container">
+                                    <img src="{% static 'advert/icons/x.svg' %}" alt="">
                                 </div>
+                                <p>Всі</p>
+                            </div>
+                            <div class="custom-option-scroll">
                                 {% for brand in brand_list %}
                                 <div class="custom-option">
                                     <div class="img-container">
@@ -66,88 +44,48 @@
                         </div>
                     </div>
                 </div>
-                <div class="filter-row">
-                    <div class="select-container">
+                <div class="select-container">
+                    <div class="custom-select-container">
                         <div class="custom-select">
-                            <p class="custom-select-placeholder">Марка</p>
+                            <p class="custom-select-placeholder">Модель</p>
                             <p class="custom-selected-option"></p>
                             <img class="arrow-icon" src="{% static 'advert/icons/arrow.svg' %}" alt="">
-                            <div class="custom-option-list">
-                                <div class="custom-option default-option">
-                                    <div class="img-container">
-                                        <img src="{% static 'advert/icons/x.svg' %}" alt="">
-                                    </div>
-                                    <p>Всі</p>
+                        </div>
+                        <div class="custom-option-list">
+                            <div class="custom-option default-option">
+                                <div class="img-container">
+                                    <img src="{% static 'advert/icons/x.svg' %}" alt="">
                                 </div>
-                                {% for brand in brand_list %}
+                                <p>Всі</p>
+                            </div>
+                            <div class="custom-option-scroll">
+                                {% for model in model_list %}
                                 <div class="custom-option">
                                     <div class="img-container">
                                         <img src="{% static 'advert/icons/blue-check.svg' %}" alt="">
                                     </div>
-                                    <p class="custom-option-value">{{brand.value}}</p>
+                                    <p class="custom-option-value">{{model.value}}</p>
                                 </div>
                                 {% endfor %}
                             </div>
                         </div>
                     </div>
-                    <div class="select-container">
+                </div>
+                <div class="select-container">
+                    <div class="custom-select-container">
                         <div class="custom-select">
                             <p class="custom-select-placeholder">Марка</p>
                             <p class="custom-selected-option"></p>
                             <img class="arrow-icon" src="{% static 'advert/icons/arrow.svg' %}" alt="">
-                            <div class="custom-option-list">
-                                <div class="custom-option default-option">
-                                    <div class="img-container">
-                                        <img src="{% static 'advert/icons/x.svg' %}" alt="">
-                                    </div>
-                                    <p>Всі</p>
-                                </div>
-                                {% for brand in brand_list %}
-                                <div class="custom-option">
-                                    <div class="img-container">
-                                        <img src="{% static 'advert/icons/blue-check.svg' %}" alt="">
-                                    </div>
-                                    <p class="custom-option-value">{{brand.value}}</p>
-                                </div>
-                                {% endfor %}
-                            </div>
                         </div>
-                    </div>
-                    <div class="select-container">
-                        <div class="custom-select">
-                            <p class="custom-select-placeholder">Марка</p>
-                            <p class="custom-selected-option"></p>
-                            <img class="arrow-icon" src="{% static 'advert/icons/arrow.svg' %}" alt="">
-                            <div class="custom-option-list">
-                                <div class="custom-option default-option">
-                                    <div class="img-container">
-                                        <img src="{% static 'advert/icons/x.svg' %}" alt="">
-                                    </div>
-                                    <p>Всі</p>
+                        <div class="custom-option-list">
+                            <div class="custom-option default-option">
+                                <div class="img-container">
+                                    <img src="{% static 'advert/icons/x.svg' %}" alt="">
                                 </div>
-                                {% for brand in brand_list %}
-                                <div class="custom-option">
-                                    <div class="img-container">
-                                        <img src="{% static 'advert/icons/blue-check.svg' %}" alt="">
-                                    </div>
-                                    <p class="custom-option-value">{{brand.value}}</p>
-                                </div>
-                                {% endfor %}
+                                <p>Всі</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="select-container">
-                        <div class="custom-select">
-                            <p class="custom-select-placeholder">Марка</p>
-                            <p class="custom-selected-option"></p>
-                            <img class="arrow-icon" src="{% static 'advert/icons/arrow.svg' %}" alt="">
-                            <div class="custom-option-list">
-                                <div class="custom-option default-option">
-                                    <div class="img-container">
-                                        <img src="{% static 'advert/icons/x.svg' %}" alt="">
-                                    </div>
-                                    <p>Всі</p>
-                                </div>
+                            <div class="custom-option-scroll">
                                 {% for brand in brand_list %}
                                 <div class="custom-option">
                                     <div class="img-container">
@@ -160,61 +98,310 @@
                         </div>
                     </div>
                 </div>
-            </form>
+                <div class="select-container">
+                    <div class="custom-select-container">
+                        <div class="custom-select">
+                            <p class="custom-select-placeholder">Марка</p>
+                            <p class="custom-selected-option"></p>
+                            <img class="arrow-icon" src="{% static 'advert/icons/arrow.svg' %}" alt="">
+                        </div>
+                        <div class="custom-option-list">
+                            <div class="custom-option default-option">
+                                <div class="img-container">
+                                    <img src="{% static 'advert/icons/x.svg' %}" alt="">
+                                </div>
+                                <p>Всі</p>
+                            </div>
+                            <div class="custom-option-scroll">
+                                {% for brand in brand_list %}
+                                <div class="custom-option">
+                                    <div class="img-container">
+                                        <img src="{% static 'advert/icons/blue-check.svg' %}" alt="">
+                                    </div>
+                                    <p class="custom-option-value">{{brand.value}}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-row">
+                <div class="select-container">
+                    <div class="custom-select-container">
+                        <div class="custom-select">
+                            <p class="custom-select-placeholder">Марка</p>
+                            <p class="custom-selected-option"></p>
+                            <img class="arrow-icon" src="{% static 'advert/icons/arrow.svg' %}" alt="">
+                        </div>
+                        <div class="custom-option-list">
+                            <div class="custom-option default-option">
+                                <div class="img-container">
+                                    <img src="{% static 'advert/icons/x.svg' %}" alt="">
+                                </div>
+                                <p>Всі</p>
+                            </div>
+                            <div class="custom-option-scroll">
+                                {% for brand in brand_list %}
+                                <div class="custom-option">
+                                    <div class="img-container">
+                                        <img src="{% static 'advert/icons/blue-check.svg' %}" alt="">
+                                    </div>
+                                    <p class="custom-option-value">{{brand.value}}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="select-container">
+                    <div class="custom-select-container">
+                        <div class="custom-select">
+                            <p class="custom-select-placeholder">Марка</p>
+                            <p class="custom-selected-option"></p>
+                            <img class="arrow-icon" src="{% static 'advert/icons/arrow.svg' %}" alt="">
+                        </div>
+                        <div class="custom-option-list">
+                            <div class="custom-option default-option">
+                                <div class="img-container">
+                                    <img src="{% static 'advert/icons/x.svg' %}" alt="">
+                                </div>
+                                <p>Всі</p>
+                            </div>
+                            <div class="custom-option-scroll">
+                                {% for brand in brand_list %}
+                                <div class="custom-option">
+                                    <div class="img-container">
+                                        <img src="{% static 'advert/icons/blue-check.svg' %}" alt="">
+                                    </div>
+                                    <p class="custom-option-value">{{brand.value}}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="select-container">
+                    <div class="custom-select-container">
+                        <div class="custom-select">
+                            <p class="custom-select-placeholder">Марка</p>
+                            <p class="custom-selected-option"></p>
+                            <img class="arrow-icon" src="{% static 'advert/icons/arrow.svg' %}" alt="">
+                        </div>
+                        <div class="custom-option-list">
+                            <div class="custom-option default-option">
+                                <div class="img-container">
+                                    <img src="{% static 'advert/icons/x.svg' %}" alt="">
+                                </div>
+                                <p>Всі</p>
+                            </div>
+                            <div class="custom-option-scroll">
+                                {% for brand in brand_list %}
+                                <div class="custom-option">
+                                    <div class="img-container">
+                                        <img src="{% static 'advert/icons/blue-check.svg' %}" alt="">
+                                    </div>
+                                    <p class="custom-option-value">{{brand.value}}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="select-container">
+                    <div class="custom-select-container">
+                        <div class="custom-select">
+                            <p class="custom-select-placeholder">Марка</p>
+                            <p class="custom-selected-option"></p>
+                            <img class="arrow-icon" src="{% static 'advert/icons/arrow.svg' %}" alt="">
+                        </div>
+                        <div class="custom-option-list">
+                            <div class="custom-option default-option">
+                                <div class="img-container">
+                                    <img src="{% static 'advert/icons/x.svg' %}" alt="">
+                                </div>
+                                <p>Всі</p>
+                            </div>
+                            <div class="custom-option-scroll">
+                                {% for brand in brand_list %}
+                                <div class="custom-option">
+                                    <div class="img-container">
+                                        <img src="{% static 'advert/icons/blue-check.svg' %}" alt="">
+                                    </div>
+                                    <p class="custom-option-value">{{brand.value}}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-row">
+                <div class="select-container">
+                    <div class="custom-select-container">
+                        <div class="custom-select">
+                            <p class="custom-select-placeholder">Марка</p>
+                            <p class="custom-selected-option"></p>
+                            <img class="arrow-icon" src="{% static 'advert/icons/arrow.svg' %}" alt="">
+                        </div>
+                        <div class="custom-option-list">
+                            <div class="custom-option default-option">
+                                <div class="img-container">
+                                    <img src="{% static 'advert/icons/x.svg' %}" alt="">
+                                </div>
+                                <p>Всі</p>
+                            </div>
+                            <div class="custom-option-scroll">
+                                {% for brand in brand_list %}
+                                <div class="custom-option">
+                                    <div class="img-container">
+                                        <img src="{% static 'advert/icons/blue-check.svg' %}" alt="">
+                                    </div>
+                                    <p class="custom-option-value">{{brand.value}}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="select-container">
+                    <div class="custom-select-container">
+                        <div class="custom-select">
+                            <p class="custom-select-placeholder">Марка</p>
+                            <p class="custom-selected-option"></p>
+                            <img class="arrow-icon" src="{% static 'advert/icons/arrow.svg' %}" alt="">
+                        </div>
+                        <div class="custom-option-list">
+                            <div class="custom-option default-option">
+                                <div class="img-container">
+                                    <img src="{% static 'advert/icons/x.svg' %}" alt="">
+                                </div>
+                                <p>Всі</p>
+                            </div>
+                            <div class="custom-option-scroll">
+                                {% for brand in brand_list %}
+                                <div class="custom-option">
+                                    <div class="img-container">
+                                        <img src="{% static 'advert/icons/blue-check.svg' %}" alt="">
+                                    </div>
+                                    <p class="custom-option-value">{{brand.value}}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="select-container">
+                    <div class="custom-select-container">
+                        <div class="custom-select">
+                            <p class="custom-select-placeholder">Марка</p>
+                            <p class="custom-selected-option"></p>
+                            <img class="arrow-icon" src="{% static 'advert/icons/arrow.svg' %}" alt="">
+                        </div>
+                        <div class="custom-option-list">
+                            <div class="custom-option default-option">
+                                <div class="img-container">
+                                    <img src="{% static 'advert/icons/x.svg' %}" alt="">
+                                </div>
+                                <p>Всі</p>
+                            </div>
+                            <div class="custom-option-scroll">
+                                {% for brand in brand_list %}
+                                <div class="custom-option">
+                                    <div class="img-container">
+                                        <img src="{% static 'advert/icons/blue-check.svg' %}" alt="">
+                                    </div>
+                                    <p class="custom-option-value">{{brand.value}}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="select-container">
+                    <div class="custom-select-container">
+                        <div class="custom-select">
+                            <p class="custom-select-placeholder">Марка</p>
+                            <p class="custom-selected-option"></p>
+                            <img class="arrow-icon" src="{% static 'advert/icons/arrow.svg' %}" alt="">
+                        </div>
+                        <div class="custom-option-list">
+                            <div class="custom-option default-option">
+                                <div class="img-container">
+                                    <img src="{% static 'advert/icons/x.svg' %}" alt="">
+                                </div>
+                                <p>Всі</p>
+                            </div>
+                            <div class="custom-option-scroll">
+                                {% for brand in brand_list %}
+                                <div class="custom-option">
+                                    <div class="img-container">
+                                        <img src="{% static 'advert/icons/blue-check.svg' %}" alt="">
+                                    </div>
+                                    <p class="custom-option-value">{{brand.value}}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="car-cars-container">
-            <div></div>
+        <span class="cards-grid-title">Останні оголошення</span>
+        <div class="cards-grid">
+            <a href="#" class="car-card">
+                <img class="card-img" src="https://cardrive.com.ua/file/thumb/2a1072f0-2781-4890-907a-61cfc109129f" alt="">
+                <div class="card-description-container">
+                    <span class="card-price">20 500 $</span>
+                    <span class="card-title">Ford Edge 2018</span>
+                    <span class="card-text">2018, 93 000 km</span>
+                </div>
+            </a>
+            <a href="#" class="car-card">
+                <img class="card-img" src="https://wl-adme.cf.tsp.li/resize/728x/jpg/6b6/037/b8d269523d81a1f3e4128065cf.jpg" alt="">
+                <div class="card-description-container">
+                    <span class="card-price">20 500 $</span>
+                    <span class="card-title">Ford Edge 2018</span>
+                    <span class="card-text">2018, 93 000 km</span>
+                </div>
+            </a>
+            <a href="#" class="car-card">
+                <img class="card-img" src="https://cardrive.com.ua/file/thumb/2a1072f0-2781-4890-907a-61cfc109129f" alt="">
+                <div class="card-description-container">
+                    <span class="card-price">20 500 $</span>
+                    <span class="card-title">Ford Edge 2018</span>
+                    <span class="card-text">2018, 93 000 km</span>
+                </div>
+            </a>
+            <a href="#" class="car-card">
+                <img class="card-img" src="https://cardrive.com.ua/file/thumb/2a1072f0-2781-4890-907a-61cfc109129f" alt="">
+                <div class="card-description-container">
+                    <span class="card-price">20 500 $</span>
+                    <span class="card-title">Ford Edge 2018</span>
+                    <span class="card-text">2018, 93 000 km</span>
+                </div>
+            </a>
+            <a href="#" class="car-card">
+                <img class="card-img" src="https://cardrive.com.ua/file/thumb/2a1072f0-2781-4890-907a-61cfc109129f" alt="">
+                <div class="card-description-container">
+                    <span class="card-price">20 500 $</span>
+                    <span class="card-title">Ford Edge 2018</span>
+                    <span class="card-text">2018, 93 000 km</span>
+                </div>
+            </a>
+            <a href="#" class="car-card">
+                <img class="card-img" src="https://cardrive.com.ua/file/thumb/2a1072f0-2781-4890-907a-61cfc109129f" alt="">
+                <div class="card-description-container">
+                    <span class="card-price">20 500 $</span>
+                    <span class="card-title">Ford Edge 2018</span>
+                    <span class="card-text">2018, 93 000 km</span>
+                </div>
+            </a>
         </div>
     </div>
     
     {% include "footer.html" %}
 
-    <script>
-        const allCustomSelect = document.querySelectorAll('.custom-select');
-
-        allCustomSelect.forEach(customSelect =>{
-            customSelect.addEventListener("click", () =>{
-                customSelect.classList.toggle("opened");
-            })
-        })
-
-        document.addEventListener("click", e => {
-            allCustomSelect.forEach(customSelect =>{
-                if (!customSelect.contains(e.target)) {
-                    customSelect.classList.remove("opened");
-                }
-            })
-        });
-        
-        allCustomSelect.forEach(customSelect =>{
-            const customOptionList = customSelect.querySelector('.custom-option-list')
-            customOptionList.addEventListener("click", (e) => {
-                const clickedOption = e.target.closest('.custom-option');
-                const selectedOption = customSelect.querySelector('.custom-selected-option');
-                const defaultPlaceholder = customSelect.querySelector('.custom-select-placeholder');
-    
-                customOptionList.querySelectorAll(".custom-option").forEach(opt => {
-                    opt.classList.remove("selected");
-                  });
-    
-                if (clickedOption.classList.contains("custom-option") && !clickedOption.classList.contains("default-option")) {
-                    defaultPlaceholder.style.display = 'none';
-                    selectedOption.style.display = 'flex';
-    
-                    selectedOption.textContent = clickedOption.textContent;
-    
-                    clickedOption.classList.add("selected");
-    
-                }
-                else if(clickedOption.classList.contains("default-option")){
-                    defaultPlaceholder.style.display = 'flex';
-                    selectedOption.style.display = 'none';
-                }
-                
-            });
-        })
-
-        
-    </script>
+    <script src="{% static 'advert/scripts/home.js' %}"></script>
 </body>
 </html>

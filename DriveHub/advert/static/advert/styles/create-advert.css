@@ -1,6 +1,6 @@
 .create-advert-container {
     width: 1220px;
-    margin: 0 auto;
+    margin: 70px auto;
     flex: 1;
 }
 
@@ -10,7 +10,6 @@
     width: 100%;
     height: max-content;
     row-gap: 40px;
-    margin: 70px 0;
 }
 
 .section {
