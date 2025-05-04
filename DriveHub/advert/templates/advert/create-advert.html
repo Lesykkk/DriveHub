@@ -148,8 +148,8 @@
                 <div class="section-content">
                     <div class="file-container">
                         <input id="file_input" type="file" accept="image/*" required multiple>
-                        <div class="file-text-area">
-                            <img src="{% static 'advert/icons/add-photo.png' %}" alt="">
+                        <div class="file-text-area" data-logo-url="{% static 'advert/icons/remove.svg' %}">
+                            <img id="add-photo-img" src="{% static 'advert/icons/add-photo.png' %}" alt="">
                             <span>Додайте щонайменше 6 фото</span>
                         </div>
                         <div class="file-preview-container" id="file-preview-container">

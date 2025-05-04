@@ -1,3 +1,5 @@
+
+
 document.getElementById('brand-select').addEventListener('change', function () {
     const brandValue = this.value;
     const modelSelect = document.getElementById('model-select');
@@ -20,6 +22,7 @@ document.getElementById('brand-select').addEventListener('change', function () {
 const input = document.getElementById('file_input');
 const previewContainer = document.getElementById('file-preview-container');
 const textArea = document.querySelector('.file-text-area');
+const addPhotoSrc = document.getElementById('add-photo-img').src;
 
 input.addEventListener('change', function () {
     textArea.style.display = 'none';
@@ -36,7 +39,7 @@ input.addEventListener('change', function () {
     addPhotoDiv.id = 'add_photo';
     addPhotoDiv.className = "preview-div add-photo";
     spanText.textContent = "Додати фото"
-    svg.src = "{% static 'advert/icons/add-photo.png' %}";
+    svg.src = addPhotoSrc;
 
     previewContainer.appendChild(addPhotoDiv);
     addPhotoDiv.appendChild(svg);
@@ -50,7 +53,8 @@ input.addEventListener('change', function () {
         reader.onload = function (e) {
             const removePhotoDiv = document.createElement('div');
             const removeImg = document.createElement('img');
-            removeImg.src = "{% static 'advert/icons/remove.svg' %}";
+            const removeSrc = textArea.dataset.logoUrl;
+            removeImg.src = removeSrc;
             removePhotoDiv.className = "remove-photo-div";
             removePhotoDiv.appendChild(removeImg);
             

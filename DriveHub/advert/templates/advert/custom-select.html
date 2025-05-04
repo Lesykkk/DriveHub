@@ -1,0 +1,36 @@
+{% load static %}
+
+<div class="custom-select-container" id="{{ select_id }}">
+    <div class="custom-select">
+      <p class="custom-select-placeholder">{{ placeholder }}</p>
+      <p class="custom-selected-option"></p>
+      <img class="arrow-icon" src="{% static 'advert/icons/arrow.svg' %}" alt="">
+    </div>
+    <div class="custom-option-list">
+      <div class="custom-option default-option">
+        <div class="img-container">
+          <img src="{% static 'advert/icons/x.svg' %}" alt="">
+        </div>
+        <p>Всі</p>
+      </div>
+      <div class="custom-option-scroll">
+        {% for option in options %}
+            <div class="custom-option">
+            <div class="img-container">
+                <img src="{% static 'advert/icons/blue-check.svg' %}" alt="">
+            </div>
+            <p class="custom-option-value">{{ option.value }}</p>
+            </div>
+        {% endfor %}
+        <template id="model-template">
+            <div class="custom-option">
+                <div class="img-container">
+                    <img src="{% static 'advert/icons/blue-check.svg' %}" alt="">
+                </div>
+                <p class="custom-option-value"></p>
+            </div>
+        </template>
+      </div>
+    </div>
+  </div>
+  
