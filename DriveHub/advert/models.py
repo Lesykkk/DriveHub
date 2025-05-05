@@ -7,14 +7,14 @@ class Brand(models.Model):
     value = models.CharField(max_length=255, unique=True)
 
     class Meta:
-        db_table = 'brand' 
+        db_table = 'brand'
 
 
 class Model(models.Model):
     value = models.CharField(max_length=255, unique=True)
 
     class Meta:
-        db_table = 'model' 
+        db_table = 'model'
 
 
 class BrandModel(models.Model):
@@ -110,12 +110,35 @@ class TransportPhoto(models.Model):
         db_table = 'transport_photo'
 
 
+class Region(models.Model):
+    value = models.CharField(max_length=255, unique=True)
+
+    class Meta:
+        db_table = 'region'
+  
+
+class City(models.Model):
+    value =  models.CharField(max_length=255, unique=True)
+
+    class Meta:
+        db_table = 'city'
+
+
+class RegionCity(models.Model):
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, related_name='region_cities')
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'region_city'
+        unique_together = ('region', 'city')
+
+
 class Advert(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='adverts')
     transport = models.OneToOneField(Transport, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=50, unique=True)
     price = models.PositiveIntegerField()
-    city = models.CharField(max_length=50)
+    region_city = models.ForeignKey(RegionCity, on_delete=models.PROTECT)
     description = models.TextField(max_length=5000)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -140,10 +163,3 @@ class Favourite(models.Model):
 
     class Meta:
         db_table = 'favourite'
-    
-class Region(models.Model):
-    region = models.CharField(max_length=50)
-  
-class City(models.Model):
-    region = models.ForeignKey(Region, on_delete=models.CASCADE, related_name = 'cities')
-    city =  models.CharField(max_length=50)

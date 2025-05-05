@@ -45,29 +45,32 @@ class TransportTypeAdmin(admin.ModelAdmin):
 @admin.register(Transport)
 class TransportAdmin(admin.ModelAdmin):
     list_display = ['transport_type', 'brand_model', 'year', 'body_type', 'fuel_type', 'engine_volume', 'engine_power', 'fuel_consumption', 'drive_type', 'transmission_type', 'color', 'mileage', 'owners_number']
-    list_select_related = ['transport_type', 'brand_model', 'model', 'body_type', 'fuel_type', 'fuel_consumption', 'drive_type', 'transmission_type', 'color']
+    list_select_related = ['transport_type', 'brand_model', 'body_type', 'fuel_type', 'fuel_consumption', 'drive_type', 'transmission_type', 'color']
 
 @admin.register(TransportPhoto)
 class TransportPhotoAdmin(admin.ModelAdmin):
     list_display = ['transport', 'image']
     list_select_related = ['transport']
 
+@admin.register(Region)
+class RegionAdmin(admin.ModelAdmin):
+    list_dispay = ['value']
+    
+@admin.register(City)
+class CityAdmin(admin.ModelAdmin):
+    list_display = ['value']
+
+@admin.register(RegionCity)
+class RegionCityAdmin(admin.ModelAdmin):
+    list_display = ['region', 'city']
+    list_select_related = ['region', 'city']
+
 @admin.register(Advert)
 class AdvertAdmin(admin.ModelAdmin):
-    list_display = ['user', 'transport', 'slug', 'price', 'city', 'description', 'created', 'updated']
-    list_select_related = ['user', 'transport']
+    list_display = ['user', 'transport', 'slug', 'price', 'region_city', 'description', 'created', 'updated']
+    list_select_related = ['user', 'transport', 'region_city']
     
 @admin.register(Favourite)
 class FavouriteAdmin(admin.ModelAdmin):
     list_display = ['user','advert']
     list_select_related = ['user', 'advert']
-    
-@admin.register(Region)
-class RegionsAdmin(admin.ModelAdmin):
-    list_dispay = ['region']
-    
-    
-@admin.register(City)
-class CityAdmin(admin.ModelAdmin):
-    list_display = ['region', 'city']
-    list_select_related = ['region']
