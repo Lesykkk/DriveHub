@@ -1,7 +1,29 @@
 .advert-container {
     width: 1220px;
-    margin: 30px auto;
+    margin: 0 auto;
     flex: 1;
+}
+
+.catogory-row {
+    display: flex;
+    width: 100%;
+    height: max-content;
+    margin: 24px 0;
+    align-items: center;
+    line-height: normal;
+    img {
+        display: flex;
+        height: 10px;
+        width: 8px;
+        margin: 0 12px 0 8px;
+    }
+}
+
+.category {
+    display: flex;
+    font-size: 13px;
+    font-weight: 500;
+    color: #9b9b9b;
 }
 
 .transport-info {
@@ -9,6 +31,7 @@
     width: 100%;
     height: max-content;
     column-gap: 24px;
+    margin-bottom: 24px;
 }
 
 .advert-col-1 {
@@ -183,6 +206,16 @@
     font-weight: 600;
     word-break: break-word;
     overflow-wrap: anywhere;
+    line-height: normal;
+}
+
+.short-spec-subvalue {
+    font-weight: 500;
+    color: #9b9b9b;
+    font-size: 13px;
+    font-style: normal;
+    line-height: normal;
+    margin-top: 4px;
 }
 
 .description-section {
