@@ -61,3 +61,13 @@ class AdvertAdmin(admin.ModelAdmin):
 class FavouriteAdmin(admin.ModelAdmin):
     list_display = ['user','advert']
     list_select_related = ['user', 'advert']
+    
+@admin.register(Region)
+class RegionsAdmin(admin.ModelAdmin):
+    list_dispay = ['region']
+    
+    
+@admin.register(City)
+class CityAdmin(admin.ModelAdmin):
+    list_display = ['region', 'city']
+    list_select_related = ['region']

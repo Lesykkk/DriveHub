@@ -140,3 +140,10 @@ class Favourite(models.Model):
 
     class Meta:
         db_table = 'favourite'
+    
+class Region(models.Model):
+    region = models.CharField(max_length=50)
+  
+class City(models.Model):
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, related_name = 'cities')
+    city =  models.CharField(max_length=50)
