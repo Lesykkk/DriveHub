@@ -65,20 +65,23 @@
     justify-content: center;
     display: flex;
     width: 100%;
-    border: 1px solid rgb(226, 232, 240);
-    border-radius: 12px;
+    border: 1px solid #0000001f;
+    border-radius: 8px;
+    transition: 0.35s all ease;
 }
 
 .input-container input {
-    border-radius: 12px;
-    border-bottom-left-radius: 0px;
-    border-top-left-radius: 0px;
+    border-radius: inherit;
     flex: 1;
     padding: 16px 16px 16px 0;
     font-family: Inter;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
     outline: none;
+}
+
+.input-container:hover {
+    border-color: #1890FF;
 }
 
 .input-container input::placeholder {
@@ -87,7 +90,7 @@
 }
 
 .input-container img{
-    margin: 0 9px;
+    margin: 0 17px;
     /* margin-left: 18px;*/
 }
 

@@ -22,12 +22,18 @@
                         </li>
                         <li class = "menu-item l">
                             <div class="login-btn">
+                                {% if user.is_authenticated %}
+                                <a class="header-profile-logo" href="{% url 'account:my-ads' %}">
+                                    <div>{{ user.first_name|slice:":1"|upper }}</div>
+                                </a>
+                                {% else %}
                                 <a class="login" href="{% url 'account:login' %}">
                                     <div class="login-img-container">
                                         <img src="{% static 'icons/login.svg' %}">
                                     </div>
                                     <span class="login-title">Увійти</span>
                                 </a>
+                                {% endif %}
                             </div>
                             <div class="menu">
                                 <a class="menu-adverts" href="{% url 'account:my-ads' %}">

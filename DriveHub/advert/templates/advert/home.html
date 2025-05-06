@@ -22,15 +22,16 @@
                     {% include "advert/custom-select.html" with select_id="brand-select" placeholder="Марка" options=brand_list %}
                 </div>
                 <div class="select-container">
-                    {% include "advert/custom-select.html" with select_id="model-select" placeholder="Модель" options=model_list %}
+                    {% include "advert/custom-select.html" with select_id="model-select" disabled=True placeholder="Модель" %}
                 </div>
                 <div class="select-container">
                     <input type="number" name="price-from" min="0" step="1" placeholder="Ціна від">
                     <input type="number" name="price-to" min="0" step="1" placeholder="Ціна до">
                 </div>
                 <div class="select-container">
-                    <input type="number" name="year-from" min="1939" step="1" placeholder="Рік від">
-                    <input type="number" name="year-to" min="2025" step="1" placeholder="Рік до">
+                    {% now "Y" as year %}
+                    <input type="number" name="year-from" min="1900" max="{{ year }}" step="1" placeholder="Рік від">
+                    <input type="number" name="year-to" min="1900" max="{{ year }}" step="1" placeholder="Рік до">
                 </div>
             </div>
             <div class="filter-row">
@@ -123,6 +124,7 @@
     
     {% include "footer.html" %}
 
+    <script src="{% static 'advert/scripts/home.js' %}"></script>
     <script src="{% static 'advert/scripts/custom-select.js' %}"></script>
 </body>
 </html>

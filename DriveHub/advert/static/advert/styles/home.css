@@ -28,15 +28,15 @@
     height: 44px;
 }
 
-.select-container input{
+.select-container input {
     display: flex;
     align-items: center;
     border: 1px solid #0000001f;
+    border-radius: 8px;
     padding: 10px;
-    width: 100%;
+    width: 50%;
     height: 100%;
     background-color: white;
-    border-radius: 8px;
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
@@ -48,6 +48,7 @@
 .select-container input:first-child {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
+    border-right-width: 0;
 }
 
 .select-container input:last-child {
@@ -57,6 +58,7 @@
 
 .select-container input:hover{
     border-color: #1890FF;
+    border-right-width: 1px;
 }
 
 .submit-btn {

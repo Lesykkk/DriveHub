@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'styles/base.css' %}">
     <link rel="stylesheet" href="{% static 'styles/header.css' %}">
     <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'advert/styles/custom-select.css' %}">
     <link rel="stylesheet" href="{% static 'advert/styles/create-advert.css' %}">
 </head>
 <body>
@@ -27,26 +28,21 @@
                 <div class="section-content">
                     <div class="input-container">
                         <span class="input-label">Марка</span>
-                        <select id="brand-select" name="brand" placeholder="Марка" required>
-                            <option disabled selected>Виберіть марку</option>
-                            {% for brand in brand_list %}
-                                <option>{{brand.value}}</option>
-                            {% endfor %}
-                        </select>
+                        <div class="select-container">
+                            {% include "advert/custom-select.html" with select_id="brand-select" placeholder="Марка" options=brand_list %}
+                        </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Модель</span>
-                        <select id="model-select" name="model" placeholder="Модель" required disabled>
-                            <option disabled selected>Виберіть модель</option>
-                        </select>
+                        <div class="select-container">
+                            {% include "advert/custom-select.html" with select_id="model-select" disabled=True placeholder="Модель" %}
+                        </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Тип транспорту</span>
-                        <select name="transport_type" placeholder="Тип транспорту" required>
-                            {% for transport_type in transport_type_list %}
-                                <option>{{transport_type.value}}</option>
-                            {% endfor %}
-                        </select>
+                        <div class="select-container">
+                            {% include "advert/custom-select.html" with select_id="transport-type-select" placeholder="Тип транспорту" options=transport_type_list %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -60,47 +56,38 @@
                 <div class="section-content">
                     <div class="input-container">
                         <span class="input-label">Рік</span>
-                        <input type="number" min="1950" placeholder="Введіть рік" required>
+                        {% now "Y" as year %}
+                        <input type="number" min="1900" max="{{ year }}" placeholder="Введіть рік" required>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Тип кузова</span>
-                        <select name="body_type" placeholder="Тип кузова" required>
-                            {% for body_type in body_type_list %}
-                                <option>{{body_type.value}}</option>
-                            {% endfor %}
-                        </select>
+                        <div class="select-container">
+                            {% include "advert/custom-select.html" with select_id="body-type-select" placeholder="Тип кузова" options=body_type_list %}
+                        </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Привід</span>
-                        <select name="drive_type" placeholder="Привід" required>
-                            {% for drive_type in drive_type_list %}
-                                <option>{{drive_type.value}}</option>
-                            {% endfor %}
-                        </select>
+                        <div class="select-container">
+                            {% include "advert/custom-select.html" with select_id="drive-type-select" placeholder="Привід" options=drive_type_list %}
+                        </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Коробка передач</span>
-                        <select name="transmission_type" placeholder="Коробка передач" required>
-                            {% for transmission_type in transmission_type_list %}
-                                <option>{{transmission_type.value}}</option>
-                            {% endfor %}
-                        </select>
+                        <div class="select-container">
+                            {% include "advert/custom-select.html" with select_id="transmission-type-select" placeholder="Коробка передач" options=transmission_type_list %}
+                        </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Колір</span>
-                        <select name="color" placeholder="Колір" required>
-                            {% for color in color_list %}
-                                <option>{{color.value}}</option>
-                            {% endfor %}
-                        </select>
+                        <div class="select-container">
+                            {% include "advert/custom-select.html" with select_id="color-select" placeholder="Колір" options=color_list %}
+                        </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Паливо</span>
-                        <select name="fuel_type" placeholder="Паливо" required>
-                            {% for fuel_type in fuel_type_list %}
-                                <option>{{fuel_type.value}}</option>
-                            {% endfor %}
-                        </select>
+                        <div class="select-container">
+                            {% include "advert/custom-select.html" with select_id="fuel-type-select" placeholder="Паливо" options=fuel_type_list %}
+                        </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Об'єм двигуна, л</span>
@@ -149,7 +136,7 @@
                     <div class="file-container">
                         <input id="file_input" type="file" accept="image/*" required multiple>
                         <div class="file-text-area" data-logo-url="{% static 'advert/icons/remove.svg' %}">
-                            <img id="add-photo-img" src="{% static 'advert/icons/add-photo.png' %}" alt="">
+                            <img id="add-photo-img" src="{% static 'advert/icons/add-photo.png' %}">
                             <span>Додайте щонайменше 6 фото</span>
                         </div>
                         <div class="file-preview-container" id="file-preview-container">
@@ -166,7 +153,7 @@
                 </div>
                 <div class="section-content">
                     <div class="input-container description-container">
-                        <textarea minlength="50" maxlength="5000" required></textarea>
+                        <textarea minlength="50" maxlength="5000" required placeholder="Напишіть кілька слів про Ваш транспорт..."></textarea>
                     </div>
                 </div>
             </div>
@@ -205,12 +192,9 @@
                     <div class="section-row">
                         <div class="input-container">
                             <span class="input-label">Регіон</span>
-                            <select id="region-select" name="region" placeholder="Регіон" required>
-                                <option disabled selected>Регіон</option>
-                                {% for region in region_list %}
-                                    <option>{{region.value}}</option>
-                                {% endfor %}
-                            </select>
+                            <div class="select-container">
+                                {% include "advert/custom-select.html" with select_id="region-select" placeholder="Регіон" options=region_list default_value="Виберіть регіон" %}
+                            </div>
                         </div>
                         <div class="input-container">
                             <span class="input-label">Телефон</span>
@@ -220,12 +204,9 @@
                     <div class="section-row">
                         <div class="input-container">
                             <span class="input-label">Місто</span>
-                            <select id="city-select" name="city" placeholder="Місто" required>
-                                <option disabled selected>Місто</option>
-                                {% for city in city_list %}
-                                    <option>{{city.value}}</option>
-                                {% endfor %}
-                            </select>
+                            <div class="select-container">
+                                {% include "advert/custom-select.html" with select_id="city-select" placeholder="Місто" options=city_list default_value="Виберіть місто" %}
+                            </div>
                         </div>
                         <div class="input-container">
                             <span class="input-label">Пошта</span>
@@ -242,5 +223,6 @@
     {% include "footer.html" %}
 
     <script src="{% static 'advert/scripts/create-advert.js' %}"></script>
+    <script src="{% static 'advert/scripts/custom-select.js' %}"></script>
 </body>
 </html>

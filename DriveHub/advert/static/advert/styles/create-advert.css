@@ -72,7 +72,7 @@
     line-height: normal;
 }
 
-.input-container select {
+/* .input-container select {
     border-radius: 8px;
     border: 1px solid #0000001f;
     padding: 10px 10px 10px 16px;
@@ -100,9 +100,10 @@
 .input-container select::placeholder {
     color: rgb(150, 155, 161);
     font-weight: 300;
-}
+} */
 
 .input-container input {
+    display: flex;
     border-radius: 8px;
     border: 1px solid #0000001f;
     padding: 10px 10px 10px 16px;
@@ -114,12 +115,14 @@
     line-height: normal;
     color: black;
     outline: none;
+    transition: 0.35s all ease;
+    background-color: white;
 }
 
-.input-container input::placeholder {
-    color: rgb(150, 155, 161);
-    font-weight: 300;
+.input-container input:hover {
+    border-color: #1890FF;
 }
+
 
 .fuel-div {
     display: flex;
@@ -180,7 +183,6 @@
     width: 100%;
     height: 100%;
     gap: 8px;
-    justify-content: ;
 }
 
 .preview-div {
@@ -259,6 +261,11 @@
     color: black;
     outline: none;
     resize: none;
+    transition: 0.35s all ease;
+}
+
+.description-container textarea:hover{
+    border-color: #1890FF;
 }
 
 .price {
@@ -300,4 +307,12 @@
 
 .submit-btn:hover {
     background-color: #007ef4;
+}
+
+.select-container {
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    width: 100%;
+    height: 44px;
 }
