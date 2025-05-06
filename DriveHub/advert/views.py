@@ -33,6 +33,22 @@ def create_advert(request):
         'transport_type_list': transport_type_list(),
     })
 
+def advert_detail(request):
+    adverts = Advert.objects.select_related('user', 'transport').all()
+    return render(request, 'advert/advert-detail.html', {
+        "adverts" : adverts,
+        'brand_list': brand_list(),
+        'brand_model_list': brand_model_list(),
+        'model_list': model_list(),
+        'body_type_list': body_type_list(),
+        'fuel_type_list': fuel_type_list(),
+        'fuelconsumption_list': fuel_consumption_list(),
+        'drive_type_list': drive_type_list(),
+        'transmission_type_list': transmission_type_list(),
+        'color_list': color_list(),
+        'transport_type_list': transport_type_list(),
+    })
+
 def get_models_by_brand(request):
     brand_model_objects = Brand.objects.get(value=request.GET.get('brand_value')).brand_models.all()
     model_list = [{
