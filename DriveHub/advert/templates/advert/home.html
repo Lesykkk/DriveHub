@@ -10,13 +10,121 @@
     <link rel="stylesheet" href="{% static 'styles/header.css' %}">
     <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
     <link rel="stylesheet" href="{% static 'advert/styles/home.css' %}">
+    <link rel="stylesheet" href="{% static 'advert/styles/custom-select.css' %}">
 </head>
 <body>
     {% include "header.html" %}
     
     <div class="home-container">
+        <div class="filter-container">
+            <div class="filter-row">
+                <div class="select-container">
+                    {% include "advert/custom-select.html" with select_id="brand-select" placeholder="Марка" options=brand_list %}
+                </div>
+                <div class="select-container">
+                    {% include "advert/custom-select.html" with select_id="model-select" disabled=True placeholder="Модель" %}
+                </div>
+                <div class="select-container">
+                    <input type="number" name="price-from" min="0" step="1" placeholder="Ціна від">
+                    <input type="number" name="price-to" min="0" step="1" placeholder="Ціна до">
+                </div>
+                <div class="select-container">
+                    {% now "Y" as year %}
+                    <input type="number" name="year-from" min="1900" max="{{ year }}" step="1" placeholder="Рік від">
+                    <input type="number" name="year-to" min="1900" max="{{ year }}" step="1" placeholder="Рік до">
+                </div>
+            </div>
+            <div class="filter-row">
+                <div class="select-container">
+                    {% include "advert/custom-select.html" with select_id="drive-type-select" placeholder="Привід" options=drive_type_list %}
+                </div>
+                <div class="select-container">
+                    {% include "advert/custom-select.html" with select_id="transmission-type-select" placeholder="Коробка передач" options=transmission_type_list %}
+                </div>
+                <div class="select-container">
+                    {% include "advert/custom-select.html" with select_id="drive-type-select" placeholder="Регіон" options=drive_type_list %}
+                </div>
+                <div class="select-container">
+                    <input type="number" name="millage-from" min="0" step="1" placeholder="Пробіг від">
+                    <input type="number" name="millage-to" min="0" step="1" placeholder="Пробіг до">
+                </div>
+            </div>
+            <div class="filter-row">
+                <div class="select-container">
+                    {% include "advert/custom-select.html" with select_id="body-type-select" placeholder="Кузов" options=body_type_list %}
+                </div>
+                <div class="select-container">
+                    {% include "advert/custom-select.html" with select_id="fuel-type-select" placeholder="Паливо" options=fuel_type_list %}
+                </div>
+                <div class="select-container">
+                    <button class="submit-btn advanced-search-btn" type="submit">
+                        <img src="{% static 'advert/icons/form-adding.svg' %}" alt="">
+                        Розширений пошук
+                    </button>
+                </div>
+                <div class="select-container">
+                    <button class="submit-btn" type="submit">
+                        Показати пропозиції
+                    </button>
+                </div>
+            </div>
+        </div>
+        <span class="cards-grid-title">Останні оголошення</span>
+        <div class="cards-grid">
+            <a href="#" class="car-card">
+                <img class="card-img" src="https://cardrive.com.ua/file/thumb/2a1072f0-2781-4890-907a-61cfc109129f" alt="">
+                <div class="card-description-container">
+                    <span class="card-price">20 500 $</span>
+                    <span class="card-title">Ford Edge 2018</span>
+                    <span class="card-text">2018, 93 000 km</span>
+                </div>
+            </a>
+            <a href="#" class="car-card">
+                <img class="card-img" src="https://wl-adme.cf.tsp.li/resize/728x/jpg/6b6/037/b8d269523d81a1f3e4128065cf.jpg" alt="">
+                <div class="card-description-container">
+                    <span class="card-price">20 500 $</span>
+                    <span class="card-title">Ford Edge 2018</span>
+                    <span class="card-text">2018, 93 000 km</span>
+                </div>
+            </a>
+            <a href="#" class="car-card">
+                <img class="card-img" src="https://cardrive.com.ua/file/thumb/2a1072f0-2781-4890-907a-61cfc109129f" alt="">
+                <div class="card-description-container">
+                    <span class="card-price">20 500 $</span>
+                    <span class="card-title">Ford Edge 2018</span>
+                    <span class="card-text">2018, 93 000 km</span>
+                </div>
+            </a>
+            <a href="#" class="car-card">
+                <img class="card-img" src="https://cardrive.com.ua/file/thumb/2a1072f0-2781-4890-907a-61cfc109129f" alt="">
+                <div class="card-description-container">
+                    <span class="card-price">20 500 $</span>
+                    <span class="card-title">Ford Edge 2018</span>
+                    <span class="card-text">2018, 93 000 km</span>
+                </div>
+            </a>
+            <a href="#" class="car-card">
+                <img class="card-img" src="https://cardrive.com.ua/file/thumb/2a1072f0-2781-4890-907a-61cfc109129f" alt="">
+                <div class="card-description-container">
+                    <span class="card-price">20 500 $</span>
+                    <span class="card-title">Ford Edge 2018</span>
+                    <span class="card-text">2018, 93 000 km</span>
+                </div>
+            </a>
+            <a href="#" class="car-card">
+                <img class="card-img" src="https://cardrive.com.ua/file/thumb/2a1072f0-2781-4890-907a-61cfc109129f" alt="">
+                <div class="card-description-container">
+                    <span class="card-price">20 500 $</span>
+                    <span class="card-title">Ford Edge 2018</span>
+                    <span class="card-text">2018, 93 000 km</span>
+                </div>
+            </a>
+        </div>
     </div>
     
     {% include "footer.html" %}
+
+    <script src="{% static 'advert/scripts/home.js' %}"></script>
+    <script src="{% static 'advert/scripts/custom-select.js' %}"></script>
 </body>
 </html>

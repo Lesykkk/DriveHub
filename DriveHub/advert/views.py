@@ -4,7 +4,19 @@ from django.http import JsonResponse
 
 def home(request):
     adverts = Advert.objects.select_related('user', 'transport').all()
-    return render(request, 'advert/home.html', {"adverts" : adverts})
+    return render(request, 'advert/home.html', {
+        "adverts" : adverts,
+        'brand_list': brand_list(),
+        'brand_model_list': brand_model_list(),
+        'model_list': model_list(),
+        'body_type_list': body_type_list(),
+        'fuel_type_list': fuel_type_list(),
+        'fuelconsumption_list': fuel_consumption_list(),
+        'drive_type_list': drive_type_list(),
+        'transmission_type_list': transmission_type_list(),
+        'color_list': color_list(),
+        'transport_type_list': transport_type_list(),
+    })
 
 def create_advert(request):
     return render(request, 'advert/create-advert.html', {
@@ -15,7 +27,7 @@ def create_advert(request):
         'body_type_list': body_type_list(),
         'fuel_type_list': fuel_type_list(),
         'fuelconsumption_list': fuel_consumption_list(),
-        'drive_type_list': drive_type(),
+        'drive_type_list': drive_type_list(),
         'transmission_type_list': transmission_type_list(),
         'color_list': color_list(),
         'transport_type_list': transport_type_list(),
@@ -46,7 +58,7 @@ def fuel_type_list():
 def fuel_consumption_list():
     return FuelConsumption.objects.all()
 
-def drive_type():
+def drive_type_list():
     return DriveType.objects.all()
 
 def transmission_type_list():

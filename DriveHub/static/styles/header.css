@@ -17,6 +17,7 @@ header {
     justify-content: space-between;
     align-items: center;
     height: 42px;
+    width: 100%;
 }
 
 .header-logo{
@@ -32,15 +33,20 @@ header {
 }
 
 .header-menu{
-    list-style: none;
     display: flex;
+    height: 100%;
+    width: max-content;
+    list-style: none;
     align-items: center;
     padding: 0;
     list-style-type: none;
 }
 
 .menu-item {
+    display: flex;
     margin-right: 36px;
+    height: 100%;
+    width: max-content;
 }
 
 .l {
@@ -59,7 +65,7 @@ header {
 
 .login-btn {
     display: flex;
-    width: 115px;
+    width: max-content;
     background-color: rgb(245, 246, 247);
     border-radius: 8px;
     height: 42px;
@@ -67,9 +73,26 @@ header {
 }
 
 .login {
+    display: flex;
+    justify-content: center;
     column-gap: 10px;
     display: flex;
     align-items: center;
+    width: 115px;
+}
+
+.header-profile-logo {
+    color: rgb(128, 129, 145);
+    display: flex;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(245, 246, 247);
+    min-width: 42px;
+    min-height: 42px;
+    width: 42px;
+    height: 42px;
+    font-weight: 500;
 }
 
 .login-img-container {

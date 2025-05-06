@@ -27,6 +27,6 @@ a {
     color: var(--color-6);
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     display: none;
-}
+} */

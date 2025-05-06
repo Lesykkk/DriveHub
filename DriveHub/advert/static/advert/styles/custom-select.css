@@ -1,0 +1,144 @@
+.custom-select-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 8px;
+    transition: 0.35s all ease;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: black;
+    user-select: none;
+    cursor: pointer;
+}
+
+.custom-select-container[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+    .custom-option-list {
+        display: none;
+    }
+}
+
+.custom-select {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    border: 1px solid #0000001f;
+    background-color: white;
+    padding: 10px;
+    transition: inherit;
+}
+
+.custom-select:hover {
+    border-color: #1890FF;
+}
+
+.custom-select img {
+    transition: inherit;
+}
+
+.custom-select-container.opened {
+    .arrow-icon {
+        transform: rotate(180deg);
+    }
+    
+    .custom-option-list {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(0, 0);
+    }
+}
+    
+.custom-select-placeholder{
+    color: #808080;
+    display: flex;
+}
+
+.custom-selected-option {
+    display: none;
+}
+
+.custom-option-list {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    max-height: calc(100% * 6);
+    border-radius: inherit;
+    border: 1px solid #0000001f;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 10px 30px 0px;
+    background-color: rgb(255, 255, 255);
+    z-index: 1000;
+    top: calc(100% + 10px);
+    left: 0;
+    transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: inherit;
+    overflow: hidden;
+}
+
+.custom-option-scroll {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.custom-option {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    padding: 10px;
+    padding-left: 16px;
+    width: inherit;
+    height: 44px;
+    flex-shrink: 0;
+}
+
+.custom-option:hover {
+    background-color: #188fff0a;
+    color: #1890FF;
+}
+
+.img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 12px;
+    height: 12px;
+}
+
+.img-container img {
+    display: none;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+.custom-option[selected] {
+    font-weight: 600;
+    .img-container img {
+        display: flex;
+    }
+}
+
+.default-option {
+    .img-container img {
+        display: flex;
+    }
+    border-bottom: 1px solid #0000001f !important;
+}
+
+.default-option:hover {
+    background-color: #f5f6f7 !important;
+    color: inherit !important;
+}
