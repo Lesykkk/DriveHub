@@ -1,3 +1,4 @@
+import csv
 from django.views.decorators.http import require_GET
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render, redirect
@@ -5,23 +6,18 @@ from django.utils.text import slugify
 from django.http import Http404, JsonResponse
 from .models import *
 from .forms import FuelConsumptionForm, TransportForm, AdvertForm
+import json
 
 def home(request):
-    
-    
     adverts = Advert.objects.select_related('user', 'transport').all()
     return render(request, 'advert/home.html', {
         "adverts" : adverts,
         'brand_list': brand_list(),
-        'brand_model_list': brand_model_list(),
-        'model_list': model_list(),
         'body_type_list': body_type_list(),
         'fuel_type_list': fuel_type_list(),
-        'fuelconsumption_list': fuel_consumption_list(),
         'drive_type_list': drive_type_list(),
         'transmission_type_list': transmission_type_list(),
-        'color_list': color_list(),
-        'transport_type_list': transport_type_list(),
+        'region_list': region_list(),
     })
 
 @login_required
@@ -36,8 +32,8 @@ def create_advert(request):
             transport = transport_form.save(commit=False)
             transport.fuel_consumption = fuel_consumption
             transport.brand_model = BrandModel.objects.get(
-                brand=Brand.objects.get(value=request.POST.get("brand")),
-                model=Model.objects.get(value=request.POST.get("model")),
+                brand=Brand.objects.get(id=request.POST.get("brand")),
+                model=Model.objects.get(id=request.POST.get("model")),
             )
             transport.save()
 
@@ -48,8 +44,8 @@ def create_advert(request):
             advert.user = request.user
             advert.transport = transport
             advert.region_city = RegionCity.objects.get(
-                region=Region.objects.get(value=request.POST.get("region")),
-                city=City.objects.get(value=request.POST.get("city")),
+                region=Region.objects.get(id=request.POST.get("region")),
+                city=City.objects.get(id=request.POST.get("city")),
             )
             base_slug = slugify(str(transport))
             slug = base_slug
@@ -80,10 +76,14 @@ def create_advert(request):
     })
 
 def advert_detail(request, slug):
-    advert = get_object_or_404(Advert.objects.get(slug=slug))
+    advert = get_object_or_404(Advert.objects.select_related('transport__fuel_consumption', 'transport__brand_model__brand', 'transport__brand_model__model', 'region_city__region', 'region_city__city', 'user'), slug=slug)
     if advert is None:
         raise Http404()
-    return render(request, 'advert/advert-detail.html', {'advert': advert})
+    return render(request, 'advert/advert-detail.html', {
+        'advert': advert,
+        'uah_price': int(advert.price * 41),
+        'eur_price': int(advert.price * 0.91),
+    })
 
 
 @require_GET
@@ -91,6 +91,23 @@ def get_models_by_brand(request):
     brand_model_objects = Brand.objects.get(id=request.GET.get('brand_id')).brand_models.all()
     model_list = [{'value': bm.model.value, 'id': bm.model.id} for bm in brand_model_objects]
     return JsonResponse(model_list, safe=False)
+
+@require_GET
+def get_cities_by_region(request):
+    region_city_objects = Region.objects.get(id=request.GET.get('region_id')).region_cities.all()
+    city_list = [{'value': rc.city.value, 'id': rc.city.id} for rc in region_city_objects]
+    return JsonResponse(city_list, safe=False)
+
+
+
+
+
+
+
+
+
+
+
 
 def brand_list():
     return Brand.objects.all()

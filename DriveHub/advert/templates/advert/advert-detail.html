@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,11 +17,11 @@
     
     <div class="advert-container">
         <div class="catogory-row">
-            <a class="category">Volkswagen</a>
+            <a class="category">{{ advert.transport.brand_model.brand.value }}</a>
             <img src="{% static 'advert/icons/arrow-right.svg' %}">
-            <a class="category">Golf</a>
+            <a class="category">{{ advert.transport.brand_model.model.value }}</a>
             <img src="{% static 'advert/icons/arrow-right.svg' %}">
-            <a class="category">Volkswagen Golf 2019</a>
+            <a class="category">{{ advert.transport }}</a>
         </div>
         <div class="transport-info">
             <div class="advert-col-1">
@@ -30,8 +31,8 @@
                         <img class="black-icon" src="{% static 'advert/icons/heart-black.svg' %}">
                     </button>
                     <div class="advert-title-text">
-                        <span class="advert-title">Volkswagen Golf 2019</span>
-                        <span class="advert-description">28 квітня id: 424957</span>
+                        <span class="advert-title">{{ advert.transport }}</span>
+                        <span class="advert-description">{{ advert.created|date:"j E" }} id: {{ advert.id }}</span>
                     </div>
                 </div>
                 <div class="advert-image-section">
@@ -56,15 +57,15 @@
                         <div class="short-spec-column">
                             <img src="{% static 'advert/icons/brand.svg' %}">
                             <div class="short-spec-text">
-                                <span class="short-spec-label">Марка,, рік</span>
-                                <span class="short-spec-value">Volkswagen Golf 2019</span>
+                                <span class="short-spec-label">Марка, рік</span>
+                                <span class="short-spec-value">{{ advert.transport }}</span>
                             </div>
                         </div>
                         <div class="short-spec-column">
                             <img src="{% static 'advert/icons/millage.svg' %}">
                             <div class="short-spec-text">
                                 <span class="short-spec-label">Пробіг</span>
-                                <span class="short-spec-value">205 892 км</span>
+                                <span class="short-spec-value">{{ advert.transport.mileage }} км</span>
                             </div>
                         </div>
                     </div>
@@ -73,14 +74,14 @@
                             <img src="{% static 'advert/icons/brand.svg' %}">
                             <div class="short-spec-text">
                                 <span class="short-spec-label">Коробка</span>
-                                <span class="short-spec-value">робот</span>
+                                <span class="short-spec-value">{{ advert.transport.transmission_type.value }}</span>
                             </div>
                         </div>
                         <div class="short-spec-column">
                             <img src="{% static 'advert/icons/millage.svg' %}">
                             <div class="short-spec-text">
                                 <span class="short-spec-label">Колір</span>
-                                <span class="short-spec-value">Жовтий</span>
+                                <span class="short-spec-value">{{ advert.transport.color.value }}</span>
                             </div>
                         </div>
                     </div>
@@ -89,61 +90,45 @@
                             <img src="{% static 'advert/icons/brand.svg' %}">
                             <div class="short-spec-text">
                                 <span class="short-spec-label">Двигун</span>
-                                <span class="short-spec-value">1.6 л / 115 к.с. / дизель</span>
-                                <span class="short-spec-subvalue">Місто 5 Змішаний 4.5 Траса 4</span>
+                                <span class="short-spec-value">{{ advert.transport.engine_volume }} л / {{ advert.transport.engine_power }} к.с. / {{ advert.transport.fuel_type.value }}</span>
+                                <span class="short-spec-subvalue">Місто {{ advert.transport.fuel_consumption.city_consumption }} Змішаний {{ advert.transport.fuel_consumption.mixed_consumption }} Траса {{ advert.transport.fuel_consumption.highway_consumption }}</span>
                             </div>
                         </div>
                         <div class="short-spec-column">
                             <img src="{% static 'advert/icons/millage.svg' %}">
                             <div class="short-spec-text">
                                 <span class="short-spec-label">Кількість власників</span>
-                                <span class="short-spec-value">2</span>
+                                <span class="short-spec-value">{{ advert.transport.owners_number }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="description-section">
                     <span class="description-title">Опис продавця</span>
-                    <span class="description">Свіжопригнане авто з Франції в збереженому стані, без підкрасів, в рідній фарбі. Без пробігу по Україні.
-
-Авто розмитнене та готове до постановки на облік – сертифікат та всі документи в наявності.
-
-Сервісна історія з дилера. Обслуговування на офіційному дилері Volkswagen. Оригінальний, перевірений пробіг. Двигун працює рівно, без сторонніх звуків чи шуму. Коробка перемикається плавно – без ривків, вібрацій чи затримок. Ходова без зауважень – нічого не стукає, відмінно тримає дорогу.
-
-Записи з обслуговування:
-    - 157 тис. км. – заміна передніх і задніх гальмівних дисків
-    - 195 тис. км. – заміна АКБ, комплект ГРМ з помпою + антифриз
-На 204 тис. км. (по приїзду в Україну) – зроблено свіже ТО:
-    масло Shell Helix Ultra 0W-30 + всі фільтра Mann (масляний, паливний, салонний, повітряний) - чеки/накладні в наявності.
-    
-- Два оригінальних ключа! Гарна гума на дисках – всесезонна Goodyear, залишок 6 мм. (+ повноцінна запаска на диску Continental)
-
-Готовий до перевірки на СТО. З радістю відповім на будь-які питання. Телефонуйте!
-
-Авто знаходиться в Броварах / Києві</span>
+                    <span class="description">{{ advert.description }}</span>
                 </div>
             </div>
             <div class="advert-col-2">
                 <div class="advert-price-section">
-                    <span class="advert-price">14 300 $</span>
-                    <span class="advert-price-₴">599 254 ₴</span>
-                    <span class="advert-price-€">12 594 €</span>
+                    <span class="advert-price">{{ advert.price|intcomma }} $</span>
+                    <span class="advert-price-₴">{{ uah_price|intcomma }} ₴</span>
+                    <span class="advert-price-€">{{ eur_price|intcomma }} €</span>
                 </div>
                 <div class="advert-profile-section">
                     <div class="profile-row">
-                        <div class="profile-row-logo">R</div>
+                        <div class="profile-row-logo">{{ advert.user.first_name|slice:":1"|upper }}</div>
                         <div class="profile-row-text">
-                            <span class="profile-name">Микола</span>
-                            <span class="profile-description">Користувач</span>
+                            <span class="profile-name">{{ advert.user.first_name }}</span>
+                            <span class="profile-description">Користувач  </span>
                         </div>
                     </div>
                     <div class="profile-row">
                         <img class="profile-location-img" src="{% static 'advert/icons/location.svg' %}">
-                        <span class="profile-location">Дніпро (Дніпропетровськ)</span>
+                        <span class="profile-location">{{ advert.region_city.city.value }}</span>
                     </div>
                     <div class="profile-phone-div">
                         <span>Телефон</span>
-                        +380986029515
+                        {{advert.user.phone}}
                     </div>
                 </div>
                 <div class="advert-spec-section">
@@ -151,35 +136,36 @@
                     <div class="spec-section-table">
                         <div class="section-table-row">
                             <span class="section-table-column-title">Рік випуску</span>
-                            <span class="section-table-column">2019</span>
+                            
+                            <span class="section-table-column">{{ advert.transport.year }} </span>
                         </div>
                         <div class="section-table-row">
                             <span class="section-table-column-title">Пробіг</span>
-                            <span class="section-table-column">205 849 км</span>
+                            <span class="section-table-column">{{ advert.transport.mileage|intcomma }} км</span>
                         </div>
                         <div class="section-table-row">
                             <span class="section-table-column-title">Кузов</span>
-                            <span class="section-table-column">універсал</span>
+                            <span class="section-table-column">{{ advert.transport.body_type.value }}</span>
                         </div>
                         <div class="section-table-row">
                             <span class="section-table-column-title">Колір</span>
-                            <span class="section-table-column">сріблястий</span>
+                            <span class="section-table-column">{{ advert.transport.color.value }}</span>
                         </div>
                         <div class="section-table-row">
                             <span class="section-table-column-title">Двигун</span>
-                            <span class="section-table-column">1.6 л / 115 к.с. / дизель</span>
+                            <span class="section-table-column">{{ advert.transport.engine_volume }} л / {{ advert.transport.engine_power }} к.с. / {{ advert.transport.fuel_type.value }}</span>
                         </div>
                         <div class="section-table-row">
                             <span class="section-table-column-title">КПП</span>
-                            <span class="section-table-column">робот</span>
+                            <span class="section-table-column">{{ advert.transport.transmission_type.value }}</span>
                         </div>
                         <div class="section-table-row">
                             <span class="section-table-column-title">Привід</span>
-                            <span class="section-table-column">передній</span>
+                            <span class="section-table-column">{{ advert.transport.drive_type.value }}</span>
                         </div>
                         <div class="section-table-row">
                             <span class="section-table-column-title">Власники</span>
-                            <span class="section-table-column">1</span>
+                            <span class="section-table-column">{{ advert.transport.owners_number }}</span>
                         </div>
                     </div>
                 </div>

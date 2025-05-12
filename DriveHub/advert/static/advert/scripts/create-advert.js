@@ -8,7 +8,6 @@ document.getElementById('brand-select').addEventListener('change', function (e) 
     }
     
     const brandId = e.detail.id;
-    // console.log(brandId);
     modelSelect.clearOptions();
     modelSelect.reset();
 
@@ -19,6 +18,29 @@ document.getElementById('brand-select').addEventListener('change', function (e) 
                 modelSelect.appendOption(model.id, model.value);
             });
             modelSelect.removeAttribute('disabled');
+        });
+});
+
+document.getElementById('region-select').addEventListener('change', function (e) {
+    const citySelect = document.getElementById('city-select');
+    
+    if (e.detail.isDefaultSelected) {
+        citySelect.setAttribute('disabled', '');
+        citySelect.clearOptions();
+        return;
+    }
+    
+    const regionId = e.detail.id;
+    citySelect.clearOptions();
+    citySelect.reset();
+
+    fetch(`/ajax/get-cities/?region_id=${regionId}`)
+        .then(response => response.json())
+        .then(cities => {
+            cities.forEach(city => {
+                citySelect.appendOption(city.id, city.value);
+            });
+            citySelect.removeAttribute('disabled');
         });
 });
 

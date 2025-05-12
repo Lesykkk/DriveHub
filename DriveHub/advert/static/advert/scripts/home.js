@@ -7,15 +7,15 @@ document.getElementById('brand-select').addEventListener('change', function (e) 
         return;
     }
     
-    const brandValue = e.detail.textContent.trim();
+    const brandId = e.detail.id;
     modelSelect.clearOptions();
     modelSelect.reset();
 
-    fetch(`/ajax/get-models/?brand_value=${brandValue}`)
+    fetch(`/ajax/get-models/?brand_id=${brandId}`)
         .then(response => response.json())
         .then(models => {
             models.forEach(model => {
-                modelSelect.appendOption(model.value);
+                modelSelect.appendOption(model.id, model.value);
             });
             modelSelect.removeAttribute('disabled');
         });

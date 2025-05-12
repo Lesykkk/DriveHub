@@ -115,6 +115,7 @@ class Region(models.Model):
 
     class Meta:
         db_table = 'region'
+        ordering = ['value']
   
 
 class City(models.Model):
@@ -122,6 +123,7 @@ class City(models.Model):
 
     class Meta:
         db_table = 'city'
+        ordering = ['value']
 
 
 class RegionCity(models.Model):
@@ -146,7 +148,7 @@ class Advert(models.Model):
 
     class Meta:
         db_table = 'advert'
-        # indexes = [models.Index(fields=['slug'])]
+        indexes = [models.Index(fields=['slug'])]
 
     def __str__(self):
         return f"Advert for {self.transport} by {self.user}"

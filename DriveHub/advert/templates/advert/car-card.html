@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 
 <div class="car-card">
     <div class="car-img">
@@ -8,28 +9,28 @@
     </div>
     <div class="car-info">
         <div class="car-title-row">
-            <a class="car-title" href="#">BMW 5 серії 2020</a>
-            <span class="car-price-dolar">14 500 $</span>
-            <span class="car-price-hrn">603 502 ₴</span>
+            <a class="car-title" href="#">{{ advert.transport }}</a>
+            <span class="car-price-dolar"> {{ advert.price }} $</span>
+            <span class="car-price-hrn">{% widthratio advert.price 1 41 as uah_price %}{{ uah_price|intcomma }} ₴</span>
         </div>
         <div class="car-spec-row">
-            <img src="{% static 'advert/icons/speed2.svg' %}" alt="">
-            <p>140 000km</p>
-            <p>чорний</p>
+            <img src="{% static 'advert/icons/speed2.svg' %}">
+            <p>{{ advert.transport.mileage|intcomma }}km</p>
+            <p>{{ advert.transport.color.value }}</p>
         </div>
         <div class="car-spec-row">
-            <img src="{% static 'advert/icons/info.svg' %}" alt="">
-            <p>2л / 220 к.c / бензин</p>
-            <p>повний</p>
+            <img src="{% static 'advert/icons/info.svg' %}">
+            <p>{{ advert.transport.engine_volume }} л / {{ advert.transport.engine_power }} к.с. / {{ advert.transport.fuel_type.value }}</p>
+            <p>{{ advert.transport.drive_type.value }}</p>
         </div>
         <div class="car-spec-row">
-            <img src="{% static 'advert/icons/gearbox.svg' %}" alt="">
-            <p>Автоматична</p>
-            <p>купе</p>
+            <img src="{% static 'advert/icons/gearbox.svg' %}">
+            <p>{{ advert.transport.transmission_type.value }}</p>
+            <p>{{ advert.transport.body_type.value }}</p>
         </div>
-        <span class="car-about">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa pariatur accusantium, officia nihil odio unde officiis necessitatibus delectus et in esse omnis illo nisi, eligendi autem ipsum harum at quibusdam.</span>
+        <span class="car-about">{{ advert }}</span>
         <div class="car-bottom-row">
-            <span class="car-date">Львів, 12.04.2024</span>
+            <span class="car-date">{{ advert.region_city.city.value }}, {{ advert.created }}</span>
             <button class="icon-button">
                 <img src="{% static icon_href %}">
             </button>

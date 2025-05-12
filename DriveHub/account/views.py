@@ -48,16 +48,17 @@ def registration(request):
 def my_ads(request):
     return render(request, 'account/my-ads.html', {
         'user': request.user,
-        'my_ads': request.user.adverts.all(),
+        'adverts': request.user.adverts.all(),
     })
 
 
 @login_required
 def favourites(request):
     favourites = Advert.objects.filter(favourite__user=request.user)
+    favourites = request.user.favourites.all()
     return render(request, 'account/favourites.html', {
         'user': request.user,
-        'favourites': favourites,
+        'adverts': favourites,
     })
 
 
