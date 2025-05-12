@@ -24,11 +24,10 @@
                 <span class="content-title">Мої оголошення</span>
             </div>
             <div class="car-cards-container">
+                {% for advert in adverts %}
                 {% include "advert/car-card.html" with icon_href="advert/icons/trash.svg" %}
                 <div class="h-line"></div>
-                {% include "advert/car-card.html" with icon_href="advert/icons/trash.svg" %}
-                <div class="h-line"></div>
-                {% include "advert/car-card.html" with icon_href="advert/icons/trash.svg" %}
+                {% endfor %}
             </div>
         </div>
     </div>

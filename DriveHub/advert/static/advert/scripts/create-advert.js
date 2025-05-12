@@ -7,17 +7,40 @@ document.getElementById('brand-select').addEventListener('change', function (e) 
         return;
     }
     
-    const brandValue = e.detail.textContent.trim();
+    const brandId = e.detail.id;
     modelSelect.clearOptions();
     modelSelect.reset();
 
-    fetch(`/ajax/get-models/?brand_value=${brandValue}`)
+    fetch(`/ajax/get-models/?brand_id=${brandId}`)
         .then(response => response.json())
         .then(models => {
             models.forEach(model => {
-                modelSelect.appendOption(model.value);
+                modelSelect.appendOption(model.id, model.value);
             });
             modelSelect.removeAttribute('disabled');
+        });
+});
+
+document.getElementById('region-select').addEventListener('change', function (e) {
+    const citySelect = document.getElementById('city-select');
+    
+    if (e.detail.isDefaultSelected) {
+        citySelect.setAttribute('disabled', '');
+        citySelect.clearOptions();
+        return;
+    }
+    
+    const regionId = e.detail.id;
+    citySelect.clearOptions();
+    citySelect.reset();
+
+    fetch(`/ajax/get-cities/?region_id=${regionId}`)
+        .then(response => response.json())
+        .then(cities => {
+            cities.forEach(city => {
+                citySelect.appendOption(city.id, city.value);
+            });
+            citySelect.removeAttribute('disabled');
         });
 });
 
@@ -31,7 +54,7 @@ input.addEventListener('change', function () {
     previewContainer.style.display = 'flex';
     
     const photo = document.getElementById('add_photo');
-    if(photo){
+    if (photo) {
         photo.remove();
     }
 

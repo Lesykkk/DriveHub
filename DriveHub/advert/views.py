@@ -1,42 +1,106 @@
-from django.shortcuts import render
+import csv
+from django.views.decorators.http import require_GET
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, render, redirect
+from django.utils.text import slugify
+from django.http import Http404, JsonResponse
 from .models import *
-from django.http import JsonResponse
+from .forms import FuelConsumptionForm, TransportForm, AdvertForm
+import json
 
 def home(request):
     adverts = Advert.objects.select_related('user', 'transport').all()
     return render(request, 'advert/home.html', {
         "adverts" : adverts,
         'brand_list': brand_list(),
-        'brand_model_list': brand_model_list(),
-        'model_list': model_list(),
         'body_type_list': body_type_list(),
         'fuel_type_list': fuel_type_list(),
-        'fuelconsumption_list': fuel_consumption_list(),
         'drive_type_list': drive_type_list(),
         'transmission_type_list': transmission_type_list(),
-        'color_list': color_list(),
-        'transport_type_list': transport_type_list(),
+        'region_list': region_list(),
     })
 
+@login_required
 def create_advert(request):
+    if request.method == 'POST':
+        fuel_consumption_form = FuelConsumptionForm(request.POST)
+        transport_form = TransportForm(request.POST)
+        advert_form = AdvertForm(request.POST)
+        if all([transport_form.is_valid(), fuel_consumption_form.is_valid(), advert_form.is_valid()]):
+            fuel_consumption = fuel_consumption_form.save()
+
+            transport = transport_form.save(commit=False)
+            transport.fuel_consumption = fuel_consumption
+            transport.brand_model = BrandModel.objects.get(
+                brand=Brand.objects.get(id=request.POST.get("brand")),
+                model=Model.objects.get(id=request.POST.get("model")),
+            )
+            transport.save()
+
+            for image in request.FILES.getlist('photos'):
+                TransportPhoto.objects.create(transport=transport, image=image)
+
+            advert = advert_form.save(commit=False)
+            advert.user = request.user
+            advert.transport = transport
+            advert.region_city = RegionCity.objects.get(
+                region=Region.objects.get(id=request.POST.get("region")),
+                city=City.objects.get(id=request.POST.get("city")),
+            )
+            base_slug = slugify(str(transport))
+            slug = base_slug
+            counter = 1
+            while Advert.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            advert.slug = slug
+            advert.save()
+            return redirect(advert.get_absolute_url())
+    else:
+        transport_form = TransportForm()
+        fuel_consumption_form = FuelConsumptionForm()
+        advert_form = AdvertForm()
     return render(request, 'advert/create-advert.html', {
-        'brand_list': brand_list(),
+        'fuel_consumption_form': fuel_consumption_form,
+        'transport_form': transport_form,
+        'advert_form': advert_form,
 
-        'brand_model_list': brand_model_list(),
-        'model_list': model_list(),
+        'brand_list': brand_list(),
+        'transport_type_list': transport_type_list(),
         'body_type_list': body_type_list(),
-        'fuel_type_list': fuel_type_list(),
-        'fuelconsumption_list': fuel_consumption_list(),
         'drive_type_list': drive_type_list(),
         'transmission_type_list': transmission_type_list(),
         'color_list': color_list(),
-        'transport_type_list': transport_type_list(),
+        'fuel_type_list': fuel_type_list(),
+        'region_list': region_list(),
     })
 
-def advert_detail(request):
-    adverts = Advert.objects.select_related('user', 'transport').all()
+def advert_detail(request, slug):
+    advert = get_object_or_404(Advert.objects.select_related('transport__fuel_consumption', 'transport__brand_model__brand', 'transport__brand_model__model', 'region_city__region', 'region_city__city', 'user'), slug=slug)
+    if advert is None:
+        raise Http404()
     return render(request, 'advert/advert-detail.html', {
-        "adverts" : adverts,
+        'advert': advert,
+        'uah_price': int(advert.price * 41),
+        'eur_price': int(advert.price * 0.91),
+    })
+
+
+@require_GET
+def get_models_by_brand(request):
+    brand_model_objects = Brand.objects.get(id=request.GET.get('brand_id')).brand_models.all()
+    model_list = [{'value': bm.model.value, 'id': bm.model.id} for bm in brand_model_objects]
+    return JsonResponse(model_list, safe=False)
+
+@require_GET
+def get_cities_by_region(request):
+    region_city_objects = Region.objects.get(id=request.GET.get('region_id')).region_cities.all()
+    city_list = [{'value': rc.city.value, 'id': rc.city.id} for rc in region_city_objects]
+    return JsonResponse(city_list, safe=False)
+
+
+def advanced_filters(request):
+    return render(request, 'advert/advanced-filters.html',{
         'brand_list': brand_list(),
         'brand_model_list': brand_model_list(),
         'model_list': model_list(),
@@ -49,12 +113,13 @@ def advert_detail(request):
         'transport_type_list': transport_type_list(),
     })
 
-def get_models_by_brand(request):
-    brand_model_objects = Brand.objects.get(value=request.GET.get('brand_value')).brand_models.all()
-    model_list = [{
-        'value': bm.model.value
-    } for bm in brand_model_objects]
-    return JsonResponse(model_list, safe=False)
+
+
+
+
+
+
+
 
 def brand_list():
     return Brand.objects.all()
@@ -86,16 +151,5 @@ def color_list():
 def transport_type_list():
     return TransportType.objects.all()
 
-def advanced_filters(request):
-    return render(request, 'advert/advanced-filters.html',{
-        'brand_list': brand_list(),
-        'brand_model_list': brand_model_list(),
-        'model_list': model_list(),
-        'body_type_list': body_type_list(),
-        'fuel_type_list': fuel_type_list(),
-        'fuelconsumption_list': fuel_consumption_list(),
-        'drive_type_list': drive_type_list(),
-        'transmission_type_list': transmission_type_list(),
-        'color_list': color_list(),
-        'transport_type_list': transport_type_list(),
-    })
+def region_list():
+    return Region.objects.all()

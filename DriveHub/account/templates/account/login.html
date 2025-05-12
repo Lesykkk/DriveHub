@@ -46,11 +46,11 @@
 
                     <div class="input-container">
                         <img src="{% static 'account/icons/mail.svg' %}" alt="">
-                        <input type="email" name="username" id="" placeholder="Пошта" value="{% if form.username.value %}{{ form.username.value }}{% endif %}" required>
+                        <input type="email" name="username" placeholder="Пошта" value="{% if form.username.value %}{{ form.username.value }}{% endif %}" required>
                     </div>
                     <div class="input-container">
                         <img src="{% static 'account/icons/lock.svg' %}" alt="">
-                        <input type="password" name="password" id="" placeholder="Пароль" required>
+                        <input type="password" name="password" placeholder="Пароль" required>
                     </div>
                     <button class="submit-btn" type="submit">
                         Увійти

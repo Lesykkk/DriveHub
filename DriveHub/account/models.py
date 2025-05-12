@@ -40,4 +40,4 @@ class CustomUser(AbstractUser):
         return f"{self.email}"
     
     def __repr__ (self):
-        return f"{self.email}"
+        return f"<CustomUser: {self.email}>"
