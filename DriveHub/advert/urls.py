@@ -8,4 +8,5 @@ urlpatterns = [
     path('create-advert/', views.create_advert, name='create-advert'),
     path('ajax/get-models/', views.get_models_by_brand, name='get-models-by-brand'),
     path('advert-detail/', views.advert_detail, name='advert-detail'),
+    path('advanced-filters/', views.advanced_filters, name='advanced-filters')
 ]

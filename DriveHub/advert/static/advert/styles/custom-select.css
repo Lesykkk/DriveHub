@@ -90,7 +90,8 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .custom-option {
@@ -102,6 +103,7 @@
     width: inherit;
     height: 44px;
     flex-shrink: 0;
+    text-overflow: ellipsis !important;
 }
 
 .custom-option:hover {
