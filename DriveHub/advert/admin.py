@@ -24,7 +24,7 @@ class FuelTypeAdmin(admin.ModelAdmin):
 
 @admin.register(FuelConsumption)
 class FuelConsumptionAdmin(admin.ModelAdmin):
-    list_display = ['city', 'highway', 'mixed']
+    list_display = ['city_consumption', 'highway_consumption', 'mixed_consumption']
 
 @admin.register(DriveType)
 class DriveTypeAdmin(admin.ModelAdmin):

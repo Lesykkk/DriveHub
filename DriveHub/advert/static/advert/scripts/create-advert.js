@@ -7,15 +7,16 @@ document.getElementById('brand-select').addEventListener('change', function (e) 
         return;
     }
     
-    const brandValue = e.detail.textContent.trim();
+    const brandId = e.detail.id;
+    // console.log(brandId);
     modelSelect.clearOptions();
     modelSelect.reset();
 
-    fetch(`/ajax/get-models/?brand_value=${brandValue}`)
+    fetch(`/ajax/get-models/?brand_id=${brandId}`)
         .then(response => response.json())
         .then(models => {
             models.forEach(model => {
-                modelSelect.appendOption(model.value);
+                modelSelect.appendOption(model.id, model.value);
             });
             modelSelect.removeAttribute('disabled');
         });
@@ -31,7 +32,7 @@ input.addEventListener('change', function () {
     previewContainer.style.display = 'flex';
     
     const photo = document.getElementById('add_photo');
-    if(photo){
+    if (photo) {
         photo.remove();
     }
 

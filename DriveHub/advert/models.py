@@ -41,9 +41,9 @@ class FuelType(models.Model):
 
 
 class FuelConsumption(models.Model):
-    city = models.DecimalField(max_digits=4, decimal_places=1)
-    highway = models.DecimalField(max_digits=4, decimal_places=1)
-    mixed = models.DecimalField(max_digits=4, decimal_places=1)
+    city_consumption = models.DecimalField(max_digits=4, decimal_places=1)
+    highway_consumption = models.DecimalField(max_digits=4, decimal_places=1)
+    mixed_consumption = models.DecimalField(max_digits=4, decimal_places=1)
 
     class Meta:
         db_table = 'fuel_consumption' 
@@ -85,7 +85,7 @@ class Transport(models.Model):
     fuel_type = models.ForeignKey(FuelType, on_delete=models.PROTECT)
     engine_volume = models.DecimalField(max_digits=3, decimal_places=1)
     engine_power = models.PositiveSmallIntegerField()
-    fuel_consumption = models.ForeignKey(FuelConsumption, on_delete=models.PROTECT)
+    fuel_consumption = models.OneToOneField(FuelConsumption, on_delete=models.PROTECT)
     drive_type = models.ForeignKey(DriveType, on_delete=models.PROTECT)
     transmission_type = models.ForeignKey(TransmissionType, on_delete=models.PROTECT)
     color = models.ForeignKey(Color, on_delete=models.PROTECT)
@@ -96,10 +96,10 @@ class Transport(models.Model):
         db_table = 'transport'
 
     def __str__(self):
-        return f"{self.brand} {self.model} {self.year}"
+        return f"{self.brand_model.brand.value} {self.brand_model.model.value} {self.year}"
     
     def __repr__(self):
-        return f"{self.brand} {self.model} {self.year}"
+        return f"<Transport: {self.brand_model.brand.value} {self.brand_model.model.value} {self.year}>"
 
 
 class TransportPhoto(models.Model):
@@ -135,13 +135,14 @@ class RegionCity(models.Model):
 
 class Advert(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='adverts')
-    transport = models.OneToOneField(Transport, on_delete=models.CASCADE)
+    transport = models.OneToOneField(Transport, on_delete=models.PROTECT)
     slug = models.SlugField(max_length=50, unique=True)
     price = models.PositiveIntegerField()
     region_city = models.ForeignKey(RegionCity, on_delete=models.PROTECT)
     description = models.TextField(max_length=5000)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    
 
     class Meta:
         db_table = 'advert'
@@ -151,10 +152,10 @@ class Advert(models.Model):
         return f"Advert for {self.transport} by {self.user}"
     
     def __repr__(self):
-        return f"Advert for {self.transport} by {self.user}"
+        return f"<Advert: {self.transport} {self.user}>"
 
-    # def get_absolute_url(self):
-    #     return reverse('advert:advert_detail', args=[self.slug])
+    def get_absolute_url(self):
+        return reverse('advert:advert-detail', args=[self.slug])
 
 
 class Favourite(models.Model):

@@ -29,19 +29,19 @@
                     <div class="input-container">
                         <span class="input-label">Марка</span>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="brand-select" placeholder="Марка" options=brand_list %}
+                            {% include "advert/custom-select.html" with select_id="brand-select" name="brand" placeholder="Марка" options=brand_list %}
                         </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Модель</span>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="model-select" disabled=True placeholder="Модель" %}
+                            {% include "advert/custom-select.html" with select_id="model-select" name="model" disabled=True placeholder="Модель" %}
                         </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Тип транспорту</span>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="transport-type-select" placeholder="Тип транспорту" options=transport_type_list %}
+                            {% include "advert/custom-select.html" with select_id="transport-type-select" name="transport_type" placeholder="Тип транспорту" options=transport_type_list %}
                         </div>
                     </div>
                 </div>
@@ -57,45 +57,45 @@
                     <div class="input-container">
                         <span class="input-label">Рік</span>
                         {% now "Y" as year %}
-                        <input type="number" min="1900" max="{{ year }}" placeholder="Введіть рік" required>
+                        <input name="year" type="number" min="1900" max="{{ year }}" placeholder="Введіть рік" required>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Тип кузова</span>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="body-type-select" placeholder="Тип кузова" options=body_type_list %}
+                            {% include "advert/custom-select.html" with select_id="body-type-select" name="body_type" placeholder="Тип кузова" options=body_type_list %}
                         </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Привід</span>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="drive-type-select" placeholder="Привід" options=drive_type_list %}
+                            {% include "advert/custom-select.html" with select_id="drive-type-select" name="drive_type" placeholder="Привід" options=drive_type_list %}
                         </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Коробка передач</span>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="transmission-type-select" placeholder="Коробка передач" options=transmission_type_list %}
+                            {% include "advert/custom-select.html" with select_id="transmission-type-select" name="transmission_type" placeholder="Коробка передач" options=transmission_type_list %}
                         </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Колір</span>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="color-select" placeholder="Колір" options=color_list %}
+                            {% include "advert/custom-select.html" with select_id="color-select" name="color" placeholder="Колір" options=color_list %}
                         </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Паливо</span>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="fuel-type-select" placeholder="Паливо" options=fuel_type_list %}
+                            {% include "advert/custom-select.html" with select_id="fuel-type-select" name="fuel_type" placeholder="Паливо" options=fuel_type_list %}
                         </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Об'єм двигуна, л</span>
-                        <input type="number" min="0" placeholder="0" required>
+                        <input name="engine_volume" type="number" min="0" placeholder="0" required>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Потіжнусть двигуна, л/с</span>
-                        <input type="number" min="0" placeholder="0" required>
+                        <input name="engine_power" type="number" min="0" placeholder="0" required>
                     </div>
                 </div>
             </div>
@@ -109,18 +109,18 @@
                 <div class="section-content">
                     <div class="input-container">
                         <span class="input-label">Пробіг, км</span>
-                        <input type="number" min="0" placeholder="0" required>
+                        <input name="mileage" type="number" min="0" placeholder="0" required>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Кількість власників</span>
-                        <input type="number" min="0" placeholder="0" required>
+                        <input name="owners_number" type="number" min="0" placeholder="0" required>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Витрата палива, л</span>
                         <div class="fuel-div">
-                            <input type="number" min="0" placeholder="місто" required>
-                            <input type="number" min="0" placeholder="змішаний" required>
-                            <input type="number" min="0" placeholder="траса" required>
+                            <input name="city_consumption" type="number" min="0" placeholder="місто" required>
+                            <input name="mixed_consumption" type="number" min="0" placeholder="змішаний" required>
+                            <input name="highway_consumption" type="number" min="0" placeholder="траса" required>
                         </div>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
                 </div>
                 <div class="section-content">
                     <div class="file-container">
-                        <input id="file_input" type="file" accept="image/*" required multiple>
+                        <input id="file_input" name="photos" type="file" accept="image/*" required multiple>
                         <div class="file-text-area" data-logo-url="{% static 'advert/icons/remove.svg' %}">
                             <img id="add-photo-img" src="{% static 'advert/icons/add-photo.png' %}">
                             <span>Додайте щонайменше 6 фото</span>
@@ -153,7 +153,7 @@
                 </div>
                 <div class="section-content">
                     <div class="input-container description-container">
-                        <textarea minlength="50" maxlength="5000" required placeholder="Напишіть кілька слів про Ваш транспорт..."></textarea>
+                        <textarea name="description" minlength="50" maxlength="5000" required placeholder="Напишіть кілька слів про Ваш транспорт..."></textarea>
                     </div>
                 </div>
             </div>
@@ -167,7 +167,7 @@
                 <div class="section-content">
                     <div class="input-container price">
                         <span class="input-label">Вкажіть ціну</span>
-                        <input type="number" min="0" placeholder="$" required>
+                        <input name="price" type="number" min="0" placeholder="$" required>
                     </div>
                 </div>
             </div>
@@ -193,7 +193,7 @@
                         <div class="input-container">
                             <span class="input-label">Регіон</span>
                             <div class="select-container">
-                                {% include "advert/custom-select.html" with select_id="region-select" placeholder="Регіон" options=region_list default_value="Виберіть регіон" %}
+                                {% include "advert/custom-select.html" with select_id="region-select" name="region" placeholder="Регіон" options=region_list default_value="Виберіть регіон" %}
                             </div>
                         </div>
                         <div class="input-container">
@@ -205,7 +205,7 @@
                         <div class="input-container">
                             <span class="input-label">Місто</span>
                             <div class="select-container">
-                                {% include "advert/custom-select.html" with select_id="city-select" placeholder="Місто" options=city_list default_value="Виберіть місто" %}
+                                {% include "advert/custom-select.html" with select_id="city-select" name="city" placeholder="Місто" default_value="Виберіть місто" %}
                             </div>
                         </div>
                         <div class="input-container">
