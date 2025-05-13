@@ -89,10 +89,8 @@
                             <input type="number" name="power-to" min="0" step="1" placeholder="до">
                         </div>
                     </div>
-
-                    <label for="" class="filter-label">Витрата</label>
-
                     <div class="filter-section">
+                        <label for="" class="filter-label">Витрата</label>
                         <div class="select-container">
                             <input type="number" name="fuel-consumption-city-from" min="0" step="0.1" placeholder="Місто, від">
                             <input type="number" name="fuel-consumption-city-to" min="0" step="0.1" placeholder="до">
@@ -109,7 +107,7 @@
                         </div>
 
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="drive-type-select" placeholder="Регіон" options=drive_type_list %}
+                            {% include "advert/custom-select.html" with select_id="region-select" placeholder="Регіон" options=region_list %}
                         </div>
                     </div>
 

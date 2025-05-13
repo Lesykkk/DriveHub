@@ -4,9 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.text import slugify
 from django.http import Http404, JsonResponse
-from .models import *
 from .forms import FuelConsumptionForm, TransportForm, AdvertForm
-import json
+from .models import *
 
 def home(request):
     adverts = Advert.objects.select_related('user', 'transport').all()
@@ -100,7 +99,7 @@ def get_cities_by_region(request):
 
 
 def advanced_filters(request):
-    return render(request, 'advert/advanced-filters.html',{
+    return render(request, 'advert/advanced-filters.html', {
         'brand_list': brand_list(),
         'brand_model_list': brand_model_list(),
         'model_list': model_list(),
@@ -111,6 +110,7 @@ def advanced_filters(request):
         'transmission_type_list': transmission_type_list(),
         'color_list': color_list(),
         'transport_type_list': transport_type_list(),
+        'region_list': region_list(),
     })
 
 
