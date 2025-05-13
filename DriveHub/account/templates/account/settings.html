@@ -28,27 +28,28 @@
                     <span class="settings-name">{{user.first_name}} {{user.last_name}}</span>
                     <span class="settings-email">{{user.email}}</span>
                 </div>
-                <div class="input-form">
+                <form class="input-form" action="{% url "account:settings" %}" method="post">
+                    {% csrf_token %}
                     <div class="input-container">
                         <img src="{% static 'account/icons/user.svg' %}" alt="">
-                        <input type="text" name="" placeholder="Ім'я">
+                        <input type="text" name="first_name" placeholder="Ім'я" autocomplete="off" value={{ form.first_name.value }} required>
                     </div>
                     <div class="input-container">
                         <img src="{% static 'account/icons/user.svg' %}" alt="">
-                        <input type="text" name="" placeholder="Прізвище">
+                        <input type="text" name="last_name" placeholder="Прізвище" autocomplete="off" value={{ form.last_name.value }} required>
                     </div>
                     <div class="input-container">
                         <img src="{% static 'account/icons/phone.svg' %}" alt="">
-                        <input type="tel" name="phone" placeholder="Телефон" autocomplete="tel">
+                        <input type="tel" name="phone" placeholder="Телефон" autocomplete="off" value={{ form.phone.value }} required>
                     </div>
                     <div class="input-container">
                         <img src="{% static 'account/icons/lock.svg' %}" alt="">
-                        <input type="password" name="password" placeholder="Пароль">
+                        <input type="password" name="new_password" placeholder="Пароль" autocomplete="off">
                     </div>
-                    <button class="submit-btn">
+                    <button class="submit-btn" type="submit">
                         Зберегти зміни
                     </button>
-                </div>
+                </form>
             </div>
         </div>
     </div>

@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="{% static 'styles/base.css' %}">
     <link rel="stylesheet" href="{% static 'account/styles/login.css' %}">
 </head>
-
 <body>
     <div class="login">
         <div class="login-col-1">
@@ -46,11 +45,11 @@
 
                     <div class="input-container">
                         <img src="{% static 'account/icons/mail.svg' %}" alt="">
-                        <input type="email" name="username" placeholder="Пошта" value="{% if form.username.value %}{{ form.username.value }}{% endif %}" required>
+                        <input type="email" name="username" placeholder="Пошта" value="{% if form.username.value %}{{ form.username.value }}{% endif %}" required autocomplete="username">
                     </div>
                     <div class="input-container">
                         <img src="{% static 'account/icons/lock.svg' %}" alt="">
-                        <input type="password" name="password" placeholder="Пароль" required>
+                        <input type="password" name="password" placeholder="Пароль" autocomplete="current-password">
                     </div>
                     <button class="submit-btn" type="submit">
                         Увійти
