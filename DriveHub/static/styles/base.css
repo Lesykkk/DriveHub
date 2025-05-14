@@ -27,6 +27,10 @@ a {
     color: var(--color-6);
 }
 
-/* ::-webkit-scrollbar {
+img {
+    user-select: none;
+}
+
+::-webkit-scrollbar {
     display: none;
-} */
+}

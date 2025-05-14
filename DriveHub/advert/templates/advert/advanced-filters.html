@@ -30,7 +30,6 @@
                     <a class="form-button">Нові</a>
                 </div>
             </div>
-            
         </div>
         <div class="content-body">
             <div class="side-filters">
@@ -121,12 +120,13 @@
         
             <div class="cars-container">
                 <div class="car-cards-container">
+                    {% for advert in advert_list %}
                     <div class="h-line"></div>
                     {% include "advert/car-card.html" with icon_href="advert/icons/heart-red.svg" %}
+                    {% if forloop.last %}
                     <div class="h-line"></div>
-                    {% include "advert/car-card.html" with icon_href="advert/icons/heart-red.svg" %}
-                    <div class="h-line"></div>
-                    {% include "advert/car-card.html" with icon_href="advert/icons/heart-red.svg" %}
+                    {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>

@@ -3,8 +3,8 @@
 
 <div class="car-card">
     <div class="car-img">
-        <a href="#">
-            <img src="https://cardrive.com.ua/file/thumb/802b301d-e1f8-4deb-a1c9-91d63beb862f" alt="">
+        <a href="{% url 'advert:advert-detail' advert.slug %}">
+            <img src="{{ advert.transport.photos.all.0.image.url }}">
         </a>
     </div>
     <div class="car-info">
@@ -28,7 +28,7 @@
             <p>{{ advert.transport.transmission_type.value }}</p>
             <p>{{ advert.transport.body_type.value }}</p>
         </div>
-        <span class="car-about">{{ advert }}</span>
+        <span class="car-about">{{ advert.description }}</span>
         <div class="car-bottom-row">
             <span class="car-date">{{ advert.region_city.city.value }}, {{ advert.created }}</span>
             <button class="icon-button">
