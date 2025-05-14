@@ -1,14 +1,26 @@
 .profile-container {
-    display: flex;
     width: 1220px;
-    height: 100%;
     margin: 30px auto;
     flex: 1;
 }
 
-.content {
+.main-profile-container {
+    display: flex;
+    width: 100%;
+    height: max-content;
+}
+
+.profile-content-container {
+    display: flex;
     flex: 1;
-    height: 100%;
+    height: max-content;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: max-content;
     padding: 20px;
     padding-left: 38px;
 }

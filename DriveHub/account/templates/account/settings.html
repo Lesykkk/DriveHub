@@ -17,39 +17,43 @@
     {% include "header.html" %}
     
     <div class="profile-container">
-        {% include "account/profile-side-bar.html" %}
-        <div class="content">
-            <div class="content-header">
-                <span class="content-title">Налаштування</span>
-            </div>
-            <div class="content-body">
-                <div class="settings-logo">{{ user.first_name|slice:":1"|upper }}</div>
-                <div class="settings-text">
-                    <span class="settings-name">{{user.first_name}} {{user.last_name}}</span>
-                    <span class="settings-email">{{user.email}}</span>
+        <div class="main-profile-container">
+            {% include "account/profile-side-bar.html" %}
+            <div class="profile-content-container">
+                <div class="content">
+                    <div class="content-header">
+                        <span class="content-title">Налаштування</span>
+                    </div>
+                    <div class="content-body">
+                        <div class="settings-logo">{{ user.first_name|slice:":1"|upper }}</div>
+                        <div class="settings-text">
+                            <span class="settings-name">{{user.first_name}} {{user.last_name}}</span>
+                            <span class="settings-email">{{user.email}}</span>
+                        </div>
+                        <form class="input-form" action="{% url "account:settings" %}" method="post">
+                            {% csrf_token %}
+                            <div class="input-container">
+                                <img src="{% static 'account/icons/user.svg' %}" alt="">
+                                <input type="text" name="first_name" placeholder="Ім'я" autocomplete="off" value={{ form.first_name.value }} required>
+                            </div>
+                            <div class="input-container">
+                                <img src="{% static 'account/icons/user.svg' %}" alt="">
+                                <input type="text" name="last_name" placeholder="Прізвище" autocomplete="off" value={{ form.last_name.value }} required>
+                            </div>
+                            <div class="input-container">
+                                <img src="{% static 'account/icons/phone.svg' %}" alt="">
+                                <input type="tel" name="phone" placeholder="Телефон" autocomplete="off" value={{ form.phone.value }} required>
+                            </div>
+                            <div class="input-container">
+                                <img src="{% static 'account/icons/lock.svg' %}" alt="">
+                                <input type="password" name="new_password" placeholder="Пароль" autocomplete="off">
+                            </div>
+                            <button class="submit-btn" type="submit">
+                                Зберегти зміни
+                            </button>
+                        </form>
+                    </div>
                 </div>
-                <form class="input-form" action="{% url "account:settings" %}" method="post">
-                    {% csrf_token %}
-                    <div class="input-container">
-                        <img src="{% static 'account/icons/user.svg' %}" alt="">
-                        <input type="text" name="first_name" placeholder="Ім'я" autocomplete="off" value={{ form.first_name.value }} required>
-                    </div>
-                    <div class="input-container">
-                        <img src="{% static 'account/icons/user.svg' %}" alt="">
-                        <input type="text" name="last_name" placeholder="Прізвище" autocomplete="off" value={{ form.last_name.value }} required>
-                    </div>
-                    <div class="input-container">
-                        <img src="{% static 'account/icons/phone.svg' %}" alt="">
-                        <input type="tel" name="phone" placeholder="Телефон" autocomplete="off" value={{ form.phone.value }} required>
-                    </div>
-                    <div class="input-container">
-                        <img src="{% static 'account/icons/lock.svg' %}" alt="">
-                        <input type="password" name="new_password" placeholder="Пароль" autocomplete="off">
-                    </div>
-                    <button class="submit-btn" type="submit">
-                        Зберегти зміни
-                    </button>
-                </form>
             </div>
         </div>
     </div>

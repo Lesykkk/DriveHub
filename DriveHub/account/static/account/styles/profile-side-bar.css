@@ -26,21 +26,32 @@
     height: 48px;
 }
 
-.user-text{
+.user-text {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     line-height: 1.4;
+    flex: 1;
+    overflow: hidden;
 }
 
-.user-name{
+.user-name {
+    display: inline;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-weight: 600;
     font-size: 16px;
     letter-spacing: 0.3px;
     color: black;
+    max-width: 100%;
 }
 
-.user-email{
+.user-email {
+    display: inline;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
     color:rgb(128, 129, 145);
     font-size: 14.5px;
     font-weight: 500;

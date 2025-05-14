@@ -100,6 +100,7 @@ def get_cities_by_region(request):
 
 def advanced_filters(request):
     return render(request, 'advert/advanced-filters.html', {
+        'advert_list': Advert.objects.all(),
         'brand_list': brand_list(),
         'brand_model_list': brand_model_list(),
         'model_list': model_list(),
@@ -112,11 +113,6 @@ def advanced_filters(request):
         'transport_type_list': transport_type_list(),
         'region_list': region_list(),
     })
-
-
-
-
-
 
 
 

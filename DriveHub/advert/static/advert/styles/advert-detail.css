@@ -125,13 +125,48 @@
     border-radius: 12px;
     border: 1px solid #0000001f;
     margin-bottom: 21px;
+    user-select: none;
 }
 
-.advert-image {
+.advert-image-conatiner {
     display: flex;
     width: 100%;
     height: 490px;
+    position: relative;
+}
+
+.main-image {
+    display: flex;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    transition: all 0.35s ease;
+}
+
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto;
+    padding: 36px 24px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 34px;
+    transition: 0.6s ease;
+    border-radius: 0 12px 12px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 12px 0 0 12px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(255, 255, 255, 0.789);
+    color: #1890ff;
 }
 
 .image-preview-row {
@@ -139,7 +174,7 @@
     width: 100%;
     height: 75px;
     overflow-y: hidden;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .image-preview-row img {
@@ -147,6 +182,7 @@
     width: 115px;
     height: 100%;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .advert-short-spec-section {
@@ -184,6 +220,7 @@
     width: 38.5px;
     height: 38.5px;
     align-self: self-start ;
+    user-select: none;
 }
 
 .short-spec-text {
@@ -237,7 +274,8 @@
     font-weight: 400;
     white-space: pre-wrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    word-break: break-word;
     line-height: 21px;
     max-width: 100%;
 }

@@ -16,7 +16,7 @@
     {% include "header.html" %}
     
     <div class="create-advert-container">
-        <form class="create-advert-form" action="{% url "advert:create-advert" %}" method="post">
+        <form class="create-advert-form" action="{% url "advert:create-advert" %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="section">
                 <div class="section-title">
@@ -91,7 +91,7 @@
                     </div>
                     <div class="input-container">
                         <span class="input-label">Об'єм двигуна, л</span>
-                        <input name="engine_volume" type="number" min="0" placeholder="0" required>
+                        <input name="engine_volume" type="number" min="0" step="0.1" placeholder="0" required>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Потіжнусть двигуна, л/с</span>

@@ -9,13 +9,15 @@
     }
 }
 
-.content-body{
+.content-body {
     display: flex;
+    width: 100%;
+    height: max-content;
     flex-direction: column;
     align-items: center;
 }
 
-.settings-logo{
+.settings-logo {
     color: rgb(128, 129, 145);
     font-size: 45px;
     display: flex;
@@ -29,26 +31,31 @@
     height: 120px;
 }
 
-.settings-text{
+.settings-text {
+    width: 100%;
+    /* max-width: 100%; */
     row-gap: 10px;
     margin-top: 32px;
     margin-bottom: 24px;
-
     align-items: center;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    padding: 0 70px;
 }
 
-.settings-name{
+.settings-name {
     font-size: 24px;
     font-weight: 600;
     color: black;
+    word-break: break-word;
 }
 
-.settings-email{
+.settings-email {
     font-weight: 500;
     font-size: 14.5px;
     color:rgb(128, 129, 145);
+    word-break: break-word;
 }
 
 
