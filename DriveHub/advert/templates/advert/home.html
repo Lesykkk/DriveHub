@@ -72,54 +72,18 @@
         </div>
         <span class="cards-grid-title">Останні оголошення</span>
         <div class="cards-grid">
-            <a href="#" class="car-card">
-                <img class="card-img" src="https://cardrive.com.ua/file/thumb/2a1072f0-2781-4890-907a-61cfc109129f" alt="">
-                <div class="card-description-container">
-                    <span class="card-price">20 500 $</span>
-                    <span class="card-title">Ford Edge 2018</span>
-                    <span class="card-text">2018, 93 000 km</span>
-                </div>
-            </a>
-            <a href="#" class="car-card">
-                <img class="card-img" src="https://wl-adme.cf.tsp.li/resize/728x/jpg/6b6/037/b8d269523d81a1f3e4128065cf.jpg" alt="">
-                <div class="card-description-container">
-                    <span class="card-price">20 500 $</span>
-                    <span class="card-title">Ford Edge 2018</span>
-                    <span class="card-text">2018, 93 000 km</span>
-                </div>
-            </a>
-            <a href="#" class="car-card">
-                <img class="card-img" src="https://cardrive.com.ua/file/thumb/2a1072f0-2781-4890-907a-61cfc109129f" alt="">
-                <div class="card-description-container">
-                    <span class="card-price">20 500 $</span>
-                    <span class="card-title">Ford Edge 2018</span>
-                    <span class="card-text">2018, 93 000 km</span>
-                </div>
-            </a>
-            <a href="#" class="car-card">
-                <img class="card-img" src="https://cardrive.com.ua/file/thumb/2a1072f0-2781-4890-907a-61cfc109129f" alt="">
-                <div class="card-description-container">
-                    <span class="card-price">20 500 $</span>
-                    <span class="card-title">Ford Edge 2018</span>
-                    <span class="card-text">2018, 93 000 km</span>
-                </div>
-            </a>
-            <a href="#" class="car-card">
-                <img class="card-img" src="https://cardrive.com.ua/file/thumb/2a1072f0-2781-4890-907a-61cfc109129f" alt="">
-                <div class="card-description-container">
-                    <span class="card-price">20 500 $</span>
-                    <span class="card-title">Ford Edge 2018</span>
-                    <span class="card-text">2018, 93 000 km</span>
-                </div>
-            </a>
-            <a href="#" class="car-card">
-                <img class="card-img" src="https://cardrive.com.ua/file/thumb/2a1072f0-2781-4890-907a-61cfc109129f" alt="">
-                <div class="card-description-container">
-                    <span class="card-price">20 500 $</span>
-                    <span class="card-title">Ford Edge 2018</span>
-                    <span class="card-text">2018, 93 000 km</span>
-                </div>
-            </a>
+            {% for advert in advert_list %}
+                <a href="{% url 'advert:advert-detail' advert.slug %}" class="car-card">
+                    <img class="card-img" src="{{ advert.transport.photos.all.0.image.url }}">
+                    <div class="card-description-container">
+                        <span class="card-price">{{ advert.price }} $</span>
+                        <span class="card-title"> {{advert.transport.brand_model.brand.value}} {{advert.transport.brand_model.model.value}} {{advert.transport.year}}</span>
+                        <span class="card-text">{{advert.transport.year}}, {{ advert.transport.mileage }}km</span>
+                    </div>
+                </a>
+            {% endfor %}
+
+            
         </div>
     </div>
     

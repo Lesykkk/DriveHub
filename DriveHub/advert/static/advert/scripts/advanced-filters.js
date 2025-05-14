@@ -1,6 +1,8 @@
 const formButtons = document.querySelectorAll('.form-button');
 
 document.getElementById('brand-select').addEventListener('change', function (e) {
+    console.log(e);
+    
     const modelSelect = document.getElementById('model-select');
     
     if (e.detail.isDefaultSelected) {

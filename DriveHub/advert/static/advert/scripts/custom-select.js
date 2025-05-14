@@ -33,8 +33,6 @@ allCustomSelectContainer.forEach(customSelectContainer =>{
             selectedOption.textContent = clickedOptionValue.textContent;
             hiddenInput.value = clickedOptionValue.getAttribute('data-id');
             clickedOption.setAttribute('selected', '');
-            console.log(selectedOption);
-            console.log(clickedOption);
             
             const changeEvent = new CustomEvent('change', {
                 detail: { 
@@ -99,6 +97,34 @@ function enhanceCustomSelect(customSelectContainer) {
 
 document.querySelectorAll('.custom-select-container').forEach(customSelectContainer => {
     enhanceCustomSelect(customSelectContainer);
+
+    const hiddenInput = customSelectContainer.querySelector('.hidden-input');
+    const selectedValue = hiddenInput.value;
+    
+    if (selectedValue) {
+        console.log("Вибрано")
+        const placeholder = customSelectContainer.querySelector('.custom-select-placeholder');
+        const optionValueElement = customSelectContainer.querySelector(`.custom-option-value[data-id="${selectedValue}"]`);
+        const selectedOption = customSelectContainer.querySelector('.custom-selected-option');
+        const optionContainer = optionValueElement.closest('.custom-option');
+        
+        placeholder.style.display = 'none';
+        selectedOption.style.display = 'flex';
+        selectedOption.textContent = optionValueElement.textContent;
+        optionContainer.setAttribute('selected', '');
+        
+        console.log("Зараз буде івент")
+        const changeEvent = new CustomEvent('change', {
+            detail: { 
+                isDefaultSelected: false,
+                id: selectedValue,
+                textContent: optionValueElement.textContent,
+            },
+            bubbles: false
+        });
+        customSelectContainer.dispatchEvent(changeEvent);
+        console.log("Івент мав бути виконаний")
+    }
 
     const observer = new MutationObserver(mutations => {
         mutations.forEach(mutation => {

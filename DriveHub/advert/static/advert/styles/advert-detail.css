@@ -287,6 +287,8 @@
     flex-direction: column;
     flex: 1;
     height: max-content;
+    position: sticky;
+    top: 64px;
 }
 
 
