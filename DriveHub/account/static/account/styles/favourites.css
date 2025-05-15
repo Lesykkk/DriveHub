@@ -23,3 +23,42 @@
     margin-top: 30px;
     color: #888;
 }
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    column-gap: 4px;
+}
+
+.pagination a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    color: black;
+    transition: 0.35s all ease;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.pagination a:hover{
+    background-color: rgb(245, 246, 247);
+    color: #007ef4;
+}
+
+#arrow-left{
+    transform: rotate(90deg);
+}
+
+#arrow-right{
+    transform: rotate(-90deg);
+}
+
+.current-page{
+    color: #007ef4 !important; 
+    border: 1px solid #0000001f;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+}

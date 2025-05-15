@@ -138,6 +138,35 @@
                         {% empty %}
                             <p class="no-adverts-message">Немає оголошень</p>
                     {% endfor %}
+                    {% if advert_list.paginator.num_pages > 1 %}
+                    {% with request.GET.urlencode as query_params %}
+                    {% with query_params|cut:'page=' as base_query %}
+                    {% with '&' as amp %}
+                    <div class="pagination">
+                        {% if advert_list.has_previous %}
+                        
+                            {% if advert_list.number > 1 %}
+                            <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value|urlencode }}&{% endif %}{% endfor %}page={{ advert_list.previous_page_number }}"><img id="arrow-left" src="{% static 'advert/icons/arrow-down-black.svg' %}"></a>
+                            {% endif %}
+
+                            <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value|urlencode }}&{% endif %}{% endfor %}page={{ advert_list.previous_page_number }}">{{ advert_list.previous_page_number }}</a>
+                        {% endif %}
+                        
+                        <a class="current-page" href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value|urlencode }}&{% endif %}{% endfor %}page={{ advert_list.number }}">{{ advert_list.number }}</a>
+                        
+                        {% if advert_list.has_next %}
+                            <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value|urlencode }}&{% endif %}{% endfor %}page={{ advert_list.next_page_number }}">{{ advert_list.next_page_number }}</a>
+
+                            {% if advert_list.number < advert_list.paginator.num_pages %}
+                            <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value|urlencode }}&{% endif %}{% endfor %}page={{ advert_list.next_page_number }}"><img id="arrow-right" src="{% static 'advert/icons/arrow-down-black.svg' %}"></a>
+                            {% endif %}
+                    
+                        {% endif %}
+                    </div>
+                    {% endwith %}
+                    {% endwith %}
+                    {% endwith %}
+                    {% endif %}
                 </div>
             </div>
         </div>

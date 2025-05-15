@@ -35,6 +35,29 @@
                         {% empty %}
                             <p class="no-adverts-message">Немає оголошень</p>
                         {% endfor %}
+                        {% if adverts.paginator.num_pages > 1 %}
+                        <div class="pagination">
+                            {% if adverts.has_previous %}
+                            
+                                {% if adverts.number > 1 %}
+                                <a href="?page={{ adverts.previous_page_number }}"><img id="arrow-left" src="{% static 'advert/icons/arrow-down-black.svg' %}"></a>
+                                {% endif %}
+
+                                <a href="?page={{ adverts.previous_page_number }}">{{ adverts.previous_page_number }}</a>
+                            {% endif %}
+                            
+                            <a class="current-page" href="?page={{ adverts.number }}">{{ adverts.number }}</a>
+                            
+                            {% if adverts.has_next %}
+                                <a href="?page={{ adverts.next_page_number }}">{{ adverts.next_page_number }}</a>
+
+                                {% if adverts.number < adverts.paginator.num_pages %}
+                                <a href="?page={{ adverts.next_page_number }}"><img id="arrow-right" src="{% static 'advert/icons/arrow-down-black.svg' %}"></a>
+                                {% endif %}
+
+                            {% endif %}
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
