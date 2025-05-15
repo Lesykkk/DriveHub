@@ -166,3 +166,4 @@ class Favourite(models.Model):
 
     class Meta:
         db_table = 'favourite'
+        unique_together = ('user', 'advert')

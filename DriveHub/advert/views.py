@@ -3,14 +3,14 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.utils.text import slugify
-from django.http import JsonResponse, HttpResponseRedirect
+from django.core.paginator import Paginator
+from django.http import JsonResponse
 from .forms import FuelConsumptionForm, TransportForm, AdvertForm
 from .models import *
 
 
 def home(request):
-    adverts = Advert.objects.select_related('user', 'transport').all()
-    adverts = list(adverts)[::-1]
+    adverts = Advert.objects.select_related('user', 'transport').order_by('-id')
     return render(request, 'advert/home.html', {
         "advert_list" : adverts,
         'brand_list': brand_list(),
@@ -172,6 +172,7 @@ def advanced_filters(request):
         'fuel_consumption_mixed_from' : request.GET.get('fuel-consumption-mixed-from'),
         'fuel_consumption_mixed_to' : request.GET.get('fuel-consumption-mixed-to'),
         'region' : request.GET.get('region'),
+        'page': request.GET.get('page', 1),
     }
 
     adverts = Advert.objects.select_related(
@@ -189,7 +190,7 @@ def advanced_filters(request):
         'region_city__city',
     ).prefetch_related(
         'transport__photos',
-    ).all()
+    ).order_by('-id')
 
     favourite_advert_ids = set()
     if request.user.is_authenticated:
@@ -254,8 +255,12 @@ def advanced_filters(request):
         elif filters['car_type'] == 'used':
             adverts = adverts.filter(transport__mileage__gt=0)
 
+    paginator = Paginator(adverts, 10)
+    page_number = filters['page']
+    advert_list = paginator.get_page(page_number)
+
     return render(request, 'advert/advanced-filters.html',{
-        'advert_list': adverts,
+        'advert_list': advert_list,
         'brand_list':brand_list,
         'model_list': model_list,
         'body_type_list': body_type_list(),
@@ -266,8 +271,6 @@ def advanced_filters(request):
         'current_filters': filters,
         'favourite_advert_ids': favourite_advert_ids,
     })
-
-
 
 
 def brand_list():

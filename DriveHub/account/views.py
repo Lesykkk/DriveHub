@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required, login_not_required
 from django.contrib.auth import update_session_auth_hash
+from django.core.paginator import Paginator
 from .forms import AccountLoginForm, AccountRegistrationForm, ProfileForm
 from advert.models import *
 
@@ -36,7 +37,6 @@ def registration(request):
             messages.success(request, f'{account.email}, Successful registration')
             next_url = request.POST.get('next') or reverse('advert:home')
             return redirect(next_url)
-            # return HttpResponseRedirect(reverse('advert:home'))
     else:
         form = AccountRegistrationForm()
     return render(request, 'account/registration.html', {
@@ -46,18 +46,25 @@ def registration(request):
 
 @login_required
 def my_ads(request):
+    adverts_list = request.user.adverts.order_by('-id')
+    paginator = Paginator(adverts_list, 5)
+    page_number = request.GET.get('page', 1)
+    adverts = paginator.get_page(page_number)
     return render(request, 'account/my-ads.html', {
         'user': request.user,
-        'adverts': request.user.adverts.all(),
+        'adverts': adverts,
     })
 
 
 @login_required
 def favourites(request):
-    favourites = Advert.objects.filter(favourite__user=request.user)
+    favourites_list = Advert.objects.filter(favourite__user=request.user).order_by('-id')
+    paginator = Paginator(favourites_list, 5)
+    page_number = request.GET.get('page', 1)
+    adverts = paginator.get_page(page_number)
     return render(request, 'account/favourites.html', {
         'user': request.user,
-        'adverts': favourites,
+        'adverts': adverts,
     })
 
 
@@ -76,7 +83,6 @@ def settings(request):
     else:
         form = ProfileForm(instance=request.user)
     return render(request, 'account/settings.html', {'form': form})
-
 
 
 def logout(request):

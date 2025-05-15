@@ -29,19 +29,19 @@
                     <div class="input-container">
                         <span class="input-label">Марка</span>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="brand-select" name="brand" placeholder="Марка" options=brand_list %}
+                            {% include "advert/custom-select.html" with select_id="brand-select" name="brand" placeholder="Марка" options=brand_list required=True %}
                         </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Модель</span>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="model-select" name="model" disabled=True placeholder="Модель" %}
+                            {% include "advert/custom-select.html" with select_id="model-select" name="model" disabled=True placeholder="Модель" required=True%}
                         </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Тип транспорту</span>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="transport-type-select" name="transport_type" placeholder="Тип транспорту" options=transport_type_list %}
+                            {% include "advert/custom-select.html" with select_id="transport-type-select" name="transport_type" placeholder="Тип транспорту" options=transport_type_list required=True %}
                         </div>
                     </div>
                 </div>
@@ -62,31 +62,31 @@
                     <div class="input-container">
                         <span class="input-label">Тип кузова</span>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="body-type-select" name="body_type" placeholder="Тип кузова" options=body_type_list %}
+                            {% include "advert/custom-select.html" with select_id="body-type-select" name="body_type" placeholder="Тип кузова" options=body_type_list  required=True%}
                         </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Привід</span>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="drive-type-select" name="drive_type" placeholder="Привід" options=drive_type_list %}
+                            {% include "advert/custom-select.html" with select_id="drive-type-select" name="drive_type" placeholder="Привід" options=drive_type_list  required=True%}
                         </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Коробка передач</span>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="transmission-type-select" name="transmission_type" placeholder="Коробка передач" options=transmission_type_list %}
+                            {% include "advert/custom-select.html" with select_id="transmission-type-select" name="transmission_type" placeholder="Коробка передач" options=transmission_type_list  required=True%}
                         </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Колір</span>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="color-select" name="color" placeholder="Колір" options=color_list %}
+                            {% include "advert/custom-select.html" with select_id="color-select" name="color" placeholder="Колір" options=color_list required=True %}
                         </div>
                     </div>
                     <div class="input-container">
                         <span class="input-label">Паливо</span>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="fuel-type-select" name="fuel_type" placeholder="Паливо" options=fuel_type_list %}
+                            {% include "advert/custom-select.html" with select_id="fuel-type-select" name="fuel_type" placeholder="Паливо" options=fuel_type_list  required=True %}
                         </div>
                     </div>
                     <div class="input-container">
@@ -193,7 +193,7 @@
                         <div class="input-container">
                             <span class="input-label">Регіон</span>
                             <div class="select-container">
-                                {% include "advert/custom-select.html" with select_id="region-select" name="region" placeholder="Регіон" options=region_list default_value="Виберіть регіон" %}
+                                {% include "advert/custom-select.html" with select_id="region-select" name="region" placeholder="Регіон" options=region_list default_value="Виберіть регіон" required=True %}
                             </div>
                         </div>
                         <div class="input-container">
@@ -205,7 +205,7 @@
                         <div class="input-container">
                             <span class="input-label">Місто</span>
                             <div class="select-container">
-                                {% include "advert/custom-select.html" with select_id="city-select" name="city" disabled=True placeholder="Місто" default_value="Виберіть місто" %}
+                                {% include "advert/custom-select.html" with select_id="city-select" name="city" disabled=True placeholder="Місто" default_value="Виберіть місто" required=True %}
                             </div>
                         </div>
                         <div class="input-container">
