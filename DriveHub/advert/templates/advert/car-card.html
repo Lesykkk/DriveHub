@@ -31,8 +31,9 @@
         <span class="car-about">{{ advert.description }}</span>
         <div class="car-bottom-row">
             <span class="car-date">{{ advert.region_city.city.value }}, {{ advert.created }}</span>
-            <button class="icon-button">
-                <img src="{% static icon_href %}">
+            <button class="icon-button" onclick="onClick({{ onClickValue }})">
+                <img class="icon1" src="{% static icon1 %}" {% if show_2 %}style="display: none;"{% endif %}>
+                {% if icon2 %}<img class="icon2" src="{% static icon2 %}" {% if show_2 %}style="display: flex;"{% endif %}>{% endif %}
             </button>
         </div>
     </div>

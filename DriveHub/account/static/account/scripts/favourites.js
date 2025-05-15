@@ -1,36 +1,4 @@
-const brandSelect = document.getElementById('brand-select');
-
-brandSelect.addEventListener('change', function (e) {
-    console.log("Івент на БРЕНД спрацював");
-    const modelSelect = document.getElementById('model-select');
-    
-    if (e.detail.isDefaultSelected) {
-        modelSelect.setAttribute('disabled', '');
-        modelSelect.clearOptions();
-        return;
-    }
-    
-    const brandId = e.detail.id;
-    const previouslySelectedModel = modelSelect.querySelector('.hidden-input').value;
-    modelSelect.clearOptions();
-
-    fetch(`/ajax/get-models/?brand_id=${brandId}`)
-        .then(response => response.json())
-        .then(models => {
-            models.forEach(model => {
-                modelSelect.appendOption(model.id, model.value);
-            });
-            modelSelect.removeAttribute('disabled');
-        });
-});
-
-brandSelect.triggerChangeEvent();
-
-
-
-
 function onClick(advert_id) {
-    console.log(event);
     const button = event.currentTarget;
     const icon1 = button.querySelector('.icon1');
     const icon2 = button.querySelector('.icon2');

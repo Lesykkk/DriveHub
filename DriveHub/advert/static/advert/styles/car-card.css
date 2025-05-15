@@ -123,6 +123,14 @@
     cursor: pointer;
 }
 
+.icon1 {
+    display: flex;
+}
+
+.icon2 {
+    display: none;
+}
+
 .h-line {
     height: 1px;
     width: 100%;
