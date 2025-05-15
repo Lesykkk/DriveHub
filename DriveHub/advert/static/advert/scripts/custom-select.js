@@ -140,17 +140,6 @@ document.querySelectorAll('.custom-select-container').forEach(customSelectContai
                 bubbles: false
             });
             customSelectContainer.dispatchEvent(changeEvent);
-            // setTimeout(() => {
-            //     const changeEvent = new CustomEvent('change', {
-            //         detail: { 
-            //             isDefaultSelected: false,
-            //             id: selectedValue,
-            //             textContent: optionValueElement.textContent,
-            //         },
-            //         bubbles: false
-            //     });
-            //     customSelectContainer.dispatchEvent(changeEvent);
-            // }, 100);
     }
 
     const observer = new MutationObserver(mutations => {

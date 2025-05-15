@@ -17,6 +17,11 @@
     
     <div class="home-container">
         <form class="filter-container" action="{% url "advert:advanced-filters" %}" method="get">
+            <div class="form-button-row">
+                <button class="form-button selected" type="submit" name="car_type" value="all">Всі</button>
+                <button class="form-button" type="submit" name="car_type" value="used">З пробігом</button>
+                <button class="form-button" type="submit" name="car_type" value="new">Нові</button>
+            </div>
             <div class="filter-row">
                 <div class="select-container">
                     {% include "advert/custom-select.html" with select_id="brand-select" name="brand" placeholder="Марка" options=brand_list value=current_filters.brand %}
@@ -80,6 +85,8 @@
                         <span class="card-text">{{advert.transport.year}}, {{ advert.transport.mileage }}km</span>
                     </div>
                 </a>
+            {% empty %}
+                <p class="no-adverts-message">Немає оголошень</p>
             {% endfor %}
         </div>
     </div>

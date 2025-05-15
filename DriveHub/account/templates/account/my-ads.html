@@ -28,10 +28,12 @@
                     <div class="car-cards-container">
                         {% for advert in adverts %}
                         <div class="h-line"></div>
-                        {% include "advert/car-card.html" with icon_href="advert/icons/trash.svg" %}
+                        {% include "advert/car-card.html" with onClickValue=advert.id icon1="advert/icons/trash.svg" %}
                         {% if forloop.last %}
                         <div class="h-line"></div>
                         {% endif %}
+                        {% empty %}
+                            <p class="no-adverts-message">Немає оголошень</p>
                         {% endfor %}
                     </div>
                 </div>
@@ -40,5 +42,6 @@
     </div>
     
     {% include "footer.html" %}
+    <script src="{% static 'account/scripts/my-ads.js' %}"></script>
 </body>
 </html>

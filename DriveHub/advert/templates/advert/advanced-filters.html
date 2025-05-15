@@ -59,7 +59,6 @@
                             <input type="number" name="mileage-to" min="0" step="1" placeholder="до" value="{{current_filters.mileage_to}}">
                         </div>
                     </div>
-
                     <div class="filter-section">
                         <div class="select-container">
                             {% include "advert/custom-select.html" with select_id="body-type-select" name="body_type" placeholder="Кузов" options=body_type_list value=current_filters.body_type %}
@@ -112,7 +111,7 @@
 
                     <div class="filter-section">
                         <div class="select-container">
-                            <button class="submit-btn" type="submit">
+                            <button class="submit-btn" type="submit" name="car_type" value="{{ current_filters.car_type|default:"all" }}">
                                 Показати пропозиції
                             </button>
                         </div>
@@ -127,11 +126,17 @@
             <div class="cars-container">
                 <div class="car-cards-container">
                     {% for advert in advert_list %}
-                    <div class="h-line"></div>
-                    {% include "advert/car-card.html" with icon_href="advert/icons/heart-red.svg" %}
-                    {% if forloop.last %}
-                    <div class="h-line"></div>
-                    {% endif %}
+                        <div class="h-line"></div>
+                        {% if advert.id in favourite_advert_ids %}
+                        {% include "advert/car-card.html" with onClickValue=advert.id icon1="advert/icons/heart-red.svg" icon2="advert/icons/heart-black.svg" %}
+                        {% else %}
+                        {% include "advert/car-card.html" with onClickValue=advert.id icon1="advert/icons/heart-red.svg" icon2="advert/icons/heart-black.svg" show_2=True %}
+                        {% endif %}
+                        {% if forloop.last %}
+                            <div class="h-line"></div>
+                        {% endif %}
+                        {% empty %}
+                            <p class="no-adverts-message">Немає оголошень</p>
                     {% endfor %}
                 </div>
             </div>

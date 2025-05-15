@@ -12,10 +12,10 @@
                 <nav class="header-nav">
                     <ul class="header-menu">
                         <li class = "menu-item">
-                            <a class = "header-menu-link" href="#">Нове авто</a>
+                            <a class = "header-menu-link" href="{% url 'advert:advanced-filters' %}?car_type=new">Нове авто</a>
                         </li>
                         <li class = "menu-item">
-                            <a class = "header-menu-link" href="#">Вживане авто</a>
+                            <a class = "header-menu-link" href="{% url 'advert:advanced-filters' %}?car_type=used">Вживане авто</a>
                         </li>
                         <li class = "menu-item">
                             <a class = "header-menu-link" href="{% url "advert:create-advert" %}">Продати авто</a>

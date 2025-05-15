@@ -28,9 +28,9 @@
         <div class="transport-info">
             <div class="advert-col-1">
                 <div class="advert-title-section">
-                    <button class="favourite-button-container">
-                        <img class="red-icon" src="{% static 'advert/icons/heart-red.svg' %}">
-                        <img class="black-icon" src="{% static 'advert/icons/heart-black.svg' %}">
+                    <button class="favourite-button-container" onclick="toggleFavourite({{ advert.id }})">
+                        <img class="red-icon" src="{% static 'advert/icons/heart-red.svg' %}" {% if is_favourite %}style="display: flex;"{% endif %}>
+                        <img class="black-icon" src="{% static 'advert/icons/heart-black.svg' %}" {% if is_favourite %}style="display: none;"{% endif %}>
                     </button>
                     <div class="advert-title-text">
                         <span class="advert-title">{{ advert.transport }}</span>
@@ -122,7 +122,7 @@
                     </div>
                     <div class="profile-row">
                         <img class="profile-location-img" src="{% static 'advert/icons/location.svg' %}">
-                        <span class="profile-location">{{ advert.region_city.city.value }}</span>
+                        <span class="profile-location">{{ advert.region_city.city.value }}, {{ advert.region_city.region.value }} обл.</span>
                     </div>
                     <div class="profile-phone-div">
                         <span>Телефон</span>

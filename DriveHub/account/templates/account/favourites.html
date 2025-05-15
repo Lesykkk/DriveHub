@@ -17,7 +17,6 @@
 <body>
     {% include "header.html" %}
     
-    
     <div class="profile-container">
         <div class="main-profile-container">
             {% include "account/profile-side-bar.html" %}
@@ -29,10 +28,12 @@
                     <div class="car-cards-container">
                         {% for advert in adverts %}
                         <div class="h-line"></div>
-                        {% include "advert/car-card.html" with icon_href="advert/icons/heart-red.svg" %}
+                        {% include "advert/car-card.html" with onClickValue=advert.id icon1="advert/icons/heart-red.svg" icon2="advert/icons/heart-black.svg" %}
                         {% if forloop.last %}
                         <div class="h-line"></div>
                         {% endif %}
+                        {% empty %}
+                            <p class="no-adverts-message">Немає оголошень</p>
                         {% endfor %}
                     </div>
                 </div>
@@ -40,7 +41,8 @@
         </div>
     </div>
     
-    
     {% include "footer.html" %}
+
+    <script src="{% static 'account/scripts/favourites.js' %}"></script>
 </body>
 </html>

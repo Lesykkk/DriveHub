@@ -2,12 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib import auth, messages
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, login_not_required
 from django.contrib.auth import update_session_auth_hash
 from .forms import AccountLoginForm, AccountRegistrationForm, ProfileForm
 from advert.models import *
 
-
+@login_not_required
 def login(request):
     if request.method == 'POST':
         form = AccountLoginForm(data=request.POST)
@@ -26,7 +26,6 @@ def login(request):
         'form': form
     })
 
-
 def registration(request):
     if request.method == 'POST':
         form = AccountRegistrationForm(data=request.POST)
@@ -35,7 +34,9 @@ def registration(request):
             account = form.instance
             auth.login(request, account)
             messages.success(request, f'{account.email}, Successful registration')
-            return HttpResponseRedirect(reverse('account:login'))
+            next_url = request.POST.get('next') or reverse('advert:home')
+            return redirect(next_url)
+            # return HttpResponseRedirect(reverse('advert:home'))
     else:
         form = AccountRegistrationForm()
     return render(request, 'account/registration.html', {
@@ -54,7 +55,6 @@ def my_ads(request):
 @login_required
 def favourites(request):
     favourites = Advert.objects.filter(favourite__user=request.user)
-    favourites = request.user.favourites.all()
     return render(request, 'account/favourites.html', {
         'user': request.user,
         'adverts': favourites,

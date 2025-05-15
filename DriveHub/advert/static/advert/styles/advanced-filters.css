@@ -70,7 +70,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* font-family: Inter, Sans-serif; */
     font-size: 15px;
     font-weight: 500;
     width: 100%;
@@ -188,4 +187,11 @@
     height: max-content;
     width: 100%;
     row-gap: 24px;
+}
+
+.no-adverts-message {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 30px;
+    color: #888;
 }

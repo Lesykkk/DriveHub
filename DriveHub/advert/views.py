@@ -1,11 +1,12 @@
-import csv
-from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_GET, require_POST
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render, redirect
+from django.urls import reverse
 from django.utils.text import slugify
-from django.http import Http404, JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from .forms import FuelConsumptionForm, TransportForm, AdvertForm
 from .models import *
+
 
 def home(request):
     adverts = Advert.objects.select_related('user', 'transport').all()
@@ -77,15 +78,39 @@ def create_advert(request):
     })
 
 def advert_detail(request, slug):
-    advert = get_object_or_404(Advert.objects.select_related('transport__fuel_consumption', 'transport__brand_model__brand', 'transport__brand_model__model', 'region_city__region', 'region_city__city', 'user'), slug=slug)
-    if advert is None:
-        raise Http404()
+    advert = get_object_or_404(Advert.objects.select_related(
+        'transport__fuel_consumption',
+        'transport__brand_model__brand',
+        'transport__brand_model__model',
+        'region_city__region',
+        'region_city__city',
+        'user',
+    ), slug=slug)
+
+    is_favourite = False
+    if request.user.is_authenticated:
+        is_favourite = Favourite.objects.filter(user=request.user, advert=advert).exists()
     return render(request, 'advert/advert-detail.html', {
         'advert': advert,
+        'is_favourite': is_favourite,
         'uah_price': int(advert.price * 41),
         'eur_price': int(advert.price * 0.91),
     })
 
+@login_required
+def delete_advert(request, slug):
+    advert = get_object_or_404(Advert, slug=slug, user=request.user)
+    if request.method == 'POST':
+        advert.delete()
+        # messages.success(request, 'Оголошення успішно видалене.')
+        return redirect('account:my-ads')
+
+@require_POST
+@login_required
+def delete_advert(request, advert_id):
+    advert = get_object_or_404(Advert, id=advert_id, user=request.user)
+    advert.delete()
+    return JsonResponse({'redirect_url': reverse('account:my-ads')})
 
 @require_GET
 def get_models_by_brand(request):
@@ -98,6 +123,28 @@ def get_cities_by_region(request):
     region_city_objects = Region.objects.get(id=request.GET.get('region_id')).region_cities.all()
     city_list = [{'value': rc.city.value, 'id': rc.city.id} for rc in region_city_objects]
     return JsonResponse(city_list, safe=False)
+
+@require_POST
+def toggle_favourite(request):
+    referer = request.POST.get('referer', '/')
+    
+    if not request.user.is_authenticated:
+        login_url = reverse('account:login')
+        return JsonResponse({
+            'status': 'unauthenticated',
+            'login_url': f'{login_url}?next={referer}'
+        })
+
+    advert_id = request.POST.get('advert_id')
+    advert = get_object_or_404(Advert, id=advert_id)
+    favourite, created = Favourite.objects.get_or_create(user=request.user, advert=advert)
+    
+    if created:
+        return JsonResponse({'status': 'added'})
+    else:
+        favourite.delete()
+        return JsonResponse({'status': 'removed'})
+
 
 def advanced_filters(request):
     filters = {
@@ -143,6 +190,12 @@ def advanced_filters(request):
     ).prefetch_related(
         'transport__photos',
     ).all()
+
+    favourite_advert_ids = set()
+    if request.user.is_authenticated:
+        favourite_advert_ids = set(
+            Favourite.objects.filter(user=request.user).values_list('advert_id', flat=True)
+        )
 
     model_list = None
 
@@ -211,6 +264,7 @@ def advanced_filters(request):
         'transmission_type_list': transmission_type_list(),
         'region_list': region_list(),
         'current_filters': filters,
+        'favourite_advert_ids': favourite_advert_ids,
     })
 
 
