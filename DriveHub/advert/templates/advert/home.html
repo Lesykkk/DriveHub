@@ -16,60 +16,59 @@
     {% include "header.html" %}
     
     <div class="home-container">
-        <div class="filter-container">
+        <form class="filter-container" action="{% url "advert:advanced-filters" %}" method="get">
             <div class="filter-row">
                 <div class="select-container">
-                    {% include "advert/custom-select.html" with select_id="brand-select" placeholder="Марка" options=brand_list %}
+                    {% include "advert/custom-select.html" with select_id="brand-select" name="brand" placeholder="Марка" options=brand_list value=current_filters.brand %}
                 </div>
                 <div class="select-container">
-                    {% include "advert/custom-select.html" with select_id="model-select" disabled=True placeholder="Модель" %}
+                    {% include "advert/custom-select.html" with select_id="model-select" name="model" disabled=True options=model_list placeholder="Модель" value=current_filters.model %}
                 </div>
                 <div class="select-container">
-                    <input type="number" name="price-from" min="0" step="1" placeholder="Ціна від">
-                    <input type="number" name="price-to" min="0" step="1" placeholder="Ціна до">
+                    <input type="number" name="price-from" min="0" step="1" placeholder="Ціна від" value="{{current_filters.price_from}}">
+                    <input type="number" name="price-to" min="0" step="1" placeholder="Ціна до" value="{{current_filters.price_to}}">
                 </div>
                 <div class="select-container">
                     {% now "Y" as year %}
-                    <input type="number" name="year-from" min="1900" max="{{ year }}" step="1" placeholder="Рік від">
-                    <input type="number" name="year-to" min="1900" max="{{ year }}" step="1" placeholder="Рік до">
+                    <input type="number" name="year-from" min="1900" max="{{ year }}" step="1" placeholder="Рік від" value="{{current_filters.year_from}}">
+                    <input type="number" name="year-to" min="1900" max="{{ year }}" step="1" placeholder="Рік до" value="{{current_filters.year_to}}">
                 </div>
             </div>
             <div class="filter-row">
                 <div class="select-container">
-                    {% include "advert/custom-select.html" with select_id="drive-type-select" placeholder="Привід" options=drive_type_list %}
+                    {% include "advert/custom-select.html" with select_id="drive-type-select" name="drive_type" placeholder="Привід" options=drive_type_list value=current_filters.drive_type %}
                 </div>
                 <div class="select-container">
-                    {% include "advert/custom-select.html" with select_id="transmission-type-select" placeholder="Коробка передач" options=transmission_type_list %}
+                    {% include "advert/custom-select.html" with select_id="transmission-type-select" name="transmission_type" placeholder="Коробка" options=transmission_type_list value=current_filters.transmission_type %}
                 </div>
                 <div class="select-container">
-                    {% include "advert/custom-select.html" with select_id="drive-type-select" placeholder="Регіон" options=region_list %}
+                    {% include "advert/custom-select.html" with select_id="drive-type-select" name="region" placeholder="Регіон" options=region_list value=current_filters.region %}
                 </div>
                 <div class="select-container">
-                    <input type="number" name="millage-from" min="0" step="1" placeholder="Пробіг від">
-                    <input type="number" name="millage-to" min="0" step="1" placeholder="Пробіг до">
+                    <input type="number" name="millage-from" min="0" step="1" placeholder="Пробіг від" value="{{current_filters.mileage_from}}">
+                    <input type="number" name="millage-to" min="0" step="1" placeholder="Пробіг до" value="{{current_filters.mileage_to}}">
                 </div>
             </div>
             <div class="filter-row">
                 <div class="select-container">
-                    {% include "advert/custom-select.html" with select_id="body-type-select" placeholder="Кузов" options=body_type_list %}
+                    {% include "advert/custom-select.html" with select_id="body-type-select" name="bode_type" placeholder="Кузов" options=body_type_list value=current_filters.body_type %}
                 </div>
                 <div class="select-container">
-                    {% include "advert/custom-select.html" with select_id="fuel-type-select" placeholder="Паливо" options=fuel_type_list %}
+                    {% include "advert/custom-select.html" with select_id="fuel-type-select" name="fuel_type" placeholder="Паливо" options=fuel_type_list value=current_filters.fuel_type %}
                 </div>
                 <div class="select-container">
-                        <a class="submit-btn advanced-search-btn" type="submit" href="{% url 'advert:advanced-filters' %}">
-                            <img src="{% static 'advert/icons/form-adding.svg' %}" alt="">
-                            Розширений пошук
-                        </a>
-                    
-                </div>
-                <div class="select-container">
-                    <a class="submit-btn" type="submit">
+                    <button class="submit-btn" type="submit">
                         Показати пропозиції
+                    </button>
+                </div>
+                <div class="select-container">
+                    <a class="submit-btn advanced-search-btn" type="submit" href="{% url 'advert:advanced-filters' %}">
+                        <img src="{% static 'advert/icons/form-adding.svg' %}">
+                        Розширений пошук
                     </a>
                 </div>
             </div>
-        </div>
+        </form>
         <span class="cards-grid-title">Останні оголошення</span>
         <div class="cards-grid">
             {% for advert in advert_list %}
@@ -82,14 +81,12 @@
                     </div>
                 </a>
             {% endfor %}
-
-            
         </div>
     </div>
     
     {% include "footer.html" %}
 
-    <script src="{% static 'advert/scripts/home.js' %}"></script>
     <script src="{% static 'advert/scripts/custom-select.js' %}"></script>
+    <script src="{% static 'advert/scripts/home.js' %}"></script>
 </body>
 </html>

@@ -93,6 +93,25 @@ function enhanceCustomSelect(customSelectContainer) {
         _selectedOption.textContent = null;
         _hiddenInput.value = null;
     };
+
+    customSelectContainer.triggerChangeEvent = function () {
+        const _hiddenInput = customSelectContainer.querySelector('.hidden-input');
+        const _selectedValue = _hiddenInput.value;
+
+        if (!_selectedValue) return;
+
+        const _selectedText = customSelectContainer.querySelector(`.custom-option-value[data-id="${_selectedValue}"]`)?.textContent;
+
+        const changeEvent = new CustomEvent('change', {
+            detail: {
+                isDefaultSelected: false,
+                id: _selectedValue,
+                textContent: _selectedText,
+            },
+            bubbles: false
+        });
+        customSelectContainer.dispatchEvent(changeEvent);
+    };
 }
 
 document.querySelectorAll('.custom-select-container').forEach(customSelectContainer => {
@@ -102,28 +121,36 @@ document.querySelectorAll('.custom-select-container').forEach(customSelectContai
     const selectedValue = hiddenInput.value;
     
     if (selectedValue) {
-        console.log("Вибрано")
         const placeholder = customSelectContainer.querySelector('.custom-select-placeholder');
         const optionValueElement = customSelectContainer.querySelector(`.custom-option-value[data-id="${selectedValue}"]`);
         const selectedOption = customSelectContainer.querySelector('.custom-selected-option');
         const optionContainer = optionValueElement.closest('.custom-option');
         
-        placeholder.style.display = 'none';
-        selectedOption.style.display = 'flex';
-        selectedOption.textContent = optionValueElement.textContent;
-        optionContainer.setAttribute('selected', '');
-        
-        console.log("Зараз буде івент")
-        const changeEvent = new CustomEvent('change', {
-            detail: { 
-                isDefaultSelected: false,
-                id: selectedValue,
-                textContent: optionValueElement.textContent,
-            },
-            bubbles: false
-        });
-        customSelectContainer.dispatchEvent(changeEvent);
-        console.log("Івент мав бути виконаний")
+            placeholder.style.display = 'none';
+            selectedOption.style.display = 'flex';
+            selectedOption.textContent = optionValueElement.textContent;
+            optionContainer.setAttribute('selected', '');
+            
+            const changeEvent = new CustomEvent('change', {
+                detail: { 
+                    isDefaultSelected: false,
+                    id: selectedValue,
+                    textContent: optionValueElement.textContent,
+                },
+                bubbles: false
+            });
+            customSelectContainer.dispatchEvent(changeEvent);
+            // setTimeout(() => {
+            //     const changeEvent = new CustomEvent('change', {
+            //         detail: { 
+            //             isDefaultSelected: false,
+            //             id: selectedValue,
+            //             textContent: optionValueElement.textContent,
+            //         },
+            //         bubbles: false
+            //     });
+            //     customSelectContainer.dispatchEvent(changeEvent);
+            // }, 100);
     }
 
     const observer = new MutationObserver(mutations => {

@@ -1,8 +1,7 @@
-const formButtons = document.querySelectorAll('.form-button');
+const brandSelect = document.getElementById('brand-select');
 
-document.getElementById('brand-select').addEventListener('change', function (e) {
-    console.log(e);
-    
+brandSelect.addEventListener('change', function (e) {
+    console.log("Івент на БРЕНД спрацював");
     const modelSelect = document.getElementById('model-select');
     
     if (e.detail.isDefaultSelected) {
@@ -12,8 +11,8 @@ document.getElementById('brand-select').addEventListener('change', function (e) 
     }
     
     const brandId = e.detail.id;
+    const previouslySelectedModel = modelSelect.querySelector('.hidden-input').value;
     modelSelect.clearOptions();
-    modelSelect.reset();
 
     fetch(`/ajax/get-models/?brand_id=${brandId}`)
         .then(response => response.json())
@@ -25,16 +24,4 @@ document.getElementById('brand-select').addEventListener('change', function (e) 
         });
 });
 
-formButtons.forEach(formButton => {
-    formButton.addEventListener('click', e => {
-        clearSelected();
-        formButton.classList.toggle("selected");
-        
-    })
-})
-
-function clearSelected(){
-    formButtons.forEach(formButton => {
-        formButton.classList.remove("selected");
-    })
-}
+brandSelect.triggerChangeEvent();

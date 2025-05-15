@@ -9,6 +9,7 @@ from .models import *
 
 def home(request):
     adverts = Advert.objects.select_related('user', 'transport').all()
+    adverts = list(adverts)[::-1]
     return render(request, 'advert/home.html', {
         "advert_list" : adverts,
         'brand_list': brand_list(),

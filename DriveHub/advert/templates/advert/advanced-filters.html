@@ -20,7 +20,7 @@
         <div class="content-head">
             <div class="side-filters">
                 <div class="catogory-row">
-                    <a class="category">Продаж авто</a>
+                    <a class="category" href="{% url 'advert:advanced-filters' %}">Продаж авто</a>
                     <img src="{% static 'advert/icons/arrow-right.svg' %}">
                     <a class="category">Результати пошуку</a>
                 </div>
@@ -29,11 +29,10 @@
         <div class="content-body">
             <div class="side-filters">
                 <form class="filters-container" action="{% url "advert:advanced-filters" %}" method="get">
-                    {% csrf_token %}
                     <div class="form-button-row">
-                        <button class="form-button selected" type="submit" name="car_type" value="all">Всі</button>
-                        <button class="form-button" type="submit" name="car_type" value="used">З пробігом</button>
-                        <button class="form-button" type="submit" name="car_type" value="new">Нові</button>
+                        <button class="form-button {% if current_filters.car_type == 'all' or not current_filters.car_type %}selected{% endif %}" type="submit" name="car_type" value="all">Всі</button>
+                        <button class="form-button {% if current_filters.car_type == 'used' %}selected{% endif %}" type="submit" name="car_type" value="used">З пробігом</button>
+                        <button class="form-button {% if current_filters.car_type == 'new' %}selected{% endif %}" type="submit" name="car_type" value="new">Нові</button>
                     </div>
                     <div class="filter-section">
                         <div class="select-container">
@@ -111,14 +110,20 @@
                         </div>
                     </div>
 
-                    <div class="select-container">
-                        <button class="submit-btn" type="submit">
-                            Показати пропозиції
-                        </button>
+                    <div class="filter-section">
+                        <div class="select-container">
+                            <button class="submit-btn" type="submit">
+                                Показати пропозиції
+                            </button>
+                        </div>
+                        <div class="select-container">
+                            <a class="submit-btn clear-btn" href="{% url 'advert:advanced-filters' %}">
+                                Очистити фільтри
+                            </a>
+                        </div>
                     </div>
                 </form>
             </div>
-        
             <div class="cars-container">
                 <div class="car-cards-container">
                     {% for advert in advert_list %}

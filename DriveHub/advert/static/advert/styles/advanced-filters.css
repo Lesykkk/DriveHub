@@ -166,6 +166,15 @@
     background-color: #007ef4;
 }
 
+.clear-btn{
+    background-color: #eff6ff;
+    color: #1890FF;
+}
+
+.clear-btn:hover{
+    background-color: #e2eaf4 !important;
+}
+
 .cars-container {
     display: flex;
     width: 100%;
