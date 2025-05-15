@@ -20,104 +20,110 @@
         <div class="content-head">
             <div class="side-filters">
                 <div class="catogory-row">
-                    <a class="category">Продаж авто</a>
+                    <a class="category" href="{% url 'advert:advanced-filters' %}">Продаж авто</a>
                     <img src="{% static 'advert/icons/arrow-right.svg' %}">
                     <a class="category">Результати пошуку</a>
-                </div>
-                <div class="form-button-row">
-                    <a class="form-button selected">Всі</a>
-                    <a class="form-button">З пробігом</a>
-                    <a class="form-button">Нові</a>
                 </div>
             </div>
         </div>
         <div class="content-body">
             <div class="side-filters">
-                <div class="filters-container">
+                <form class="filters-container" action="{% url "advert:advanced-filters" %}" method="get">
+                    <div class="form-button-row">
+                        <button class="form-button {% if current_filters.car_type == 'all' or not current_filters.car_type %}selected{% endif %}" type="submit" name="car_type" value="all">Всі</button>
+                        <button class="form-button {% if current_filters.car_type == 'used' %}selected{% endif %}" type="submit" name="car_type" value="used">З пробігом</button>
+                        <button class="form-button {% if current_filters.car_type == 'new' %}selected{% endif %}" type="submit" name="car_type" value="new">Нові</button>
+                    </div>
                     <div class="filter-section">
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="brand-select" placeholder="Марка" options=brand_list %}
+                            {% include "advert/custom-select.html" with select_id="brand-select" name="brand" placeholder="Марка" options=brand_list value=current_filters.brand %}
                         </div>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="model-select" disabled=True placeholder="Модель" %}
+                            {% include "advert/custom-select.html" with select_id="model-select" name="model" disabled=True options=model_list placeholder="Модель" value=current_filters.model %}
                         </div>
                     </div>
                     <div class="filter-section">
                         <div class="select-container">
-                            <input type="number" name="price-from" min="0" step="1" placeholder="Ціна, від">
-                            <input type="number" name="price-to" min="0" step="1" placeholder="до">
+                            <input type="number" name="price-from" min="0" step="1" placeholder="Ціна, від" value="{{current_filters.price_from}}">
+                            <input type="number" name="price-to" min="0" step="1" placeholder="до" value="{{current_filters.price_to}}">
                         </div>
 
                         <div class="select-container">
                             {% now "Y" as year %}
-                            <input type="number" name="year-from" min="1900" max="{{ year }}" step="1" placeholder="Рік, від">
-                            <input type="number" name="year-to" min="1900" max="{{ year }}" step="1" placeholder="до">
+                            <input type="number" name="year-from" min="1900" max="{{ year }}" step="1" placeholder="Рік, від" value="{{current_filters.year_from}}">
+                            <input type="number" name="year-to" min="1900" max="{{ year }}" step="1" placeholder="до" value="{{current_filters.year_to}}">
                         </div>
                         
                         <div class="select-container">
-                            <input type="number" name="millage-from" min="0" step="1" placeholder="Пробіг, від">
-                            <input type="number" name="millage-to" min="0" step="1" placeholder="до">
+                            <input type="number" name="mileage-from" min="0" step="1" placeholder="Пробіг, від" value="{{current_filters.mileage_from}}">
+                            <input type="number" name="mileage-to" min="0" step="1" placeholder="до" value="{{current_filters.mileage_to}}">
                         </div>
                     </div>
 
                     <div class="filter-section">
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="body-type-select" placeholder="Кузов" options=body_type_list %}
+                            {% include "advert/custom-select.html" with select_id="body-type-select" name="body_type" placeholder="Кузов" options=body_type_list value=current_filters.body_type %}
                         </div>
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="drive-type-select" placeholder="Привід" options=drive_type_list %}
+                            {% include "advert/custom-select.html" with select_id="drive-type-select" name="drive_type" placeholder="Привід" options=drive_type_list value=current_filters.drive_type %}
                         </div>
                         
                         <div class="filter-row">
                             <div class="select-container">
-                                {% include "advert/custom-select.html" with select_id="fuel-type-select" placeholder="Паливо" options=fuel_type_list %}
+                                {% include "advert/custom-select.html" with select_id="fuel-type-select" name="fuel_type" placeholder="Паливо" options=fuel_type_list value=current_filters.fuel_type %}
                             </div>
                             
                             <div class="select-container">
-                                {% include "advert/custom-select.html" with select_id="transmission-type-select" placeholder="Коробка" options=transmission_type_list %}
+                                {% include "advert/custom-select.html" with select_id="transmission-type-select" name="transmission_type" placeholder="Коробка" options=transmission_type_list value=current_filters.transmission_type %}
                             </div>
                         </div>
 
                         <div class="select-container">
-                            <input type="number" name="volume-from" min="0" step="0.1" placeholder="Об'єм, від">
-                            <input type="number" name="volume-to" min="0" step="0.1" placeholder="до">
+                            <input type="number" name="volume-from" min="0" step="0.1" placeholder="Об'єм, від" value="{{current_filters.volume_from}}">
+                            <input type="number" name="volume-to" min="0" step="0.1" placeholder="до" value="{{current_filters.volume_to}}">
                         </div>
 
                         <div class="select-container">
-                            <input type="number" name="power-from" min="0" step="1" placeholder="Потужність, від">
-                            <input type="number" name="power-to" min="0" step="1" placeholder="до">
+                            <input type="number" name="power-from" min="0" step="1" placeholder="Потужність, від" value="{{current_filters.power_from}}">
+                            <input type="number" name="power-to" min="0" step="1" placeholder="до" value="{{current_filters.power_to}}">
                         </div>
                     </div>
                     <div class="filter-section">
                         <label for="" class="filter-label">Витрата</label>
                         <div class="select-container">
-                            <input type="number" name="fuel-consumption-city-from" min="0" step="0.1" placeholder="Місто, від">
-                            <input type="number" name="fuel-consumption-city-to" min="0" step="0.1" placeholder="до">
+                            <input type="number" name="fuel-consumption-city-from" min="0" step="0.1" placeholder="Місто, від" value="{{current_filters.fuel_consumption_city_from}}">
+                            <input type="number" name="fuel-consumption-city-to" min="0" step="0.1" placeholder="до" value="{{current_filters.fuel_consumption_city_to}}">
                         </div>
 
                         <div class="select-container">
-                            <input type="number" name="fuel-consumption-highway-from" min="0" step="1" placeholder="Траса, від">
-                            <input type="number" name="fuel-consumption-highway-to" min="0" step="1" placeholder="до">
+                            <input type="number" name="fuel-consumption-highway-from" min="0" step="1" placeholder="Траса, від" value="{{current_filters.fuel_consumption_highway_from}}">
+                            <input type="number" name="fuel-consumption-highway-to" min="0" step="1" placeholder="до" value="{{current_filters.fuel_consumption_highway_to}}">
                         </div>
 
                         <div class="select-container">
-                            <input type="number" name="fuel-consumption-mixed-from" min="0" step="1" placeholder="Змішана, від">
-                            <input type="number" name="fuel-consumption-mixed-to" min="0" step="1" placeholder="до">
+                            <input type="number" name="fuel-consumption-mixed-from" min="0" step="1" placeholder="Змішана, від" value="{{current_filters.fuel_consumption_mixed_from}}">
+                            <input type="number" name="fuel-consumption-mixed-to" min="0" step="1" placeholder="до" value="{{current_filters.fuel_consumption_mixed_to}}">
                         </div>
 
                         <div class="select-container">
-                            {% include "advert/custom-select.html" with select_id="region-select" placeholder="Регіон" options=region_list %}
+                            {% include "advert/custom-select.html" with select_id="region-select" name="region" placeholder="Регіон" options=region_list value=current_filters.region %}
                         </div>
                     </div>
 
-                    <div class="select-container">
-                        <a class="submit-btn" type="submit">
-                            Показати пропозиції
-                        </a>
+                    <div class="filter-section">
+                        <div class="select-container">
+                            <button class="submit-btn" type="submit">
+                                Показати пропозиції
+                            </button>
+                        </div>
+                        <div class="select-container">
+                            <a class="submit-btn clear-btn" href="{% url 'advert:advanced-filters' %}">
+                                Очистити фільтри
+                            </a>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
-        
             <div class="cars-container">
                 <div class="car-cards-container">
                     {% for advert in advert_list %}

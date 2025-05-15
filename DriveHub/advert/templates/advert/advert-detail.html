@@ -17,9 +17,11 @@
     
     <div class="advert-container">
         <div class="catogory-row">
-            <a class="category">{{ advert.transport.brand_model.brand.value }}</a>
+            <a class="category" href="{% url 'advert:advanced-filters' %}">Продаж авто</a>
             <img src="{% static 'advert/icons/arrow-right.svg' %}">
-            <a class="category">{{ advert.transport.brand_model.model.value }}</a>
+            <a class="category" href="{% url 'advert:advanced-filters' %}?brand={{ advert.transport.brand_model.brand.id }}">{{ advert.transport.brand_model.brand.value }}</a>
+            <img src="{% static 'advert/icons/arrow-right.svg' %}">
+            <a class="category" href="{% url 'advert:advanced-filters' %}?brand={{ advert.transport.brand_model.brand.id }}&model={{ advert.transport.brand_model.model.id }}">{{ advert.transport.brand_model.model.value }}</a>
             <img src="{% static 'advert/icons/arrow-right.svg' %}">
             <a class="category">{{ advert.transport }}</a>
         </div>

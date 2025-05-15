@@ -65,6 +65,18 @@
     display: none;
 }
 
+.hidden-input {
+    position: absolute !important;
+    left: 50% !important;
+    z-index: -999 !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    pointer-events: none !important;
+}
+
 .custom-option-list {
     display: flex;
     flex-direction: column;

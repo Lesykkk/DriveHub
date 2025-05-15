@@ -24,7 +24,7 @@ a {
     -webkit-tap-highlight-color: transparent;
     text-decoration: none;
     cursor: pointer;
-    color: var(--color-6);
+    color: black;
 }
 
 img {

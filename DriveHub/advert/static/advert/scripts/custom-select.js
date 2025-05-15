@@ -33,8 +33,6 @@ allCustomSelectContainer.forEach(customSelectContainer =>{
             selectedOption.textContent = clickedOptionValue.textContent;
             hiddenInput.value = clickedOptionValue.getAttribute('data-id');
             clickedOption.setAttribute('selected', '');
-            console.log(selectedOption);
-            console.log(clickedOption);
             
             const changeEvent = new CustomEvent('change', {
                 detail: { 
@@ -95,10 +93,65 @@ function enhanceCustomSelect(customSelectContainer) {
         _selectedOption.textContent = null;
         _hiddenInput.value = null;
     };
+
+    customSelectContainer.triggerChangeEvent = function () {
+        const _hiddenInput = customSelectContainer.querySelector('.hidden-input');
+        const _selectedValue = _hiddenInput.value;
+
+        if (!_selectedValue) return;
+
+        const _selectedText = customSelectContainer.querySelector(`.custom-option-value[data-id="${_selectedValue}"]`)?.textContent;
+
+        const changeEvent = new CustomEvent('change', {
+            detail: {
+                isDefaultSelected: false,
+                id: _selectedValue,
+                textContent: _selectedText,
+            },
+            bubbles: false
+        });
+        customSelectContainer.dispatchEvent(changeEvent);
+    };
 }
 
 document.querySelectorAll('.custom-select-container').forEach(customSelectContainer => {
     enhanceCustomSelect(customSelectContainer);
+
+    const hiddenInput = customSelectContainer.querySelector('.hidden-input');
+    const selectedValue = hiddenInput.value;
+    
+    if (selectedValue) {
+        const placeholder = customSelectContainer.querySelector('.custom-select-placeholder');
+        const optionValueElement = customSelectContainer.querySelector(`.custom-option-value[data-id="${selectedValue}"]`);
+        const selectedOption = customSelectContainer.querySelector('.custom-selected-option');
+        const optionContainer = optionValueElement.closest('.custom-option');
+        
+            placeholder.style.display = 'none';
+            selectedOption.style.display = 'flex';
+            selectedOption.textContent = optionValueElement.textContent;
+            optionContainer.setAttribute('selected', '');
+            
+            const changeEvent = new CustomEvent('change', {
+                detail: { 
+                    isDefaultSelected: false,
+                    id: selectedValue,
+                    textContent: optionValueElement.textContent,
+                },
+                bubbles: false
+            });
+            customSelectContainer.dispatchEvent(changeEvent);
+            // setTimeout(() => {
+            //     const changeEvent = new CustomEvent('change', {
+            //         detail: { 
+            //             isDefaultSelected: false,
+            //             id: selectedValue,
+            //             textContent: optionValueElement.textContent,
+            //         },
+            //         bubbles: false
+            //     });
+            //     customSelectContainer.dispatchEvent(changeEvent);
+            // }, 100);
+    }
 
     const observer = new MutationObserver(mutations => {
         mutations.forEach(mutation => {
