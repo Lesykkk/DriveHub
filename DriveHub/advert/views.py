@@ -10,7 +10,7 @@ from .models import *
 
 
 def home(request):
-    adverts = Advert.objects.select_related('user', 'transport').order_by('-id')
+    adverts = Advert.objects.select_related('user', 'transport').order_by('-id')[:8]
     return render(request, 'advert/home.html', {
         "advert_list" : adverts,
         'brand_list': brand_list(),

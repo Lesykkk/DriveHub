@@ -6,7 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DriveHub - "Advert"</title>
+    <title>{{advert.transport}}</title>
+    <link rel="icon" href="{% static 'icons/favicon.svg' %}" type="image/svg+xml">
     <link rel="stylesheet" href="{% static 'styles/base.css' %}">
     <link rel="stylesheet" href="{% static 'styles/header.css' %}">
     <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
@@ -69,14 +70,14 @@
                     </div>
                     <div class="short-spec-row">
                         <div class="short-spec-column">
-                            <img src="{% static 'advert/icons/brand.svg' %}">
+                            <img src="{% static 'advert/icons/transmission.svg' %}">
                             <div class="short-spec-text">
                                 <span class="short-spec-label">Коробка</span>
                                 <span class="short-spec-value">{{ advert.transport.transmission_type.value }}</span>
                             </div>
                         </div>
                         <div class="short-spec-column">
-                            <img src="{% static 'advert/icons/millage.svg' %}">
+                            <img src="{% static 'advert/icons/color.svg' %}">
                             <div class="short-spec-text">
                                 <span class="short-spec-label">Колір</span>
                                 <span class="short-spec-value">{{ advert.transport.color.value }}</span>
@@ -85,7 +86,7 @@
                     </div>
                     <div class="short-spec-row">
                         <div class="short-spec-column">
-                            <img src="{% static 'advert/icons/brand.svg' %}">
+                            <img src="{% static 'advert/icons/engine.svg' %}">
                             <div class="short-spec-text">
                                 <span class="short-spec-label">Двигун</span>
                                 <span class="short-spec-value">{{ advert.transport.engine_volume }} л / {{ advert.transport.engine_power }} к.с. / {{ advert.transport.fuel_type.value }}</span>
@@ -93,7 +94,7 @@
                             </div>
                         </div>
                         <div class="short-spec-column">
-                            <img src="{% static 'advert/icons/millage.svg' %}">
+                            <img src="{% static 'advert/icons/users.svg' %}">
                             <div class="short-spec-text">
                                 <span class="short-spec-label">Кількість власників</span>
                                 <span class="short-spec-value">{{ advert.transport.owners_number }}</span>
@@ -109,20 +110,25 @@
             <div class="advert-col-2">
                 <div class="advert-price-section">
                     <span class="advert-price">{{ advert.price|intcomma }} $</span>
-                    <span class="advert-price-₴">{{ uah_price|intcomma }} ₴</span>
-                    <span class="advert-price-€">{{ eur_price|intcomma }} €</span>
+                    <div class="price-additional">
+                        <span class="advert-price-₴">{{ uah_price|intcomma }} ₴</span>
+                        <span class="advert-price-€">{{ eur_price|intcomma }} €</span>
+                    </div>
                 </div>
                 <div class="advert-profile-section">
                     <div class="profile-row">
                         <div class="profile-row-logo">{{ advert.user.first_name|slice:":1"|upper }}</div>
                         <div class="profile-row-text">
-                            <span class="profile-name">{{ advert.user.first_name }}</span>
-                            <span class="profile-description">Користувач  </span>
+                            <div class="profile-name-container">
+                                <span class="profile-name">{{ advert.user.first_name }}</span>
+                                <span class="profile-last-login">онлайн {{ advert.user.last_login|date:"j E" }}</span>
+                            </div>
+                            <span class="profile-description">Власник</span>
                         </div>
                     </div>
                     <div class="profile-row">
                         <img class="profile-location-img" src="{% static 'advert/icons/location.svg' %}">
-                        <span class="profile-location">{{ advert.region_city.city.value }}, {{ advert.region_city.region.value }} обл.</span>
+                        <span class="profile-location">{{ advert.region_city.city.value }}, {{ advert.region_city.region.value }} {% if advert.region_city.region.id != 20 %}обл.{% endif %}</span>
                     </div>
                     <div class="profile-phone-div">
                         <span>Телефон</span>

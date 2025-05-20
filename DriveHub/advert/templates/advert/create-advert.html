@@ -5,7 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DriveHub - Create advert</title>
+    <title>DriveHub - Продати</title>
+    <link rel="icon" href="{% static 'icons/favicon.svg' %}" type="image/svg+xml">
     <link rel="stylesheet" href="{% static 'styles/base.css' %}">
     <link rel="stylesheet" href="{% static 'styles/header.css' %}">
     <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
@@ -119,7 +120,7 @@
                         <span class="input-label">Витрата палива, л</span>
                         <div class="fuel-div">
                             <input name="city_consumption" type="number" step="0.1" min="0" placeholder="місто" required>
-                            <input name="mixed_consumption" type="number" step="0.1" min="0" placeholder="змішаний" required>
+                            <input name="mixed_consumption" type="number" step="0.1" min="0" placeholder="змішана" required>
                             <input name="highway_consumption" type="number" step="0.1" min="0" placeholder="траса" required>
                         </div>
                     </div>
@@ -191,26 +192,26 @@
                     </div>
                     <div class="section-row">
                         <div class="input-container">
+                            <span class="input-label">Телефон</span>
+                            <input type="text" min="0" required value="{{user.phone}}" disabled>
+                        </div>
+                        <div class="input-container">
+                            <span class="input-label">Пошта</span>
+                            <input type="text" min="0" required value="{{user.email}}" disabled>
+                        </div>
+                    </div>
+                    <div class="section-row">
+                        <div class="input-container">
                             <span class="input-label">Регіон</span>
                             <div class="select-container">
                                 {% include "advert/custom-select.html" with select_id="region-select" name="region" placeholder="Регіон" options=region_list default_value="Виберіть регіон" required=True %}
                             </div>
                         </div>
                         <div class="input-container">
-                            <span class="input-label">Телефон</span>
-                            <input type="text" min="0" required value="{{user.phone}}" disabled>
-                        </div>
-                    </div>
-                    <div class="section-row">
-                        <div class="input-container">
                             <span class="input-label">Місто</span>
                             <div class="select-container">
                                 {% include "advert/custom-select.html" with select_id="city-select" name="city" disabled=True placeholder="Місто" default_value="Виберіть місто" required=True %}
                             </div>
-                        </div>
-                        <div class="input-container">
-                            <span class="input-label">Пошта</span>
-                            <input type="text" min="0" required value="{{user.email}}" disabled>
                         </div>
                     </div>
                 </div>

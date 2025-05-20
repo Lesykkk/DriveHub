@@ -51,7 +51,7 @@ const addPhotoSrc = document.getElementById('add-photo-img').src;
 
 input.addEventListener('change', function () {
     textArea.style.display = 'none';
-    previewContainer.style.display = 'flex';
+    previewContainer.style.display = 'grid';
     
     const photo = document.getElementById('add_photo');
     if (photo) {
