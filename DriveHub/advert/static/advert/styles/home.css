@@ -5,30 +5,79 @@
 }
 
 .filter-container {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     width: 100%;
-    height: max-content;
-    row-gap: 16px;
+    grid-gap: 16px;
+    grid-auto-rows: 44px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+        "buttons empty empty empty"
+        "select1 select2 select3 select4"
+        "select5 select6 select7 select8"
+        "select9 select10 select11 select12";
 }
 
-.filter-row {
-    display: flex;
-    width: 100%;
-    height: max-content;
-    justify-content: space-between;
+.filter-container .select-container:nth-of-type(2) {
+    grid-area: select1;
 }
 
-.form-button-row{
-    height: 44px;
-    width: calc((100% - (16px * 3)) / 4);
+.filter-container .select-container:nth-of-type(3) {
+    grid-area: select2;
+}
+
+.filter-container .select-container:nth-of-type(4) {
+    grid-area: select3;
+}
+
+.filter-container .select-container:nth-of-type(5) {
+    grid-area: select4;
+}
+
+.filter-container .select-container:nth-of-type(6) {
+    grid-area: select5;
+}
+
+.filter-container .select-container:nth-of-type(7) {
+    grid-area: select6;
+}
+
+.filter-container .select-container:nth-of-type(8) {
+    grid-area: select7;
+}
+
+.filter-container .select-container:nth-of-type(9) {
+    grid-area: select8;
+}
+
+.filter-container .select-container:nth-of-type(10) {
+    grid-area: select9;
+}
+
+.filter-container .select-container:nth-of-type(11) {
+    grid-area: select10;
+}
+
+.filter-container .select-container:nth-of-type(12) {
+    grid-area: select11;
+}
+
+.filter-container .select-container:nth-of-type(13) {
+    grid-area: select12;
+}
+
+
+.form-button-row {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     column-gap: 8px;
     justify-content: space-around;
+    grid-area: buttons;
 }
 
-.form-button{
+
+.form-button {
     background-color: rgb(245, 246, 247);
     color: rgb(100, 116, 139);
     border-radius: 8px;
@@ -59,9 +108,11 @@
 .select-container {
     display: flex;
     flex-direction: row;
-    max-width: 100%;
-    width: calc((100% - (16px*3)) / 4);
-    height: 44px;
+    width: 100%;
+    height: 100%;
+    /* max-width: 100%; */
+    /* width: calc((100% - (16px*3)) / 4); */
+    /* height: 44px; */
 }
 
 .select-container input {
@@ -142,7 +193,7 @@
     width: 100%;
     grid-gap: 16px;
     grid-auto-rows: 260px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
 }
 
@@ -196,4 +247,131 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+
+@media (max-width: 1251px) {
+    .home-container {
+        width: 911px;
+    }
+    
+    .filter-container {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas:
+            "buttons empty empty"
+            "select1 select2 select3"
+            "select4 select5 select6"
+            "select7 select8 select9"
+            "select10 select11 select12";
+    }
+
+    .filter-container .select-container:nth-of-type(5) {
+        grid-area: select6;
+    }
+    .filter-container .select-container:nth-of-type(7) {
+        grid-area: select4;
+    }
+    .filter-container .select-container:nth-of-type(9) {
+        grid-area: select9;
+    }
+    .filter-container .select-container:nth-of-type(10) {
+        grid-area: select8;
+    }
+    .filter-container .select-container:nth-of-type(8) {
+        grid-area: select10;
+    }
+    .filter-container .select-container:nth-of-type(11) {
+        grid-area: select7;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 942px) {
+    .home-container {
+        width: 602px;
+    }
+    
+    .filter-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "buttons empty"
+            "select1 select2"
+            "select3 select4"
+            "select5 select6"
+            "select7 select8"
+            "select9 select10"
+            "select11 select12";
+    }
+
+    .filter-container .select-container:nth-of-type(8) {
+        grid-area: select9;
+    }
+    .filter-container .select-container:nth-of-type(9) {
+        grid-area: select8;
+    }
+    .filter-container .select-container:nth-of-type(10) {
+        grid-area: select3;
+    }
+    .filter-container .select-container:nth-of-type(10) {
+        grid-area: select3;
+    }
+    .filter-container .select-container:nth-of-type(4) {
+        grid-area: select10;
+    }
+    .filter-container .select-container:nth-of-type(11) {
+        grid-area: select7;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 633px) {
+    .home-container {
+        width: 293px;
+    }
+    
+    .filter-container {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-areas:
+            "buttons"
+            "select1"
+            "select2"
+            "select3"
+            "select4"
+            "select5"
+            "select6"
+            "select7"
+            "select8"
+            "select9"
+            "select10"
+            "select11"
+            "select12";
+    }
+
+    .filter-container .select-container:nth-of-type(8) {
+        grid-area: select9;
+    }
+    .filter-container .select-container:nth-of-type(9) {
+        grid-area: select8;
+    }
+    .filter-container .select-container:nth-of-type(10) {
+        grid-area: select3;
+    }
+    .filter-container .select-container:nth-of-type(10) {
+        grid-area: select3;
+    }
+    .filter-container .select-container:nth-of-type(4) {
+        grid-area: select10;
+    }
+    .filter-container .select-container:nth-of-type(11) {
+        grid-area: select7;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

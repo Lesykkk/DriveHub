@@ -294,8 +294,7 @@
 
 .advert-price-section {
     display: flex;
-    justify-items: right;
-    align-items: center;
+    justify-content: space-between;
     padding: 13px 24px;
     margin: 0 0 24px;
     border-radius: 12px;
@@ -306,12 +305,16 @@
     margin-bottom: 24px;
 }
 
+.price-additional {
+    align-items: center;
+    display: flex;
+}
+
 .advert-price {
     display: flex;
     font-size: 30px;
     font-weight: 700;
     color: #5eb260;
-    flex: 1;
 }
 
 .advert-price-₴::after {
@@ -368,6 +371,10 @@
     row-gap: 5px;
 }
 
+.profile-name-container {
+    display: flex;
+}
+
 .profile-name {
     display: flex;
     font-size: 16px;
@@ -375,7 +382,27 @@
     align-items: center;
 }
 
+.profile-name::after {
+    content: "";
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color:#757575;
+    margin: 0 8px;
+    border-radius: 50%;
+}
+
+.profile-last-login {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 400;
+    color: #9b9b9b;
+}
+
 .profile-description {
+    display: flex;
+    align-items: center;
     font-size: 13px;
     font-weight: 500;
     color: #9b9b9b;
@@ -390,7 +417,7 @@
 
 .profile-location {
     display: flex;
-    text-align: center;
+    /* text-align: center; */
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
@@ -400,7 +427,7 @@
 .profile-phone-div {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 60%;
     height: max-content;
     background-color: #1890ff;
     border-radius: 8px;
@@ -476,4 +503,89 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+
+@media (max-width: 1251px) {
+    .advert-container {
+        width: 911px;
+    }
+
+    .advert-col-1 {
+        width: 570px;
+    }
+
+    .advert-image-conatiner {
+        height: 372px;
+    }
+
+    .profile-phone-div {
+        width: 70%;
+    }
+}
+
+@media (max-width: 942px) {
+    .advert-container {
+        width: 602px;
+    }
+
+    .advert-col-1 {
+        width: 100%;
+        margin-top: 24px;
+    }
+
+    .advert-image-conatiner {
+        height: 340px;
+    }
+
+    .advert-profile-section {
+        padding: 0 0px 42px;
+    }
+
+    .transport-info {
+        flex-direction: column;
+        row-gap: 20px;
+    }
+
+    .catogory-row {
+        display: none;
+    }
+
+    .profile-phone-div {
+        width: 60%;
+    }
+}
+
+@media (max-width: 633px) {
+    .advert-container {
+        width: 293px;
+    }
+
+    .advert-image-conatiner {
+        height: 240px;
+    }
+
+    .image-preview-row {
+        display: none;
+    }
+
+    .advert-title {
+        font-size: 18px;
+    }
+
+    .short-spec-row {
+        flex-direction: column;
+        row-gap: 24px;
+    }
+
+    .short-spec-title {
+        font-size: 20px;
+    }
+
+    .short-spec-value {
+        font-size: 14px;
+    }
+    
+    .short-spec-subvalue {
+        font-size: 12px;
+    }
 }
