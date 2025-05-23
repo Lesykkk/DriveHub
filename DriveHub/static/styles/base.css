@@ -18,6 +18,7 @@ body {
     line-height: 1;
     overflow-x: hidden;
     flex: 1;
+    position: relative;
 }
 
 a {
