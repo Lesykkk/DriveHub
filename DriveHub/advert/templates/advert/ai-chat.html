@@ -1,0 +1,137 @@
+{% load static %}
+
+<button class="ai-chat-button" onclick="toggleChat()">
+    <img src="{% static 'advert/icons/chat-bot-icon.svg' %}">
+</button>
+
+<div class="ai-chat-container">
+    <div class="ai-chat-header">
+        <div class="chat-blur"></div>
+        <div class="ai-chat-dynamic-island">
+            <div class="logo">
+                <img src="{% static 'icons/favicon.svg' %}">
+            </div>
+            <div class="text">
+                <span class="top-text">DriveHub</span>
+            </div>
+        </div>
+        <img onclick="toggleChat()" class="chat-icon" src="{% static 'advert/icons/chat-x.svg' %}">
+   </div>
+    <div class="ai-chat-body-container">
+        <div class="ai-chat-scroll">
+            <div style="display flex; height: 5px; width: 100%; flex-shrink: 0;"></div>
+            <div class="message-container">
+                <div class="message-block user">
+                    <div class="icon-column">
+                        <img class="message-profile-icon" src="{% static 'icons/favicon.svg' %}"></img>
+                    </div>
+                    <div class="message-column">
+                        <div class="message">
+                            Привіт! 👋
+                        </div>
+                        <div class="message">
+                            Служба підтримки DriveHub :)
+                        </div>
+                    </div>
+                </div>
+                <div class="message-block">
+                    <div class="icon-column">
+                        <img class="message-profile-icon" src="{% static 'icons/favicon.svg' %}"></img>
+                    </div>
+                    <div class="message-column">
+                        <div class="message">
+                            Привіт! 👋
+                        </div>
+                        <div class="message">
+                            Служба підтримки DriveHub :)
+                        </div>
+                    </div>
+                </div>
+                <div class="message-block">
+                    <div class="icon-column">
+                        <img class="message-profile-icon" src="{% static 'icons/favicon.svg' %}"></img>
+                    </div>
+                    <div class="message-column">
+                        <div class="message">
+                            Привіт! 👋
+                        </div>
+                        <div class="message">
+                            Служба підтримки DriveHub :)
+                        </div>
+                    </div>
+                </div>
+                <div class="message-block">
+                    <div class="icon-column">
+                        <img class="message-profile-icon" src="{% static 'icons/favicon.svg' %}"></img>
+                    </div>
+                    <div class="message-column">
+                        <div class="message">
+                            Привіт! 👋
+                        </div>
+                        <div class="message">
+                            Служба підтримки DriveHub :)
+                        </div>
+                    </div>
+                </div>
+                <div class="message-block">
+                    <div class="icon-column">
+                        <img class="message-profile-icon" src="{% static 'icons/favicon.svg' %}"></img>
+                    </div>
+                    <div class="message-column">
+                        <div class="message">
+                            Привіт! 👋
+                        </div>
+                        <div class="message">
+                            Служба підтримки DriveHub :)
+                        </div>
+                    </div>
+                </div>
+                <div class="message-block">
+                    <div class="icon-column">
+                        <img class="message-profile-icon" src="{% static 'icons/favicon.svg' %}"></img>
+                    </div>
+                    <div class="message-column">
+                        <div class="message">
+                            Привіт! 👋
+                        </div>
+                        <div class="message">
+                            Служба підтримки DriveHub :)
+                        </div>
+                    </div>
+                </div>
+                <div class="message-block user">
+                    <div class="icon-column">
+                        <img class="message-profile-icon" src="{% static 'icons/favicon.svg' %}"></img>
+                    </div>
+                    <div class="message-column">
+                        <div class="message">
+                            Привіт! 👋
+                        </div>
+                        <div class="message">
+                            Служба підтримки DriveHub :)
+                        </div>
+                    </div>
+                </div>
+                <div class="message-block">
+                    <div class="icon-column">
+                        <img class="message-profile-icon" src="{% static 'icons/favicon.svg' %}"></img>
+                    </div>
+                    <div class="message-column">
+                        <div class="message">
+                            Привіт! 👋
+                        </div>
+                        <div class="message">
+                            Служба підтримки DriveHub :)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="ai-chat-input">
+        <input name="user_input" type="text" placeholder="Написати повідомлення...">
+        <button class="chat-send-btn" type="submit">
+            <img src="{% static 'advert/icons/chat-send.svg' %}">
+        </button>
+    </form>
+</div>
