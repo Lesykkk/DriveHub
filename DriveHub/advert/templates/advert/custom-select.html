@@ -6,7 +6,7 @@
   <div class="custom-select">
     <p class="custom-select-placeholder">{{ placeholder }}</p>
     <p class="custom-selected-option"></p>
-    <input class="hidden-input" type="number" name="{{ name }}" {% if required %}required{% endif %} value="{{ value|default:None }}">
+    <input class="hidden-input" type="number" name="{{ name }}" {% if required %}required{% endif %} {% if value %}value="{{ value }}"{% endif %}>
     <img class="arrow-icon" src="{% static 'advert/icons/arrow.svg' %}">
   </div>
   <div class="custom-option-list">

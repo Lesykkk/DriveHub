@@ -128,6 +128,7 @@
     background: transparent;
     overscroll-behavior: contain;
     overflow-y: auto;
+    scroll-behavior: smooth;
 }
 
 .message-container {
@@ -140,12 +141,24 @@
     padding: 20px;
 }
 
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .message-block {
     display: flex;
     width: 100%;
     height: max-content;
     font-size: 14px;
     column-gap: 8px;
+    animation: fadeInUp 0.35s ease-in;
 }
 
 .message-block.user {
@@ -196,36 +209,40 @@
     box-shadow: rgba(0, 0, 0, 0.15) 0px 0.6px 0.54px -1.33px, rgba(0, 0, 0, 0.13) 0px 2.29px 2.06px -2.67px, rgba(0, 0, 0, 0.04) 0px 10px 9px -4px;
 }
 
-.hidden {
+.typing-block {
+    padding: 20px;
+}
+
+.typing-block.hidden {
     display: none;
 }
 
-.loading {
-  margin: 20px 0px 0px 20px;
-  width: 11px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  animation: l5 1s infinite linear alternate;
+.typing {
+    margin: 0px 12px;
+    width: 8px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    animation: typing 1s infinite linear alternate;
 }
-@keyframes l5 {
-    0%  {box-shadow: 15px 0 #188fff, -15px 0 #188fff33; background: #188fff }
-    33% {box-shadow: 15px 0 #188fff, -15px 0 #188fff33; background: #188fff33}
-    66% {box-shadow: 15px 0 #188fff33, -15px 0 #188fff; background: #188fff33}
-    100%{box-shadow: 15px 0 #188fff33, -15px 0 #188fff; background: #188fff }
+@keyframes typing {
+    0%  {box-shadow: 12px 0 #188fff, -12px 0 #188fff33; background: #188fff }
+    33% {box-shadow: 12px 0 #188fff, -12px 0 #188fff33; background: #188fff33}
+    66% {box-shadow: 12px 0 #188fff33, -12px 0 #188fff; background: #188fff33}
+    100%{box-shadow: 12px 0 #188fff33, -12px 0 #188fff; background: #188fff }
 }
 
 .ai-chat-input {
     display: flex;
     width: 100%;
     height: max-content;
-    padding: 0 15px 15px 15px;
+    padding: 0 20px 20px;
     column-gap: 8px;
     align-items: center;
 }
 
 .ai-chat-input input{
     display: flex;
-    border-radius: 12px;
+    border-radius: 10px;
     border: 1px solid #0000001f;
     padding: 10px 50px 10px 16px;
     width: 100%;

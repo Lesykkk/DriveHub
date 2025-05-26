@@ -25,13 +25,11 @@ chatForm.addEventListener("submit", async function(event) {
 
     if (userMessage) {
         addMessageToChat(userMessage, "user");
-        chatScroll.scrollTop = chatScroll.scrollHeight;
         userInput.value = "";
-
-        const loadings = document.querySelectorAll('.loading');
-        const loading = loadings[loadings.length - 1];
-
-        loading.classList.remove("hidden");
+        
+        const typingBlock = document.querySelector('.typing-block');
+        typingBlock.classList.remove("hidden");
+        chatScroll.scrollTop = chatScroll.scrollHeight;
 
         const response = await fetch('/ai/chat/', {
             method: 'POST',
@@ -46,9 +44,8 @@ chatForm.addEventListener("submit", async function(event) {
 
         const data = await response.json();
 
-        loading.remove();
-
         if (data.answer) {
+            typingBlock.classList.add("hidden");
             addMessageToChat(data.answer, "assistant");
             chatScroll.scrollTop = chatScroll.scrollHeight;
         }
@@ -79,12 +76,7 @@ function addMessageToChat(messageText, sender) {
     message.classList.add("message");
     message.textContent = messageText;
 
-    const loadingDiv = document.createElement("div");
-    loadingDiv.classList.add("loading");
-    loadingDiv.classList.add("hidden");
-
     messageColumn.appendChild(message);
-    messageColumn.appendChild(loadingDiv);
     messageBlock.appendChild(iconColumn);
     messageBlock.appendChild(messageColumn);
     messageContainer.appendChild(messageBlock);
