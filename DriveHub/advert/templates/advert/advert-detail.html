@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{% static 'styles/header.css' %}">
     <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
     <link rel="stylesheet" href="{% static 'advert/styles/advert-detail.css' %}">
+    <link rel="stylesheet" href="{% static 'ai/styles/ai-chat.css' %}">
 </head>
 <body>
     {% include "header.html" %}
@@ -177,8 +178,11 @@
         </div>
     </div>
     
+    {% include "ai/ai-chat.html" with system_prompt=system_prompt %}
+
     {% include "footer.html" %}
 
     <script src="{% static 'advert/scripts/advert-detail.js' %}"></script>
+    <script src="{% static 'ai/scripts/ai-chat.js' %}"></script>
 </body>
 </html>
