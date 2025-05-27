@@ -22,6 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-ya8soro$4az1gg4c-9=-w63lbu6$n41vwj50iih*tx1k-f%271'
 
+IOINTELLIGENCE_API_KEY = 'io-v2-eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJvd25lciI6IjAxMDM5ZmM5LTRjNGMtNDNiNi1iOGFjLTI2N2RkNDdjYmJiZiIsImV4cCI6NDkwMTc1ODU3OX0.aNsUxHWybX3PSj8azabZysG4oBhozHUsMSn8YouxzkxgpWaAGlqcBmBryd4UbhiBohzFqcX3ZiPCz8iN08zttA'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'account',
     'advert',
+    'ai',
     
 ]
 

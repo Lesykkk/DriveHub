@@ -11,14 +11,20 @@ from .models import *
 
 def home(request):
     adverts = Advert.objects.select_related('user', 'transport').order_by('-id')[:8]
+
+    system_prompt = ""
+    if request.user.is_authenticated:
+        system_prompt += f"Ім'я користувача: {request.user.first_name}"
+
     return render(request, 'advert/home.html', {
-        "advert_list" : adverts,
+        "advert_list": adverts,
         'brand_list': brand_list(),
         'body_type_list': body_type_list(),
         'fuel_type_list': fuel_type_list(),
         'drive_type_list': drive_type_list(),
         'transmission_type_list': transmission_type_list(),
         'region_list': region_list(),
+        'system_prompt': system_prompt,
     })
 
 @login_required
@@ -62,6 +68,11 @@ def create_advert(request):
         transport_form = TransportForm()
         fuel_consumption_form = FuelConsumptionForm()
         advert_form = AdvertForm()
+
+    system_prompt = ""
+    if request.user.is_authenticated:
+        system_prompt += f"Ім'я користувача: {request.user.first_name}"
+
     return render(request, 'advert/create-advert.html', {
         'fuel_consumption_form': fuel_consumption_form,
         'transport_form': transport_form,
@@ -75,6 +86,7 @@ def create_advert(request):
         'color_list': color_list(),
         'fuel_type_list': fuel_type_list(),
         'region_list': region_list(),
+        'system_prompt': system_prompt,
     })
 
 def advert_detail(request, slug):
@@ -88,13 +100,33 @@ def advert_detail(request, slug):
     ), slug=slug)
 
     is_favourite = False
+    system_prompt = ""
+    
     if request.user.is_authenticated:
         is_favourite = Favourite.objects.filter(user=request.user, advert=advert).exists()
+        system_prompt += f"Ім'я користувача: {request.user.first_name}, "
+
+    system_prompt += (
+        f"Користувач переглядає оголошення, ось його валідні дані: {advert.transport}, "
+        f"ціна: {advert.price:,}$, "
+        f"{advert.transport.mileage:,}км пробіг, "
+        f"{advert.transport.body_type.value}, "
+        f"{advert.transport.color.value}, "
+        f"{advert.transport.engine_volume:.1f}л двигун, "
+        f"{advert.transport.engine_power}к.с., "
+        f"{advert.transport.fuel_type.value}, "
+        f"{advert.transport.transmission_type.value}, "
+        f"{advert.transport.drive_type.value} привід, "
+        f"власників: {advert.transport.owners_number}."
+        f"Дай відповідь на питання якщо буде потрібно"
+    )
+
     return render(request, 'advert/advert-detail.html', {
         'advert': advert,
         'is_favourite': is_favourite,
         'uah_price': int(advert.price * 41),
         'eur_price': int(advert.price * 0.91),
+        'system_prompt': system_prompt,
     })
 
 @login_required
@@ -102,15 +134,15 @@ def delete_advert(request, slug):
     advert = get_object_or_404(Advert, slug=slug, user=request.user)
     if request.method == 'POST':
         advert.delete()
-        # messages.success(request, 'Оголошення успішно видалене.')
         return redirect('account:my-ads')
 
-@require_POST
-@login_required
-def delete_advert(request, advert_id):
-    advert = get_object_or_404(Advert, id=advert_id, user=request.user)
-    advert.delete()
-    return JsonResponse({'redirect_url': reverse('account:my-ads')})
+
+# @require_POST
+# @login_required
+# def delete_advert(request, advert_id):
+#     advert = get_object_or_404(Advert, id=advert_id, user=request.user)
+#     advert.delete()
+#     return JsonResponse({'redirect_url': reverse('account:my-ads')})
 
 @require_GET
 def get_models_by_brand(request):
@@ -192,11 +224,13 @@ def advanced_filters(request):
         'transport__photos',
     ).order_by('-id')
 
+    system_prompt = ""
     favourite_advert_ids = set()
     if request.user.is_authenticated:
         favourite_advert_ids = set(
             Favourite.objects.filter(user=request.user).values_list('advert_id', flat=True)
         )
+        system_prompt += f"Ім'я користувача: {request.user.first_name}"
 
     model_list = None
 
@@ -270,7 +304,10 @@ def advanced_filters(request):
         'region_list': region_list(),
         'current_filters': filters,
         'favourite_advert_ids': favourite_advert_ids,
+        'system_prompt': system_prompt,
     })
+
+
 
 
 def brand_list():
