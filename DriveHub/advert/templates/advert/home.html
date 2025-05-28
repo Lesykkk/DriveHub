@@ -70,6 +70,12 @@
                     Розширений пошук
                 </a>
             </div>
+            <div class="search-form" id="searchForm">
+                <input name="search-query" id="searchInput" type="text" placeholder="Знайти авто" {% if current_filters.search_query %} value="{{current_filters.search_query}}" {% endif %}>
+                <button class="search-btn" type="submit">
+                    <img src="{% static 'advert/icons/search.svg' %}">
+                </button>
+            </div>
         </form>
         <span class="cards-grid-title">Останні оголошення</span>
         <div class="cards-grid">

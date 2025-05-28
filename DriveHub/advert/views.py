@@ -7,6 +7,7 @@ from django.core.paginator import Paginator
 from django.http import JsonResponse
 from .forms import FuelConsumptionForm, TransportForm, AdvertForm
 from .models import *
+from django.db.models import Q
 
 
 def home(request):
@@ -171,36 +172,64 @@ def toggle_favourite(request):
 
 
 def advanced_filters(request):
-    filters = {
-        'car_type' : request.POST.get('car_type'),
-        'brand' : request.POST.get('brand'),
-        'model' : request.POST.get('model'),
-        'price_from' : request.POST.get('price-from'),
-        'price_to' : request.POST.get('price-to'),
-        'year_from' : request.POST.get('year-from'),
-        'year_to' : request.POST.get('year-to'),
-        'mileage_from' : request.POST.get('mileage-from'),
-        'mileage_to' : request.POST.get('mileage-to'),
-        'body_type' : request.POST.get('body_type'),
-        'drive_type' : request.POST.get('drive_type'),
-        'fuel_type' : request.POST.get('fuel_type'),
-        'transmission_type' : request.POST.get('transmission_type'),
-        'volume_from' : request.POST.get('volume-form'),
-        'volume_to' : request.POST.get('volume-to'),
-        'power_from' : request.POST.get('power-from'),
-        'power_to' : request.POST.get('power-to'),
-        'fuel_consumption_city_from' : request.POST.get('fuel-consumption-city-from'),
-        'fuel_consumption_city_to' : request.POST.get('fuel-consumption-city-to'),
-        'fuel_consumption_highway_from' : request.POST.get('fuel-consumption-highway-from'),
-        'fuel_consumption_highway_to' : request.POST.get('fuel-consumption-highway-to'),
-        'fuel_consumption_mixed_from' : request.POST.get('fuel-consumption-mixed-from'),
-        'fuel_consumption_mixed_to' : request.POST.get('fuel-consumption-mixed-to'),
-        'region' : request.POST.get('region'),
-        'page': request.POST.get('page', 1),
-    }
-
-    # if request.method == 'GET':
-    #     filters['car_type'] = request.GET.get('car_type')
+    if request.POST.get('search-query'):
+        filters = {
+            'car_type' : request.POST.get('car_type'),
+            'brand' : None,
+            'model' : None,
+            'price_from' : request.POST.get('price-from'),
+            'price_to' : request.POST.get('price-to'),
+            'year_from' : None,
+            'year_to' : None,
+            'mileage_from' : request.POST.get('mileage-from'),
+            'mileage_to' : request.POST.get('mileage-to'),
+            'body_type' : request.POST.get('body_type'),
+            'drive_type' : request.POST.get('drive_type'),
+            'fuel_type' : request.POST.get('fuel_type'),
+            'transmission_type' : request.POST.get('transmission_type'),
+            'volume_from' : request.POST.get('volume-form'),
+            'volume_to' : request.POST.get('volume-to'),
+            'power_from' : request.POST.get('power-from'),
+            'power_to' : request.POST.get('power-to'),
+            'fuel_consumption_city_from' : request.POST.get('fuel-consumption-city-from'),
+            'fuel_consumption_city_to' : request.POST.get('fuel-consumption-city-to'),
+            'fuel_consumption_highway_from' : request.POST.get('fuel-consumption-highway-from'),
+            'fuel_consumption_highway_to' : request.POST.get('fuel-consumption-highway-to'),
+            'fuel_consumption_mixed_from' : request.POST.get('fuel-consumption-mixed-from'),
+            'fuel_consumption_mixed_to' : request.POST.get('fuel-consumption-mixed-to'),
+            'region' : request.POST.get('region'),
+            'page': request.POST.get('page', 1),
+            'search_query': request.POST.get('search-query'),
+        }
+    else:
+        filters = {
+            'car_type' : request.POST.get('car_type'),
+            'brand' : request.POST.get('brand'),
+            'model' : request.POST.get('model'),
+            'price_from' : request.POST.get('price-from'),
+            'price_to' : request.POST.get('price-to'),
+            'year_from' : request.POST.get('year-from'),
+            'year_to' : request.POST.get('year-to'),
+            'mileage_from' : request.POST.get('mileage-from'),
+            'mileage_to' : request.POST.get('mileage-to'),
+            'body_type' : request.POST.get('body_type'),
+            'drive_type' : request.POST.get('drive_type'),
+            'fuel_type' : request.POST.get('fuel_type'),
+            'transmission_type' : request.POST.get('transmission_type'),
+            'volume_from' : request.POST.get('volume-form'),
+            'volume_to' : request.POST.get('volume-to'),
+            'power_from' : request.POST.get('power-from'),
+            'power_to' : request.POST.get('power-to'),
+            'fuel_consumption_city_from' : request.POST.get('fuel-consumption-city-from'),
+            'fuel_consumption_city_to' : request.POST.get('fuel-consumption-city-to'),
+            'fuel_consumption_highway_from' : request.POST.get('fuel-consumption-highway-from'),
+            'fuel_consumption_highway_to' : request.POST.get('fuel-consumption-highway-to'),
+            'fuel_consumption_mixed_from' : request.POST.get('fuel-consumption-mixed-from'),
+            'fuel_consumption_mixed_to' : request.POST.get('fuel-consumption-mixed-to'),
+            'region' : request.POST.get('region'),
+            'page': request.POST.get('page', 1),
+            'search_query': None,
+        }
 
     adverts = Advert.objects.select_related(
         'transport',
@@ -283,6 +312,20 @@ def advanced_filters(request):
             adverts = adverts.filter(transport__mileage=0)
         elif filters['car_type'] == 'used':
             adverts = adverts.filter(transport__mileage__gt=0)
+
+
+    if filters['search_query']:
+        keywords = request.POST.get('search-query').strip().split()
+        query = Q()
+        for keyword in keywords:
+            if keyword.isdigit():
+                query &= Q(transport__year=keyword)
+            else:
+                query &= (
+                    Q(transport__brand_model__brand__value__icontains=keyword) |
+                    Q(transport__brand_model__model__value__icontains=keyword)
+                )
+        adverts = adverts.filter(query)
 
     paginator = Paginator(adverts, 10)
     page_number = filters['page']

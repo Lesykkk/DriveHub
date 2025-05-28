@@ -11,7 +11,7 @@
     grid-auto-rows: 44px;
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas:
-        "buttons empty empty empty"
+        "buttons search search search"
         "select1 select2 select3 select4"
         "select5 select6 select7 select8"
         "select9 select10 select11 select12";
@@ -105,14 +105,57 @@
     color: #1890FF;
 }
 
+.search-form {
+    position: relative;
+    display: flex;
+    height: 44px;
+    width: 50%;
+    /* width: calc((100% - 16px)*0.75 + 16px); */
+    align-items: center;
+    grid-area: search;
+}
+
+.search-form input {
+    display: flex;
+    border-radius: 8px;
+    border: 1px solid #0000001f;
+    padding: 10px;
+    padding-left: 42px;
+    width: 100%;
+    height: 100%;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: black;
+    outline: none;
+    transition: 0.35s all ease;
+    background-color: white;
+}
+
+.search-form input:hover{
+    border-color: #1890FF;
+}
+
+.search-btn{
+    aspect-ratio: 1;
+    position: absolute;
+    left: 10px;
+    height: 22px;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.search-btn img{
+    width: 100%;
+    height: 100%;
+}
+
 .select-container {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 100%;
-    /* max-width: 100%; */
-    /* width: calc((100% - (16px*3)) / 4); */
-    /* height: 44px; */
 }
 
 .select-container input {
@@ -194,7 +237,6 @@
     grid-gap: 16px;
     grid-auto-rows: 260px;
     grid-template-columns: repeat(4, 1fr);
-    /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
 }
 
 .car-card {

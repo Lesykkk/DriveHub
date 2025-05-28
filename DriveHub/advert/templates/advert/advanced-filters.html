@@ -32,6 +32,12 @@
             <div class="side-filters">
                 <form class="filters-container" method="post">
                     {% csrf_token %}
+                    <div class="search-form" id="searchForm">
+                        <input name="search-query" id="searchInput" type="text" placeholder="Знайти авто" {% if current_filters.search_query %} value="{{current_filters.search_query}}" {% endif %}>
+                        <button class="search-btn" type="submit">
+                            <img src="{% static 'advert/icons/search.svg' %}">
+                        </button>
+                    </div>
                     <div class="form-button-row">
                         <button class="form-button {% if current_filters.car_type == 'all' or not current_filters.car_type %}selected{% endif %}" type="submit" name="car_type" value="all">Всі</button>
                         <button class="form-button {% if current_filters.car_type == 'used' %}selected{% endif %}" type="submit" name="car_type" value="used">З пробігом</button>
