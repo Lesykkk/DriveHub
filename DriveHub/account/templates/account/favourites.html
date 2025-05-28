@@ -37,27 +37,29 @@
                             <p class="no-adverts-message">Немає оголошень</p>
                         {% endfor %}
                         {% if adverts.paginator.num_pages > 1 %}
-                        <div class="pagination">
+                        <form class="pagination" method="post">
+                            {% csrf_token %}
+                            
                             {% if adverts.has_previous %}
                             
                                 {% if adverts.number > 1 %}
-                                <a href="?page={{ adverts.previous_page_number }}"><img id="arrow-left" src="{% static 'advert/icons/arrow-down-black.svg' %}"></a>
+                                <button type="submit" name="page" value="{{ adverts.previous_page_number }}"><img id="arrow-left" src="{% static 'advert/icons/arrow-down-black.svg' %}"></button>
                                 {% endif %}
 
-                                <a href="?page={{ adverts.previous_page_number }}">{{ adverts.previous_page_number }}</a>
+                                <button type="submit" name="page" value="{{ adverts.previous_page_number }}">{{ adverts.previous_page_number }}</button>
                             {% endif %}
                             
-                            <a class="current-page" href="?page={{ adverts.number }}">{{ adverts.number }}</a>
+                            <button class="current-page" type="submit" name="page" value="{{ adverts.number }}">{{ adverts.number }}</button>
                             
                             {% if adverts.has_next %}
-                                <a href="?page={{ adverts.next_page_number }}">{{ adverts.next_page_number }}</a>
+                                <button type="submit" name="page" value="{{ adverts.next_page_number }}">{{ adverts.next_page_number }}</button>
 
                                 {% if adverts.number < adverts.paginator.num_pages %}
-                                <a href="?page={{ adverts.next_page_number }}"><img id="arrow-right" src="{% static 'advert/icons/arrow-down-black.svg' %}"></a>
+                                <button type="submit" name="page" value="{{ adverts.next_page_number }}"><img id="arrow-right" src="{% static 'advert/icons/arrow-down-black.svg' %}"></button>
                                 {% endif %}
-
+                        
                             {% endif %}
-                        </div>
+                        </form>
                         {% endif %}
                     </div>
                 </div>

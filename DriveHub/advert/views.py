@@ -129,20 +129,12 @@ def advert_detail(request, slug):
         'system_prompt': system_prompt,
     })
 
+@require_POST
 @login_required
 def delete_advert(request, slug):
     advert = get_object_or_404(Advert, slug=slug, user=request.user)
-    if request.method == 'POST':
-        advert.delete()
-        return redirect('account:my-ads')
-
-
-# @require_POST
-# @login_required
-# def delete_advert(request, advert_id):
-#     advert = get_object_or_404(Advert, id=advert_id, user=request.user)
-#     advert.delete()
-#     return JsonResponse({'redirect_url': reverse('account:my-ads')})
+    advert.delete()
+    return redirect('account:my-ads')
 
 @require_GET
 def get_models_by_brand(request):
@@ -180,32 +172,35 @@ def toggle_favourite(request):
 
 def advanced_filters(request):
     filters = {
-        'car_type' : request.GET.get('car_type'),
-        'brand' : request.GET.get('brand'),
-        'model' : request.GET.get('model'),
-        'price_from' : request.GET.get('price-from'),
-        'price_to' : request.GET.get('price-to'),
-        'year_from' : request.GET.get('year-from'),
-        'year_to' : request.GET.get('year-to'),
-        'mileage_from' : request.GET.get('mileage-from'),
-        'mileage_to' : request.GET.get('mileage-to'),
-        'body_type' : request.GET.get('body_type'),
-        'drive_type' : request.GET.get('drive_type'),
-        'fuel_type' : request.GET.get('fuel_type'),
-        'transmission_type' : request.GET.get('transmission_type'),
-        'volume_from' : request.GET.get('volume-form'),
-        'volume_to' : request.GET.get('volume-to'),
-        'power_from' : request.GET.get('power-from'),
-        'power_to' : request.GET.get('power-to'),
-        'fuel_consumption_city_from' : request.GET.get('fuel-consumption-city-from'),
-        'fuel_consumption_city_to' : request.GET.get('fuel-consumption-city-to'),
-        'fuel_consumption_highway_from' : request.GET.get('fuel-consumption-highway-from'),
-        'fuel_consumption_highway_to' : request.GET.get('fuel-consumption-highway-to'),
-        'fuel_consumption_mixed_from' : request.GET.get('fuel-consumption-mixed-from'),
-        'fuel_consumption_mixed_to' : request.GET.get('fuel-consumption-mixed-to'),
-        'region' : request.GET.get('region'),
-        'page': request.GET.get('page', 1),
+        'car_type' : request.POST.get('car_type'),
+        'brand' : request.POST.get('brand'),
+        'model' : request.POST.get('model'),
+        'price_from' : request.POST.get('price-from'),
+        'price_to' : request.POST.get('price-to'),
+        'year_from' : request.POST.get('year-from'),
+        'year_to' : request.POST.get('year-to'),
+        'mileage_from' : request.POST.get('mileage-from'),
+        'mileage_to' : request.POST.get('mileage-to'),
+        'body_type' : request.POST.get('body_type'),
+        'drive_type' : request.POST.get('drive_type'),
+        'fuel_type' : request.POST.get('fuel_type'),
+        'transmission_type' : request.POST.get('transmission_type'),
+        'volume_from' : request.POST.get('volume-form'),
+        'volume_to' : request.POST.get('volume-to'),
+        'power_from' : request.POST.get('power-from'),
+        'power_to' : request.POST.get('power-to'),
+        'fuel_consumption_city_from' : request.POST.get('fuel-consumption-city-from'),
+        'fuel_consumption_city_to' : request.POST.get('fuel-consumption-city-to'),
+        'fuel_consumption_highway_from' : request.POST.get('fuel-consumption-highway-from'),
+        'fuel_consumption_highway_to' : request.POST.get('fuel-consumption-highway-to'),
+        'fuel_consumption_mixed_from' : request.POST.get('fuel-consumption-mixed-from'),
+        'fuel_consumption_mixed_to' : request.POST.get('fuel-consumption-mixed-to'),
+        'region' : request.POST.get('region'),
+        'page': request.POST.get('page', 1),
     }
+
+    # if request.method == 'GET':
+    #     filters['car_type'] = request.GET.get('car_type')
 
     adverts = Advert.objects.select_related(
         'transport',
@@ -248,7 +243,7 @@ def advanced_filters(request):
         adverts = adverts.filter(transport__year__gte=filters['year_from'])
     if filters['year_to'] not in [None, '']:
         adverts = adverts.filter(transport__year__lte=filters['year_to'])
-    if filters['mileage_from']:
+    if filters['mileage_from'] not in [None, '']:
         adverts = adverts.filter(transport__mileage__gte=filters['mileage_from'])
     if filters['mileage_to'] not in [None, '']:
         adverts = adverts.filter(transport__mileage__lte=filters['mileage_to'])

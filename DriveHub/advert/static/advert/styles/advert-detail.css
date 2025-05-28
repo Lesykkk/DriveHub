@@ -24,6 +24,8 @@
     font-size: 13px;
     font-weight: 500;
     color: #9b9b9b;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .transport-info {

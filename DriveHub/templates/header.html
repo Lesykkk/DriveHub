@@ -8,14 +8,15 @@
                     <img class="header-logo-img" src = "{% static 'icons/logo.svg' %}">
                 </a>
             </div>
-            <div class="col-2">
+            <form class="col-2" action="{% url "advert:advanced-filters" %}" method="post">
+                {% csrf_token %}
                 <nav class="header-nav">
                     <ul class="header-menu">
                         <li class = "menu-item">
-                            <a class = "header-menu-link" href="{% url 'advert:advanced-filters' %}?car_type=new">Нове авто</a>
+                            <button class = "header-menu-link" type="submit" name="car_type" value="new">Нове авто</button>
                         </li>
                         <li class = "menu-item">
-                            <a class = "header-menu-link" href="{% url 'advert:advanced-filters' %}?car_type=used">Вживане авто</a>
+                            <button class = "header-menu-link" type="submit" name="car_type" value="used">Вживане авто</button>
                         </li>
                         <li class = "menu-item">
                             <a class = "header-menu-link" href="{% url "advert:create-advert" %}">Продати авто</a>
@@ -70,7 +71,7 @@
                         </li>
                     </ul>
                 </nav>
-            </div>
+            </form
         </div>
     </div>
 </header>

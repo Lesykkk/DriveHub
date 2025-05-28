@@ -18,7 +18,8 @@
     {% include "header.html" %}
     
     <div class="home-container">
-        <form class="filter-container" action="{% url "advert:advanced-filters" %}" method="get">
+        <form class="filter-container" action="{% url "advert:advanced-filters" %}" method="post">
+            {% csrf_token %}
             <div class="form-button-row">
                 <button class="form-button selected" type="submit" name="car_type" value="all">Всі</button>
                 <button class="form-button" type="submit" name="car_type" value="used">З пробігом</button>
@@ -64,7 +65,7 @@
                 </button>
             </div>
             <div class="select-container">
-                <a class="submit-btn advanced-search-btn" type="submit" href="{% url 'advert:advanced-filters' %}">
+                <a class="submit-btn advanced-search-btn" href="{% url 'advert:advanced-filters' %}">
                     <img src="{% static 'advert/icons/form-adding.svg' %}">
                     Розширений пошук
                 </a>

@@ -18,15 +18,17 @@
     {% include "header.html" %}
     
     <div class="advert-container">
-        <div class="catogory-row">
+        <form class="catogory-row" action="{% url "advert:advanced-filters" %}" method="post">
+            {% csrf_token %}
             <a class="category" href="{% url 'advert:advanced-filters' %}">Продаж авто</a>
             <img src="{% static 'advert/icons/arrow-right.svg' %}">
-            <a class="category" href="{% url 'advert:advanced-filters' %}?brand={{ advert.transport.brand_model.brand.id }}">{{ advert.transport.brand_model.brand.value }}</a>
+            <button class="category" type="submit">{{ advert.transport.brand_model.brand.value }}</button>
             <img src="{% static 'advert/icons/arrow-right.svg' %}">
-            <a class="category" href="{% url 'advert:advanced-filters' %}?brand={{ advert.transport.brand_model.brand.id }}&model={{ advert.transport.brand_model.model.id }}">{{ advert.transport.brand_model.model.value }}</a>
+            <button class="category" type="submit" name="model" value="{{ advert.transport.brand_model.model.id }}">{{ advert.transport.brand_model.model.value }}</button>
             <img src="{% static 'advert/icons/arrow-right.svg' %}">
-            <a class="category">{{ advert.transport }}</a>
-        </div>
+            <a class="category" href="">{{ advert.transport }}</a>
+            <input type="hidden" name="brand" value="{{ advert.transport.brand_model.brand.id }}">
+        </form>
         <div class="transport-info">
             <div class="advert-col-1">
                 <div class="advert-title-section">

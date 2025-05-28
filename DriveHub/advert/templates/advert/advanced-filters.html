@@ -30,7 +30,8 @@
         </div>
         <div class="content-body">
             <div class="side-filters">
-                <form class="filters-container" action="{% url "advert:advanced-filters" %}" method="get">
+                <form class="filters-container" method="post">
+                    {% csrf_token %}
                     <div class="form-button-row">
                         <button class="form-button {% if current_filters.car_type == 'all' or not current_filters.car_type %}selected{% endif %}" type="submit" name="car_type" value="all">Всі</button>
                         <button class="form-button {% if current_filters.car_type == 'used' %}selected{% endif %}" type="submit" name="car_type" value="used">З пробігом</button>
@@ -46,19 +47,19 @@
                     </div>
                     <div class="filter-section">
                         <div class="select-container">
-                            <input type="number" name="price-from" min="0" step="1" placeholder="Ціна, від" value="{{current_filters.price_from}}">
-                            <input type="number" name="price-to" min="0" step="1" placeholder="до" value="{{current_filters.price_to}}">
+                            <input type="number" name="price-from" min="0" step="1" placeholder="Ціна, від" {% if current_filters.price_from %}value="{{ current_filters.price_from }}"{% endif %}>
+                            <input type="number" name="price-to" min="0" step="1" placeholder="до" {% if current_filters.price_to %}value="{{ current_filters.price_to }}"{% endif %}>
                         </div>
 
                         <div class="select-container">
                             {% now "Y" as year %}
-                            <input type="number" name="year-from" min="1900" max="{{ year }}" step="1" placeholder="Рік, від" value="{{current_filters.year_from}}">
-                            <input type="number" name="year-to" min="1900" max="{{ year }}" step="1" placeholder="до" value="{{current_filters.year_to}}">
+                            <input type="number" name="year-from" min="1900" max="{{ year }}" step="1" placeholder="Рік, від" {% if current_filters.year_from %}value="{{ current_filters.year_from }}"{% endif %}>
+                            <input type="number" name="year-to" min="1900" max="{{ year }}" step="1" placeholder="до" {% if current_filters.year_to %}value="{{ current_filters.year_to }}"{% endif %}>
                         </div>
                         
                         <div class="select-container">
-                            <input type="number" name="mileage-from" min="0" step="1" placeholder="Пробіг, від" value="{{current_filters.mileage_from}}">
-                            <input type="number" name="mileage-to" min="0" step="1" placeholder="до" value="{{current_filters.mileage_to}}">
+                            <input type="number" name="mileage-from" min="0" step="1" placeholder="Пробіг, від" {% if current_filters.mileage_from %}value="{{ current_filters.mileage_from }}"{% endif %}>
+                            <input type="number" name="mileage-to" min="0" step="1" placeholder="до" {% if current_filters.mileage_to %}value="{{ current_filters.mileage_to }}"{% endif %}>
                         </div>
                     </div>
                     <div class="filter-section">
@@ -80,30 +81,30 @@
                         </div>
 
                         <div class="select-container">
-                            <input type="number" name="volume-from" min="0" step="0.1" placeholder="Об'єм, від" value="{{current_filters.volume_from}}">
-                            <input type="number" name="volume-to" min="0" step="0.1" placeholder="до" value="{{current_filters.volume_to}}">
+                            <input type="number" name="volume-from" min="0" step="0.1" placeholder="Об'єм, від" {% if current_filters.volume_from %}value="{{ current_filters.volume_from }}"{% endif %}>
+                            <input type="number" name="volume-to" min="0" step="0.1" placeholder="до" {% if current_filters.volume_to %}value="{{ current_filters.volume_to }}"{% endif %}>
                         </div>
 
                         <div class="select-container">
-                            <input type="number" name="power-from" min="0" step="1" placeholder="Потужність, від" value="{{current_filters.power_from}}">
-                            <input type="number" name="power-to" min="0" step="1" placeholder="до" value="{{current_filters.power_to}}">
+                            <input type="number" name="power-from" min="0" step="1" placeholder="Потужність, від" {% if current_filters.power_from %}value="{{ current_filters.power_from }}"{% endif %}>
+                            <input type="number" name="power-to" min="0" step="1" placeholder="до" {% if current_filters.power_to %}value="{{ current_filters.power_to }}"{% endif %}>
                         </div>
                     </div>
                     <div class="filter-section">
                         <label for="" class="filter-label">Витрата</label>
                         <div class="select-container">
-                            <input type="number" name="fuel-consumption-city-from" min="0" step="0.1" placeholder="Місто, від" value="{{current_filters.fuel_consumption_city_from}}">
-                            <input type="number" name="fuel-consumption-city-to" min="0" step="0.1" placeholder="до" value="{{current_filters.fuel_consumption_city_to}}">
+                            <input type="number" name="fuel-consumption-city-from" min="0" step="0.1" placeholder="Місто, від" {% if current_filters.fuel_consumption_city_from %} value="{{ current_filters.fuel_consumption_city_from}}"{% endif %}>
+                            <input type="number" name="fuel-consumption-city-to" min="0" step="0.1" placeholder="до" {% if current_filters.fuel_consumption_city_to %} value="{{ current_filters.fuel_consumption_city_to}}"{% endif %}>
                         </div>
 
                         <div class="select-container">
-                            <input type="number" name="fuel-consumption-highway-from" min="0" step="1" placeholder="Траса, від" value="{{current_filters.fuel_consumption_highway_from}}">
-                            <input type="number" name="fuel-consumption-highway-to" min="0" step="1" placeholder="до" value="{{current_filters.fuel_consumption_highway_to}}">
+                            <input type="number" name="fuel-consumption-highway-from" min="0" step="1" placeholder="Траса, від" {% if current_filters.fuel_consumption_highway_from %}value="{{ current_filters.fuel_consumption_highway_from }}"{% endif %}>
+                            <input type="number" name="fuel-consumption-highway-to" min="0" step="1" placeholder="до" {% if current_filters.fuel_consumption_highway_to %}value="{{ current_filters.fuel_consumption_highway_to }}"{% endif %}>
                         </div>
 
                         <div class="select-container">
-                            <input type="number" name="fuel-consumption-mixed-from" min="0" step="1" placeholder="Змішана, від" value="{{current_filters.fuel_consumption_mixed_from}}">
-                            <input type="number" name="fuel-consumption-mixed-to" min="0" step="1" placeholder="до" value="{{current_filters.fuel_consumption_mixed_to}}">
+                            <input type="number" name="fuel-consumption-mixed-from" min="0" step="1" placeholder="Змішана, від" {% if current_filters.fuel_consumption_mixed_from %}value="{{ current_filters.fuel_consumption_mixed_from }}"{% endif %}>
+                            <input type="number" name="fuel-consumption-mixed-to" min="0" step="1" placeholder="до" {% if current_filters.fuel_consumption_mixed_to %}value="{{ current_filters.fuel_consumption_mixed_to }}"{% endif %}>
                         </div>
 
                         <div class="select-container">
@@ -141,33 +142,32 @@
                             <p class="no-adverts-message">Немає оголошень</p>
                     {% endfor %}
                     {% if advert_list.paginator.num_pages > 1 %}
-                    {% with request.GET.urlencode as query_params %}
-                    {% with query_params|cut:'page=' as base_query %}
-                    {% with '&' as amp %}
-                    <div class="pagination">
+                    <form class="pagination" method="post">
+                        {% csrf_token %}
+                        {% for key, value in current_filters.items %}
+                            <input type="hidden" name="{{ key }}" {% if value %}value="{{ value }}"{% endif %}>
+                        {% endfor %}
+                        
                         {% if advert_list.has_previous %}
                         
                             {% if advert_list.number > 1 %}
-                            <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value|urlencode }}&{% endif %}{% endfor %}page={{ advert_list.previous_page_number }}"><img id="arrow-left" src="{% static 'advert/icons/arrow-down-black.svg' %}"></a>
+                            <button type="submit" name="page" value="{{ advert_list.previous_page_number }}"><img id="arrow-left" src="{% static 'advert/icons/arrow-down-black.svg' %}"></button>
                             {% endif %}
 
-                            <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value|urlencode }}&{% endif %}{% endfor %}page={{ advert_list.previous_page_number }}">{{ advert_list.previous_page_number }}</a>
+                            <button type="submit" name="page" value="{{ advert_list.previous_page_number }}">{{ advert_list.previous_page_number }}</button>
                         {% endif %}
                         
-                        <a class="current-page" href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value|urlencode }}&{% endif %}{% endfor %}page={{ advert_list.number }}">{{ advert_list.number }}</a>
+                        <button class="current-page" type="submit" name="page" value="{{ advert_list.number }}">{{ advert_list.number }}</button>
                         
                         {% if advert_list.has_next %}
-                            <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value|urlencode }}&{% endif %}{% endfor %}page={{ advert_list.next_page_number }}">{{ advert_list.next_page_number }}</a>
+                            <button type="submit" name="page" value="{{ advert_list.next_page_number }}">{{ advert_list.next_page_number }}</button>
 
                             {% if advert_list.number < advert_list.paginator.num_pages %}
-                            <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value|urlencode }}&{% endif %}{% endfor %}page={{ advert_list.next_page_number }}"><img id="arrow-right" src="{% static 'advert/icons/arrow-down-black.svg' %}"></a>
+                            <button type="submit" name="page" value="{{ advert_list.next_page_number }}"><img id="arrow-right" src="{% static 'advert/icons/arrow-down-black.svg' %}"></button>
                             {% endif %}
                     
                         {% endif %}
-                    </div>
-                    {% endwith %}
-                    {% endwith %}
-                    {% endwith %}
+                    </form>
                     {% endif %}
                 </div>
             </div>

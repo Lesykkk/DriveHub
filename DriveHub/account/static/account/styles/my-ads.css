@@ -30,7 +30,7 @@
     column-gap: 4px;
 }
 
-.pagination a {
+.pagination button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,11 +41,12 @@
     transition: 0.35s all ease;
     font-size: 15px;
     font-weight: 500;
+    background-color: transparent;
+    cursor: pointer;
 }
 
-.pagination a:hover{
+.pagination button:hover{
     background-color: rgb(245, 246, 247);
-    color: #007ef4;
 }
 
 #arrow-left{
