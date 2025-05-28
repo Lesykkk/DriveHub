@@ -238,13 +238,13 @@
     border-color: #1890FF;
 }
 
-.price {
+/* .price {
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
-}
+} */
 
 .section-row {
     display: flex;
