@@ -27,6 +27,50 @@
     height: max-content;
 }
 
+.search-form {
+    position: relative;
+    display: flex;
+    height: 44px;
+    width: 100%;
+    align-items: center;
+}
+
+.search-form input {
+    display: flex;
+    border-radius: 8px;
+    border: 1px solid #0000001f;
+    padding: 10px;
+    padding-left: 42px;
+    width: 100%;
+    height: 100%;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: black;
+    outline: none;
+    transition: 0.35s all ease;
+    background-color: white;
+}
+
+.search-form input:hover{
+    border-color: #1890FF;
+}
+
+.search-btn{
+    aspect-ratio: 1;
+    position: absolute;
+    left: 10px;
+    height: 22px;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.search-btn img{
+    width: 100%;
+    height: 100%;
+}
+
 .filters-container{
     display: flex;
     flex-direction: column;
