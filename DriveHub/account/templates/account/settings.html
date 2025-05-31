@@ -33,18 +33,30 @@
                         </div>
                         <form class="input-form" action="{% url "account:settings" %}" method="post">
                             {% csrf_token %}
+                            {% if form.first_name.errors %}
+                                <div class="validation-error">{{form.first_name.errors.0}}</div>
+                            {% endif %}
                             <div class="input-container">
                                 <img src="{% static 'account/icons/user.svg' %}" alt="">
-                                <input type="text" name="first_name" placeholder="Ім'я" autocomplete="off" value={{ form.first_name.value }} required>
+                                <input type="text" name="first_name" placeholder="Ім'я" autocomplete="off" value={{ form.first_name.value }} >
                             </div>
+                            {% if form.last_name.errors %}
+                                <div class="validation-error">{{form.last_name.errors.0}}</div>
+                            {% endif %}
                             <div class="input-container">
                                 <img src="{% static 'account/icons/user.svg' %}" alt="">
-                                <input type="text" name="last_name" placeholder="Прізвище" autocomplete="off" value={{ form.last_name.value }} required>
+                                <input type="text" name="last_name" placeholder="Прізвище" autocomplete="off" value={{ form.last_name.value }} >
                             </div>
+                            {% if form.phone.errors %}
+                                <div class="validation-error">{{form.phone.errors.0}}</div>
+                            {% endif %}
                             <div class="input-container">
                                 <img src="{% static 'account/icons/phone.svg' %}" alt="">
-                                <input type="tel" name="phone" placeholder="Телефон" autocomplete="off" value={{ form.phone.value }} required>
+                                <input type="tel" name="phone" placeholder="Телефон" autocomplete="off" value={{ form.phone.value }} >
                             </div>
+                            {% if form.new_password.errors %}
+                                <div class="validation-error">{{form.new_password.errors.0}}</div>
+                            {% endif %}
                             <div class="input-container">
                                 <img src="{% static 'account/icons/lock.svg' %}" alt="">
                                 <input type="password" name="new_password" placeholder="Пароль" autocomplete="off">

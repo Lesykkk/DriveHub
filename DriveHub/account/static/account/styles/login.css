@@ -161,3 +161,16 @@
     font-style: normal;
     font-weight: 500;
 }
+
+.validation-error{
+    display: flex;
+    width: 100%;
+    height: max-content;
+    line-height: 1;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: Inter;
+    color: rgb(209, 15, 15);
+    margin-bottom: 8px;
+    margin-top: -8px;
+}
