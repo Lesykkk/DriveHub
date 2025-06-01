@@ -16,8 +16,10 @@ class AccountLoginForm(AuthenticationForm):
         "inactive": _("This account is inactive."),
     }
 
+    
 
-class AccountRegistrationForm(UserCreationForm):
+
+class AccountRegistrationForm(UserCreationForm):    
     class Meta:
         model = CustomUser
         fields = (

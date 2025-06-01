@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-01 01:01+0300\n"
-"PO-Revision-Date: 2025-06-01 01:04+0300\n"
+"POT-Creation-Date: 2025-06-01 16:13+0300\n"
+"PO-Revision-Date: 2025-06-01 13:26+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -41,20 +41,12 @@ msgid "Superuser must have is_superuser=True."
 msgstr ""
 
 #: .\account\models.py:10
-msgid ""
-"Phone number must be entered in the format: '+380123456789'. Up to 15 digits "
-"allowed."
-msgstr ""
-"Номер телефону необхідно вводити у форматі: '+380123456789'. Допускається до "
-"15 цифр."
+msgid "Phone number must be entered in the format: '+380123456789'."
+msgstr "Номер телефону повинен бути у форматі: '+380123456789'."
 
-#: .\account\models.py:16
-msgid ""
-"The field must contain at least 3 letters and may include spaces, "
-"apostrophes, and hyphens."
-msgstr ""
-"Поле повинно містити щонайменше 3 літери та може включати лише пробіли, "
-"апострофи й дефіси."
+#: .\account\models.py:15
+msgid "The field may include spaces, apostrophes, and hyphens."
+msgstr "Поле може містити лише пробіли, апострофи й дефіси."
 
 #: .\account\models.py:21
 msgid "phone number"
@@ -64,11 +56,11 @@ msgstr "номер телефону"
 msgid "A user with that phone number already exists."
 msgstr "Користувач з таким номером телефону вже існує."
 
-#: .\account\models.py:30
+#: .\account\models.py:31
 msgid "email address"
 msgstr "електронна адреса"
 
-#: .\account\models.py:33
+#: .\account\models.py:34
 msgid "A user with that email address already exists."
 msgstr "Користувач з такою адресою вже існує."
 
@@ -76,6 +68,17 @@ msgstr "Користувач з такою адресою вже існує."
 msgid "first name"
 msgstr "ім'я"
 
-#: .\account\models.py:40
+#: .\account\models.py:43 .\account\models.py:52
+msgid "The field must contain at least 3 letters."
+msgstr "Поле повинно містити щонайменше 3 літери."
+
+#: .\account\models.py:48
 msgid "last name"
 msgstr "прізвище"
+
+#, python-format
+msgid "Password must contain at least %(min_length)d character."
+msgid_plural "Password must contain at least %(min_length)d characters."
+msgstr[0] "Пароль має містити щонайменше %(min_length)d символ."
+msgstr[1] "Пароль має містити щонайменше %(min_length)d символи."
+msgstr[2] "Пароль має містити щонайменше %(min_length)d символів."

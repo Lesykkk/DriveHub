@@ -128,7 +128,13 @@
     font-size: 15px;
     font-weight: 500;
     font-family: Inter;
-    color: rgb(209, 15, 15);
+    color: #DB5C4C;
     margin-bottom: 8px;
     margin-top: -8px;
+    align-items: center;
+    text-align: center;
+}
+
+.validation-error img{
+    margin-right: 5px;
 }

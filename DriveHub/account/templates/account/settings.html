@@ -31,31 +31,43 @@
                             <span class="settings-name">{{user.first_name}} {{user.last_name}}</span>
                             <span class="settings-email">{{user.email}}</span>
                         </div>
-                        <form class="input-form" action="{% url "account:settings" %}" method="post">
+                        <form class="input-form" action="{% url "account:settings" %}" method="post" autocomplete="off">
                             {% csrf_token %}
                             {% if form.first_name.errors %}
-                                <div class="validation-error">{{form.first_name.errors.0}}</div>
+                                <div class="validation-error">
+                                    <img src="{% static 'account/icons/alert-circle.svg' %}">
+                                    {{form.first_name.errors.0}}
+                                </div>
                             {% endif %}
                             <div class="input-container">
                                 <img src="{% static 'account/icons/user.svg' %}" alt="">
                                 <input type="text" name="first_name" placeholder="Ім'я" autocomplete="off" value={{ form.first_name.value }} >
                             </div>
                             {% if form.last_name.errors %}
-                                <div class="validation-error">{{form.last_name.errors.0}}</div>
+                                <div class="validation-error">
+                                    <img src="{% static 'account/icons/alert-circle.svg' %}">
+                                    {{form.last_name.errors.0}}
+                                </div>
                             {% endif %}
                             <div class="input-container">
                                 <img src="{% static 'account/icons/user.svg' %}" alt="">
                                 <input type="text" name="last_name" placeholder="Прізвище" autocomplete="off" value={{ form.last_name.value }} >
                             </div>
                             {% if form.phone.errors %}
-                                <div class="validation-error">{{form.phone.errors.0}}</div>
+                                <div class="validation-error">
+                                    <img src="{% static 'account/icons/alert-circle.svg' %}">
+                                    {{form.phone.errors.0}}
+                                </div>
                             {% endif %}
                             <div class="input-container">
                                 <img src="{% static 'account/icons/phone.svg' %}" alt="">
                                 <input type="tel" name="phone" placeholder="Телефон" autocomplete="off" value={{ form.phone.value }} >
                             </div>
                             {% if form.new_password.errors %}
-                                <div class="validation-error">{{form.new_password.errors.0}}</div>
+                                <div class="validation-error">
+                                    <img src="{% static 'account/icons/alert-circle.svg' %}">
+                                    {{form.new_password.errors.0}}
+                                </div>
                             {% endif %}
                             <div class="input-container">
                                 <img src="{% static 'account/icons/lock.svg' %}" alt="">
