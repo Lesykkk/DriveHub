@@ -161,3 +161,22 @@
     font-style: normal;
     font-weight: 500;
 }
+
+.validation-error{
+    display: flex;
+    width: 100%;
+    height: max-content;
+    line-height: 1;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: Inter;
+    color: #DB5C4C;
+    margin-bottom: 8px;
+    margin-top: -8px;
+    align-items: center;
+    text-align: center;
+}
+
+.validation-error img{
+    margin-right: 5px;
+}

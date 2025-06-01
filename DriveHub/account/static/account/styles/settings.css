@@ -63,10 +63,9 @@
 .input-form {
     display: flex;
     flex-direction: column;
-    max-width: 550px;
-    min-width: 320px;
+    width: 320px;
     height: max-content;
-    row-gap: 17px;
+    /* row-gap: 17px; */
 }
 
 .input-container {
@@ -76,6 +75,7 @@
     border: 1px solid #0000001f;
     border-radius: 8px;
     transition: 0.35s all ease;
+    margin-bottom: 24px;
 }
 
 .input-container input {
@@ -118,4 +118,23 @@
 
 .submit-btn:hover{
     background-color: #007ef4;
+}
+
+.validation-error{
+    display: flex;
+    width: 100%;
+    height: max-content;
+    line-height: 1;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: Inter;
+    color: #DB5C4C;
+    margin-bottom: 8px;
+    margin-top: -8px;
+    align-items: center;
+    text-align: center;
+}
+
+.validation-error img{
+    margin-right: 5px;
 }
