@@ -56,8 +56,8 @@
                         </div>
                     {% endif %}
                     <div class="input-container">
-                        <img src="{% static 'account/icons/mail.svg' %}" alt="">
-                        <input type="email" name="username" placeholder="Пошта" value="{% if form.username.value %}{{ form.username.value }}{% endif %}" autocomplete="username">
+                        <img src="{% static 'account/icons/mail.svg' %}">
+                        <input type="text" name="username" placeholder="Пошта" value="{% if form.username.value %}{{ form.username.value }}{% endif %}" autocomplete="off">
                     </div>
                     {% if form.password.errors %}
                         <div class="validation-error">
@@ -66,8 +66,12 @@
                         </div>
                     {% endif %}
                     <div class="input-container">
-                        <img src="{% static 'account/icons/lock.svg' %}" alt="">
-                        <input type="password" name="password" placeholder="Пароль" autocomplete="current-password">
+                        <img src="{% static 'account/icons/lock.svg' %}">
+                        <input id="password" type="password" name="password" placeholder="Пароль" autocomplete="off">
+                        <button type="button" class="toggle-password" onclick="togglePassword()">
+                            <img id="non-visible-eye" class="visible" src="{% static 'account/icons/eye-non-visible.svg' %}">
+                            <img id="visible-eye" class="" src="{% static 'account/icons/eye-visible.svg' %}">
+                        </button>
                     </div>
                     <button class="submit-btn" type="submit">
                         Увійти
@@ -80,5 +84,6 @@
             </div>
         </div>
     </div>
+    <script src="{% static 'account/scripts/login.js' %}"></script>
 </body>
 </html>

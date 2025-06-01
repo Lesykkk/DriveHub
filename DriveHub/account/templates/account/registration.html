@@ -45,7 +45,7 @@
                     {% endif %}
                     <div class="input-container">
                         <img src="{% static 'account/icons/user.svg' %}">
-                        <input type="text" name="first_name" placeholder="Ім'я" value="{% if form.first_name.value %}{{form.first_name.value}}{% endif %}" autocomplete="given-name">
+                        <input type="text" name="first_name" placeholder="Ім'я" value="{% if form.first_name.value %}{{form.first_name.value}}{% endif %}" autocomplete="off">
                     </div>
                     {% if form.last_name.errors %}
                         <div class="validation-error">
@@ -55,17 +55,7 @@
                     {% endif %}
                     <div class="input-container">
                         <img src="{% static 'account/icons/user.svg' %}">
-                        <input type="text" name="last_name" placeholder="Прізвище" value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}" autocomplete="family-name">
-                    </div>
-                    {% if form.email.errors %}
-                        <div class="validation-error">
-                            <img src="{% static 'account/icons/alert-circle.svg' %}">
-                            {{form.email.errors.0}}
-                        </div>
-                    {% endif %}
-                    <div class="input-container">
-                        <img src="{% static 'account/icons/mail.svg' %}">
-                        <input type="email" name="email" placeholder="Пошта" value="{% if form.email.value %}{{form.email.value}}{% endif %}" autocomplete="username">
+                        <input type="text" name="last_name" placeholder="Прізвище" value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}" autocomplete="off">
                     </div>
                     {% if form.phone.errors %}
                         <div class="validation-error">
@@ -75,9 +65,18 @@
                     {% endif %}
                     <div class="input-container">
                         <img src="{% static 'account/icons/phone.svg' %}">
-                        <input type="tel" name="phone" placeholder="Телефон" value="{% if form.phone.value %}{{form.phone.value}}{% endif %}" autocomplete="tel">
+                        <input type="text" name="phone" placeholder="Телефон" value="{% if form.phone.value %}{{form.phone.value}}{% endif %}" autocomplete="off">
                     </div>
-                    {{ LANGUAGE_CODE }}
+                    {% if form.email.errors %}
+                        <div class="validation-error">
+                            <img src="{% static 'account/icons/alert-circle.svg' %}">
+                            {{form.email.errors.0}}
+                        </div>
+                    {% endif %}
+                    <div class="input-container">
+                        <img src="{% static 'account/icons/mail.svg' %}">
+                        <input type="text" name="email" placeholder="Пошта" value="{% if form.email.value %}{{form.email.value}}{% endif %}" autocomplete="off">
+                    </div>
                     {% if form.password2.errors %}
                         <div class="validation-error">
                             <img src="{% static 'account/icons/alert-circle.svg' %}">
@@ -86,7 +85,7 @@
                     {% endif %}
                     <div class="input-container">
                         <img src="{% static 'account/icons/lock.svg' %}">
-                        <input type="password" name="password2" placeholder="Пароль" value="{% if form.password2.value %}{{form.password2.value}}{% endif %}" autocomplete="new-password">
+                        <input type="text" name="password2" placeholder="Пароль" value="{% if form.password2.value %}{{form.password2.value}}{% endif %}" autocomplete="off">
                     </div>
                     {% if form.password1.errors %}
                         <div class="validation-error">
@@ -96,7 +95,7 @@
                     {% endif %}
                     <div class="input-container">
                         <img src="{% static 'account/icons/lock.svg' %}">
-                        <input type="password" name="password1" placeholder="Повторіть пароль" value="{% if form.password1.value %}{{form.password1.value}}{% endif %}" autocomplete="new-password">
+                        <input type="text" name="password1" placeholder="Повторіть пароль" value="{% if form.password1.value %}{{form.password1.value}}{% endif %}" autocomplete="off">
                     </div>
                     <button class="submit-btn" type="submit">
                         Продовжити

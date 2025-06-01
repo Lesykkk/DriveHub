@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.core.paginator import Paginator
 from .forms import AccountLoginForm, AccountRegistrationForm, ProfileForm
+from account.models import CustomUser
 from advert.models import *
 
 def login(request):
@@ -65,22 +66,20 @@ def favourites(request):
         'adverts': adverts,
     })
 
-
 @login_required
 def settings(request):
+    user_copy = CustomUser.objects.get(pk=request.user.pk)
     if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=request.user)
+        form = ProfileForm(request.POST, instance=user_copy)
         if form.is_valid():
-            user = form.save(commit=False)
-            new_password = form.cleaned_data.get('new_password')
-            if new_password:
-                user.set_password(new_password)
-            user.save()
+            user = form.save()
             update_session_auth_hash(request, user)
             return redirect('account:settings')
+        else:
+            return render(request, 'account/settings.html', {'form': form})
     else:
         form = ProfileForm(instance=request.user)
-    return render(request, 'account/settings.html', {'form': form})
+        return render(request, 'account/settings.html', {'form': form})
 
 
 @login_required

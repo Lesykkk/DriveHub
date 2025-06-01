@@ -40,7 +40,7 @@
                                 </div>
                             {% endif %}
                             <div class="input-container">
-                                <img src="{% static 'account/icons/user.svg' %}" alt="">
+                                <img src="{% static 'account/icons/user.svg' %}">
                                 <input type="text" name="first_name" placeholder="Ім'я" autocomplete="off" value={{ form.first_name.value }} >
                             </div>
                             {% if form.last_name.errors %}
@@ -50,7 +50,7 @@
                                 </div>
                             {% endif %}
                             <div class="input-container">
-                                <img src="{% static 'account/icons/user.svg' %}" alt="">
+                                <img src="{% static 'account/icons/user.svg' %}">
                                 <input type="text" name="last_name" placeholder="Прізвище" autocomplete="off" value={{ form.last_name.value }} >
                             </div>
                             {% if form.phone.errors %}
@@ -60,7 +60,7 @@
                                 </div>
                             {% endif %}
                             <div class="input-container">
-                                <img src="{% static 'account/icons/phone.svg' %}" alt="">
+                                <img src="{% static 'account/icons/phone.svg' %}" >
                                 <input type="tel" name="phone" placeholder="Телефон" autocomplete="off" value={{ form.phone.value }} >
                             </div>
                             {% if form.new_password.errors %}
@@ -70,8 +70,12 @@
                                 </div>
                             {% endif %}
                             <div class="input-container">
-                                <img src="{% static 'account/icons/lock.svg' %}" alt="">
-                                <input type="password" name="new_password" placeholder="Пароль" autocomplete="off">
+                                <img src="{% static 'account/icons/lock.svg' %}">
+                                <input type="password" id="id_new_password" name="new_password" placeholder="Пароль" autocomplete="off">
+                                <button type="button" class="toggle-password" onclick="togglePassword()">
+                                    <img id="non-visible-eye" class="visible" src="{% static 'account/icons/eye-non-visible.svg' %}">
+                                    <img id="visible-eye" class="" src="{% static 'account/icons/eye-visible.svg' %}">
+                                </button>
                             </div>
                             <button class="submit-btn" type="submit">
                                 Зберегти зміни
@@ -84,5 +88,7 @@
     </div>
     
     {% include "footer.html" %}
+
+    <script src="{% static 'account/scripts/settings.js' %}"></script>
 </body>
 </html>
