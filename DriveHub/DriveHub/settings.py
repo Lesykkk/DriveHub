@@ -11,23 +11,30 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
-
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = os.getenv("DEBUG", "True") == "True"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ya8soro$4az1gg4c-9=-w63lbu6$n41vwj50iih*tx1k-f%271'
+if DEBUG:
+    SECRET_KEY = 'django-insecure-ya8soro$4az1gg4c-9=-w63lbu6$n41vwj50iih*tx1k-f%271'
+    IOINTELLIGENCE_API_KEY = 'io-v2-eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJvd25lciI6IjAxMDM5ZmM5LTRjNGMtNDNiNi1iOGFjLTI2N2RkNDdjYmJiZiIsImV4cCI6NDkwMTc1ODU3OX0.aNsUxHWybX3PSj8azabZysG4oBhozHUsMSn8YouxzkxgpWaAGlqcBmBryd4UbhiBohzFqcX3ZiPCz8iN08zttA'
+else:
+    SECRET_KEY = os.getenv('SECRET_KEY')
+    IOINTELLIGENCE_API_KEY = os.getenv('IOINTELLIGENCE_API_KEY')
 
-IOINTELLIGENCE_API_KEY = 'io-v2-eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJvd25lciI6IjAxMDM5ZmM5LTRjNGMtNDNiNi1iOGFjLTI2N2RkNDdjYmJiZiIsImV4cCI6NDkwMTc1ODU3OX0.aNsUxHWybX3PSj8azabZysG4oBhozHUsMSn8YouxzkxgpWaAGlqcBmBryd4UbhiBohzFqcX3ZiPCz8iN08zttA'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+print(SECRET_KEY)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -146,5 +153,5 @@ LOGIN_URL = 'account:login'
 LOGIN_REDIRECT_URL = 'account:home'
 
 LOCALE_PATHS = [
-    BASE_DIR/ 'locale'
+    BASE_DIR / 'locale'
 ]
