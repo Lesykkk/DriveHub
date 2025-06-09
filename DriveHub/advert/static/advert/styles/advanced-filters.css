@@ -122,7 +122,7 @@
 }
 
 .form-button:first-child, .form-button:last-child{
-    max-width: 56px;
+    max-width: 25%;
 }
 
 .form-button:hover{
@@ -292,20 +292,33 @@
     .advanced-filters-container {
         width: 911px;
     }
-
-    .content-body {
-        flex-direction: column;
-    }
 }
 
 @media (max-width: 942px) {
     .advanced-filters-container {
         width: 602px;
     }
+
+    .content-body {
+        flex-direction: column;
+    }
+
+    .cars-container {
+        padding: 0 0 20px 0;
+    }
+
+    .side-filters {
+        width: 100%;
+    }
+
+    .car-cards-container {
+        margin-top: 24px;
+    }
 }
 
 @media (max-width: 633px) {
     .advanced-filters-container {
-        width: 293px;
+        width: 90%;
+        min-width: 293px;
     }
 }

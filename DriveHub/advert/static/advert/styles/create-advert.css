@@ -301,7 +301,8 @@
 
 @media (max-width: 633px) {
     .create-advert-container {
-        width: 293px;
+        width: 90%;
+        min-width: 293px;
     }
 
     .section {
@@ -323,7 +324,7 @@
     }
 
     .file-preview-container {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(103px, 1fr));
     }
     .add-photo span {
         font-size: 14px;

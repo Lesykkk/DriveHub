@@ -126,21 +126,21 @@
     overflow: hidden;
     border-radius: 12px;
     border: 1px solid #0000001f;
-    margin-bottom: 21px;
+    margin-bottom: 24px;
     user-select: none;
 }
 
 .advert-image-conatiner {
     display: flex;
     width: 100%;
-    height: 490px;
+    height: max-content;
     position: relative;
 }
 
 .main-image {
     display: flex;
     width: 100%;
-    height: 100%;
+    aspect-ratio: 1.5/1;
     object-fit: cover;
     transition: all 0.35s ease;
 }
@@ -507,6 +507,10 @@
     line-height: normal;
 }
 
+.mobile-section {
+    display: none;
+}
+
 @media (max-width: 1251px) {
     .advert-container {
         width: 911px;
@@ -514,10 +518,6 @@
 
     .advert-col-1 {
         width: 570px;
-    }
-
-    .advert-image-conatiner {
-        height: 372px;
     }
 
     .profile-phone-div {
@@ -533,10 +533,33 @@
     .advert-col-1 {
         width: 100%;
         margin-top: 24px;
+        .advert-title-section {
+            order: 0;
+        }
+        .advert-price-section {
+            order: 1;
+        }
+        .advert-image-section {
+            order: 2;
+        }
+        .advert-short-spec-section {
+            order: 3;
+        }
+        .advert-spec-section {
+            order: 4;
+            margin-top: 24px;
+        }
+        .description-section {
+            order: 5;
+        }
+        .advert-profile-section {
+            order: 6;
+            margin-top: 24px;
+        }
     }
 
-    .advert-image-conatiner {
-        height: 340px;
+    .advert-col-2 {
+        display: none;
     }
 
     .advert-profile-section {
@@ -555,15 +578,16 @@
     .profile-phone-div {
         width: 60%;
     }
+
+    .mobile-section {
+        display: flex;
+    }
 }
 
 @media (max-width: 633px) {
     .advert-container {
-        width: 293px;
-    }
-
-    .advert-image-conatiner {
-        height: 240px;
+        width: 90%;
+        min-width: 293px;
     }
 
     .image-preview-row {

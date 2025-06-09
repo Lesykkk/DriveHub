@@ -3,9 +3,13 @@
     flex-direction: column;
     width: 360px;
     height: 630px;
+    max-width: calc(100% - (2 * 40px));
+    max-height: calc(100% - 60px);
+    min-height: 0px;
+    min-width: 0px;
     position: fixed;
-    bottom: 80px;
-    right: 50px;
+    bottom: 60px;
+    right: 40px;
     background-color: rgb(248, 248, 248);
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0.48px 2.41px -0.38px, rgba(0, 0, 0, 0.17) 0px 4px 20px -0.75px;
     border-radius: 16px;
@@ -298,3 +302,4 @@
     visibility: hidden;
     transform: scale(0);
 }
+

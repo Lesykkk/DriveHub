@@ -117,7 +117,9 @@ main {
 
 @media (max-width: 633px) {
     .footer-container {
-        width: 293px;
+        width: 90%;
+        min-width: 293px;
+        /* width: 293px; */
     }
 
     .footer-col-2 {

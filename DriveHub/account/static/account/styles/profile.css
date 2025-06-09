@@ -38,3 +38,48 @@
     font-weight: 600;
     line-height: normal;
 }
+
+@media (max-width: 1251px) {
+    .profile-container {
+        width: 911px;
+    }
+}
+
+@media (max-width: 942px) {
+    .profile-container {
+        width: 602px;
+    }
+    .car-card {
+        flex-direction: column;
+    }
+    .car-img {
+        height: initial;
+        width: 100%;
+        aspect-ratio: 16/10;
+    }
+    .car-info {
+        margin-top: 5px;
+    }
+    .car-spec-row {
+        display: none;
+    }
+}
+
+@media (max-width: 633px) {
+    .profile-container {
+        width: 90%;
+        min-width: 293px;
+    }
+
+    .main-profile-container {
+        flex-direction: column;
+    }
+
+    .content {
+        padding-left: 12px;
+        padding-right: 12px;
+        .h-line:first-child {
+            display: none;
+        }
+    }
+}
