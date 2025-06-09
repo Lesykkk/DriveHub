@@ -132,8 +132,8 @@ def advert_detail(request, slug):
 
 @require_POST
 @login_required
-def delete_advert(request, slug):
-    advert = get_object_or_404(Advert, slug=slug, user=request.user)
+def delete_advert(request, advert_id):
+    advert = get_object_or_404(Advert, id=advert_id, user=request.user)
     advert.delete()
     return redirect('account:my-ads')
 
