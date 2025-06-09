@@ -230,7 +230,6 @@ header {
 
 @media (max-width: 633px) {
     .header-container {
-        /* width: 293px; */
         width: 90%;
         min-width: 293px;
     }
@@ -248,9 +247,6 @@ header {
     .header-menu .menu-item:nth-of-type(3) {
         display: none;
     }
-    /* .header-menu .menu-item:nth-of-type(4) {
-        margin-right: 0;
-    } */
     .create-btn {
         width: 42px;
         .create-title {

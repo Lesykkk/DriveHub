@@ -5,10 +5,11 @@ function onClick(advertId) {
             "X-CSRFToken": getCookie('csrftoken'),
         }
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.redirect_url) {
-            window.location.href = data.redirect_url;
+    .then(response => {
+        if (response.redirected || response.ok) {
+            location.reload();
+        } else {
+            throw new Error("Помилка HTTP");
         }
     })
     .catch(error => {
