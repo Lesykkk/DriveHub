@@ -34,9 +34,7 @@ else:
     SECRET_KEY = os.getenv('SECRET_KEY')
     IOINTELLIGENCE_API_KEY = os.getenv('IOINTELLIGENCE_API_KEY')
 
-print(SECRET_KEY)
-
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
 
 # Application definition
 
@@ -130,14 +128,19 @@ USE_TZ = True
 
 LANGUAGE_CODE = 'uk'
 
+LOCALE_PATHS = [
+    BASE_DIR / 'locale'
+]
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+if DEBUG:
+    STATICFILES_DIRS = [
+        BASE_DIR / 'static',
+    ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -151,6 +154,17 @@ AUTH_USER_MODEL = 'account.CustomUser'
 LOGIN_URL = 'account:login'
 LOGIN_REDIRECT_URL = 'account:home'
 
-LOCALE_PATHS = [
-    BASE_DIR / 'locale'
+CSRF_TRUSTED_ORIGINS = [
+    "https://drivehub-2ajj.onrender.com",
+    "https://drivehub.pp.ua",
 ]
+
+# HTTPS
+# if not DEBUG:
+    # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    # SECURE_SSL_REDIRECT = True
+    # SESSION_COOKIE_SECURE = True
+    # CSRF_COOKIE_SECURE = True
+    # SECURE_HSTS_SECONDS = 31536000
+    # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    # SECURE_HSTS_PRELOAD = True
