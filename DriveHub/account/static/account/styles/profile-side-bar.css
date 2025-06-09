@@ -104,3 +104,23 @@
 .profile-h-line-2 {
     margin-top: 200px;
 }
+
+@media (max-width: 1251px) {
+
+}
+
+@media (max-width: 942px) {
+    .side-bar {
+        width: 250px;
+    }
+}
+
+@media (max-width: 633px) {
+    .side-bar {
+        width: 100%;
+    }
+    .profile-h-line-2 {
+        margin: 0;
+        order: 2;
+    }
+}

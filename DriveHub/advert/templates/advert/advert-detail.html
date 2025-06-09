@@ -109,6 +109,71 @@
                     <span class="description-title">Опис продавця</span>
                     <span class="description">{{ advert.description }}</span>
                 </div>
+                <div class="advert-price-section mobile-section">
+                    <span class="advert-price">{{ advert.price|intcomma }} $</span>
+                    <div class="price-additional">
+                        <span class="advert-price-₴">{{ uah_price|intcomma }} ₴</span>
+                        <span class="advert-price-€">{{ eur_price|intcomma }} €</span>
+                    </div>
+                </div>
+                <div class="advert-profile-section mobile-section">
+                    <div class="profile-row">
+                        <div class="profile-row-logo">{{ advert.user.first_name|slice:":1"|upper }}</div>
+                        <div class="profile-row-text">
+                            <div class="profile-name-container">
+                                <span class="profile-name">{{ advert.user.first_name }}</span>
+                                <span class="profile-last-login">онлайн {{ advert.user.last_login|date:"j E" }}</span>
+                            </div>
+                            <span class="profile-description">Власник</span>
+                        </div>
+                    </div>
+                    <div class="profile-row">
+                        <img class="profile-location-img" src="{% static 'advert/icons/location.svg' %}">
+                        <span class="profile-location">{{ advert.region_city.city.value }}, {{ advert.region_city.region.value }} {% if advert.region_city.region.id != 20 %}обл.{% endif %}</span>
+                    </div>
+                    <div class="profile-phone-div">
+                        <span>Телефон</span>
+                        {{advert.user.phone}}
+                    </div>
+                </div>
+                <div class="advert-spec-section mobile-section">
+                    <span class="spec-section-title">Характеристики</span>
+                    <div class="spec-section-table">
+                        <div class="section-table-row">
+                            <span class="section-table-column-title">Рік випуску</span>
+                            
+                            <span class="section-table-column">{{ advert.transport.year }} </span>
+                        </div>
+                        <div class="section-table-row">
+                            <span class="section-table-column-title">Пробіг</span>
+                            <span class="section-table-column">{{ advert.transport.mileage|intcomma }} км</span>
+                        </div>
+                        <div class="section-table-row">
+                            <span class="section-table-column-title">Кузов</span>
+                            <span class="section-table-column">{{ advert.transport.body_type.value }}</span>
+                        </div>
+                        <div class="section-table-row">
+                            <span class="section-table-column-title">Колір</span>
+                            <span class="section-table-column">{{ advert.transport.color.value }}</span>
+                        </div>
+                        <div class="section-table-row">
+                            <span class="section-table-column-title">Двигун</span>
+                            <span class="section-table-column">{{ advert.transport.engine_volume }} л / {{ advert.transport.engine_power }} к.с. / {{ advert.transport.fuel_type.value }}</span>
+                        </div>
+                        <div class="section-table-row">
+                            <span class="section-table-column-title">КПП</span>
+                            <span class="section-table-column">{{ advert.transport.transmission_type.value }}</span>
+                        </div>
+                        <div class="section-table-row">
+                            <span class="section-table-column-title">Привід</span>
+                            <span class="section-table-column">{{ advert.transport.drive_type.value }}</span>
+                        </div>
+                        <div class="section-table-row">
+                            <span class="section-table-column-title">Власники</span>
+                            <span class="section-table-column">{{ advert.transport.owners_number }}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="advert-col-2">
                 <div class="advert-price-section">

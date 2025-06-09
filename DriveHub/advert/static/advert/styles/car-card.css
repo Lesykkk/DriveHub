@@ -136,3 +136,39 @@
     width: 100%;
     background-color: rgb(229, 229, 229);
 }
+
+@media (max-width: 1251px) {
+    .car-title-row {
+        flex-direction: column;
+        align-items: initial;
+    }
+    .car-price-hrn {
+        display: none;
+    }
+    .car-price-dolar {
+        margin-left: 0;
+    }
+    .car-spec-row p:last-child {
+        display: none;
+    }
+    .car-about {
+        display: none;
+    }
+}
+
+@media (max-width: 942px) {
+}
+
+@media (max-width: 633px) {
+    .car-card {
+        flex-direction: column;
+    }
+    .car-img {
+        height: initial;
+        width: 100%;
+        aspect-ratio: 16/10;
+    }
+    .car-info {
+        margin-top: 5px;
+    }
+}
