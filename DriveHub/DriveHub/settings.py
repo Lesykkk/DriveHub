@@ -29,7 +29,7 @@ DEBUG = os.getenv("DEBUG", "True") == "True"
 # SECURITY WARNING: keep the secret key used in production secret!
 if DEBUG:
     SECRET_KEY = 'django-insecure-ya8soro$4az1gg4c-9=-w63lbu6$n41vwj50iih*tx1k-f%271'
-    IOINTELLIGENCE_API_KEY = 'io-v2-eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJvd25lciI6IjAxMDM5ZmM5LTRjNGMtNDNiNi1iOGFjLTI2N2RkNDdjYmJiZiIsImV4cCI6NDkwMTc1ODU3OX0.aNsUxHWybX3PSj8azabZysG4oBhozHUsMSn8YouxzkxgpWaAGlqcBmBryd4UbhiBohzFqcX3ZiPCz8iN08zttA'
+    IOINTELLIGENCE_API_KEY = 'io-v2-eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJvd25lciI6IjAxMDM5ZmM5LTRjNGMtNDNiNi1iOGFjLTI2N2RkNDdjYmJiZiIsImV4cCI6NDkxODI5MDY5Mn0.S0S2m1aPRII0LCtU4_P7TzHRH-3uA7gh8jdC_3VquI44pFwUExi1M9O_BAVez3aTwzFTNkZxZHMFOXar2P432A'
 else:
     SECRET_KEY = os.getenv('SECRET_KEY')
     IOINTELLIGENCE_API_KEY = os.getenv('IOINTELLIGENCE_API_KEY')
